@@ -28,7 +28,9 @@ private:
 	Texture spritesheet;
 	Sprite* sprite;
 	TileMap* map;
-	glm::vec2 speed;
+	glm::vec2 speed, initPosPlayer, actualSpeed;
+	float t = 0;
+	float g = 1.8;
 
 };
 
