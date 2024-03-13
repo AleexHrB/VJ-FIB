@@ -5,16 +5,14 @@
 #include "Game.h"
 
 
-void Bubble::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
+void Bubble::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, const glm::ivec2& initPos, const glm::ivec2& speed)
 {
 	
 	spritesheet.loadFromFile("images/Bubbles.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sprite = Sprite::createSprite(glm::ivec2(48, 40), glm::vec2(1, 1.0/3.0), &spritesheet, &shaderProgram);
 	tileMapDispl = tileMapPos;
-	speed.x = 10;
-	speed.y = 0;
-	posPlayer.x = initPosPlayer.x = 10;
-	posPlayer.y = initPosPlayer.y = 200;
+	this->speed = speed;
+	this->posPlayer = this->initPosPlayer = initPos;
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
 }
 
@@ -65,4 +63,9 @@ void Bubble::setPosition(const glm::vec2& pos)
 {
 	posPlayer = pos;
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
+}
+
+glm::ivec2 Bubble::getPosition()
+{
+	return posPlayer;
 }

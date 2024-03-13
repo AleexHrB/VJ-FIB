@@ -3,6 +3,7 @@
 
 
 #include <glm/glm.hpp>
+#include <list>
 #include "ShaderProgram.h"
 #include "TileMap.h"
 #include "Player.h"
@@ -30,10 +31,13 @@ private:
 private:
 	TileMap *map;
 	Player *player;
-	Bubble *bubble;
 	ShaderProgram texProgram;
 	float currentTime;
+	float inmuneTime = 0.0f;
 	glm::mat4 projection;
+	list<Bubble*> l;
+	inline bool circle_test(glm::ivec2 posBubble);
+	inline bool hitted();
 
 };
 

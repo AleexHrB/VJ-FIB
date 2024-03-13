@@ -32,13 +32,13 @@ void Scene::init()
 	initShaders();
 	map = TileMap::createTileMap("levels/level01.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 	player = new Player();
-	bubble = new Bubble();
+	l.push_back(new Bubble());
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	bubble->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::ivec2(10, 20), glm::ivec2(4, 0));
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
 	//bubble->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
-	bubble->setTileMap(map);
+	l.back()->setTileMap(map);
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGHT), 0.f);
 	currentTime = 0.0f;
 }
@@ -47,13 +47,28 @@ void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
 	player->update(deltaTime);
-	bubble->update(deltaTime);
+	
+	auto it = l.begin();
+	while (it != l.end()) {
+		Bubble* bub = *it;
+		bub -> update(deltaTime);
+		if (circle_test(bub->getPosition()) && hitted()) {
+			l.push_back(new Bubble());
+			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub -> getPosition(), glm::ivec2(1, 0));
+			l.back()->setTileMap(map);
+			l.push_back(new Bubble());
+			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub->getPosition(), glm::ivec2(-1, 0));
+			l.back()->setTileMap(map);
+			it = l.erase(it);
+			cout << "hit" << endl;
+		}
+		else ++it;
+	}
 }
 
 void Scene::render()
 {
 	glm::mat4 modelview;
-
 	texProgram.use();
 	texProgram.setUniformMatrix4f("projection", projection);
 	texProgram.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
@@ -62,7 +77,7 @@ void Scene::render()
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 	map->render();
 	player->render();
-	bubble->render();
+	for (Bubble* bub : l) bub->render();
 }
 
 void Scene::initShaders()
@@ -93,6 +108,22 @@ void Scene::initShaders()
 	texProgram.bindFragmentOutput("outColor");
 	vShader.free();
 	fShader.free();
+}
+
+inline bool Scene::circle_test(glm::ivec2 posBubble)
+{
+	glm::ivec2 posPlayer = player->getPosition();
+	return (posPlayer.x - posBubble.x) * (posPlayer.x - posBubble.x) + (posPlayer.y - posBubble.y) * (posPlayer.y - posBubble.y) <= 24 * 24;
+}
+
+inline bool Scene::hitted()
+{
+	if (currentTime - inmuneTime > 1000) {
+		inmuneTime = currentTime;
+		return true;
+	}
+
+	else return false;
 }
 
 
