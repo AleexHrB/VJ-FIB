@@ -14,12 +14,13 @@ class Bubble
 {
 
 public:
-	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram);
+	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, const glm::ivec2& initPos, const glm::ivec2& speed);
 	void update(int deltaTime);
 	void render();
 
 	void setTileMap(TileMap* tileMap);
 	void setPosition(const glm::vec2& pos);
+	glm::ivec2 getPosition();
 
 private:
 	bool bJumping;
@@ -28,7 +29,9 @@ private:
 	Texture spritesheet;
 	Sprite* sprite;
 	TileMap* map;
-	glm::vec2 speed;
+	glm::vec2 speed, initPosPlayer, actualSpeed;
+	float t = 0;
+	float g = 1.8;
 
 };
 
