@@ -38,6 +38,7 @@ private:
 	list<Bubble*> l;
 	inline bool circle_test(glm::ivec2 posBubble);
 	inline bool hitted();
+	inline bool hook_test(glm::ivec2& posBubble);
 
 };
 

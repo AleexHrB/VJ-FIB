@@ -21,6 +21,9 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	float unit = 0.14285714285;
 	bJumping = false;
 	spritesheet.loadFromFile("images/Pedro.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	hk.sh = shaderProgram;
+	hk.spritesheet.loadFromFile("images/hook.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	hk.sprite = Sprite::createSprite(glm::ivec2(109, 70), glm::vec2(1.0f, 70.0/2248.0), &hk.spritesheet, &shaderProgram);
 	sprite = Sprite::createSprite(glm::ivec2(64, 64), glm::vec2(unit, 0.5), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(SIZE);
 	
@@ -76,7 +79,8 @@ void Player::update(int deltaTime)
 	}
 	else if (Game::instance().getKey(GLFW_KEY_C))
 	{
-		
+		hk.posHook = posPlayer;
+		shoot = true;
 		if (sprite->animation() != SHOOT)
 			sprite->changeAnimation(SHOOT);
 	}
@@ -119,11 +123,17 @@ void Player::update(int deltaTime)
 	}
 	
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
+	if (shoot) {
+		hk.sprite = Sprite::createSprite(glm::ivec2(32, (posPlayer.y - hk.posHook.y) * 32), glm::vec2(1.0f, (posPlayer.y - hk.posHook.y) * 70.0 / 2248.0), &hk.spritesheet, &hk.sh);
+		if (hk.posHook.y > 4) hk.posHook.y -= 4;
+		hk.sprite->setPosition(glm::vec2(float(tileMapDispl.x + hk.posHook.x), float(tileMapDispl.y + hk.posHook.y)));
+	}
 }
 
 void Player::render()
 {
 	sprite->render();
+	if (shoot) hk.sprite->render();
 }
 
 void Player::setTileMap(TileMap *tileMap)
@@ -142,6 +152,14 @@ glm::ivec2 Player::getPosition()
 	return posPlayer;
 }
 
+glm::ivec2 Player::getHookPosition()
+{
+	return hk.posHook;
+}
 
+void Player::setShoot(bool hit_hook)
+{
+	this->shoot = hit_hook;
+}
 
 

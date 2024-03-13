@@ -34,7 +34,7 @@ void Scene::init()
 	player = new Player();
 	l.push_back(new Bubble());
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::ivec2(10, 20), glm::ivec2(4, 0));
+	l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::ivec2(20, 50), glm::ivec2(4, 0));
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
 	//bubble->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
@@ -52,15 +52,16 @@ void Scene::update(int deltaTime)
 	while (it != l.end()) {
 		Bubble* bub = *it;
 		bub -> update(deltaTime);
-		if (circle_test(bub->getPosition()) && hitted()) {
+		if (hook_test(bub -> getPosition()) && hitted()) {
 			l.push_back(new Bubble());
 			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub -> getPosition(), glm::ivec2(1, 0));
 			l.back()->setTileMap(map);
 			l.push_back(new Bubble());
 			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub->getPosition(), glm::ivec2(-1, 0));
 			l.back()->setTileMap(map);
+			delete bub;
 			it = l.erase(it);
-			cout << "hit" << endl;
+			player->setShoot(false);
 		}
 		else ++it;
 	}
@@ -118,12 +119,19 @@ inline bool Scene::circle_test(glm::ivec2 posBubble)
 
 inline bool Scene::hitted()
 {
-	if (currentTime - inmuneTime > 1000) {
+	if (currentTime - inmuneTime > 90) {
 		inmuneTime = currentTime;
 		return true;
 	}
 
 	else return false;
+}
+
+inline bool Scene::hook_test(glm::ivec2& posBubble)
+{
+	glm::ivec2 posHook = player->getHookPosition();
+
+	return posBubble.x == posHook.x && posHook.y <= posBubble.y;
 }
 
 

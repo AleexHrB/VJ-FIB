@@ -21,6 +21,8 @@ public:
 	void setTileMap(TileMap *tileMap);
 	void setPosition(const glm::vec2 &pos);
 	glm::ivec2 getPosition();
+	glm::ivec2 getHookPosition();
+	void setShoot(bool hit_hook);
 private:
 	bool bJumping;
 	glm::ivec2 tileMapDispl, posPlayer;
@@ -28,6 +30,14 @@ private:
 	Texture spritesheet;
 	Sprite *sprite;
 	TileMap *map;
+	struct hook {
+		Sprite* sprite;
+		glm::ivec2 tilePos, posHook;
+		Texture spritesheet;
+		ShaderProgram sh;
+	};
+	bool shoot = false;
+	hook hk;
 
 };
 
