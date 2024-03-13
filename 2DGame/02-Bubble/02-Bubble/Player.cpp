@@ -21,7 +21,7 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	float unit = 0.14285714285;
 	bJumping = false;
 	spritesheet.loadFromFile("images/Pedro.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sprite = Sprite::createSprite(glm::ivec2(32, 32), glm::vec2(unit, 0.5), &spritesheet, &shaderProgram);
+	sprite = Sprite::createSprite(glm::ivec2(64, 64), glm::vec2(unit, 0.5), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(SIZE);
 	
 		sprite->setAnimationSpeed(STAND_LEFT, 8);
@@ -101,20 +101,20 @@ void Player::update(int deltaTime)
 		{
 			posPlayer.y = int(startY - 96 * sin(3.14159f * jumpAngle / 180.f));
 			if(jumpAngle > 90)
-				bJumping = !map->collisionMoveDown(posPlayer, glm::ivec2(32, 32), &posPlayer.y);
+				bJumping = !map->collisionMoveDown(posPlayer, glm::ivec2(64, 64), &posPlayer.y);
 		}
 	}
 	else
 	{
 		posPlayer.y += FALL_STEP;
-		if(map->collisionMoveDown(posPlayer, glm::ivec2(32, 32), &posPlayer.y))
+		if(map->collisionMoveDown(posPlayer, glm::ivec2(64, 64), &posPlayer.y))
 		{
-			if(Game::instance().getKey(GLFW_KEY_UP))
+			/*if (Game::instance().getKey(GLFW_KEY_UP))
 			{
 				bJumping = true;
 				jumpAngle = 0;
 				startY = posPlayer.y;
-			}
+			}*/
 		}
 	}
 	
