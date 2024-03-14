@@ -32,11 +32,17 @@ TileMap::~TileMap()
 void TileMap::render() const
 {
 	glEnable(GL_TEXTURE_2D);
+	background.use();
+	glBindVertexArray(bVao);
+	glEnableVertexAttribArray(backPosLocation);
+	glEnableVertexAttribArray(backTexCoordLocation);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 	tilesheet.use();
 	glBindVertexArray(vao);
 	glEnableVertexAttribArray(posLocation);
 	glEnableVertexAttribArray(texCoordLocation);
 	glDrawArrays(GL_TRIANGLES, 0, 6 * nTiles);
+	
 	glDisable(GL_TEXTURE_2D);
 }
 
@@ -48,7 +54,7 @@ void TileMap::free()
 bool TileMap::loadLevel(const string &levelFile)
 {
 	ifstream fin;
-	string line, tilesheetFile;
+	string line, tilesheetFile, backgroundFile;
 	stringstream sstream;
 	int tile;
 	
@@ -74,9 +80,21 @@ bool TileMap::loadLevel(const string &levelFile)
 	tilesheet.setMagFilter(GL_NEAREST);
 	getline(fin, line);
 	sstream.str(line);
+	sstream >> backgroundFile;
+	background.loadFromFile(backgroundFile, TEXTURE_PIXEL_FORMAT_RGBA);
+	tilesheet.setWrapS(GL_CLAMP_TO_EDGE);
+	tilesheet.setWrapT(GL_CLAMP_TO_EDGE);
+	tilesheet.setMinFilter(GL_NEAREST);
+	tilesheet.setMagFilter(GL_NEAREST);
+	getline(fin, line);
+	sstream.str(line);
 	sstream >> tilesheetSize.x >> tilesheetSize.y;
 	tileTexSize = glm::vec2(1.f / tilesheetSize.x, 1.f / tilesheetSize.y);
 	
+
+	backgroundSize.x = mapSize.x * blockSize;
+	backgroundSize.y = mapSize.y * blockSize;
+
 	map = new int[mapSize.x * mapSize.y];
 	for(int j=0; j<mapSize.y; j++)
 	{
@@ -141,6 +159,32 @@ void TileMap::prepareArrays(const glm::vec2 &minCoords, ShaderProgram &program)
 	glBufferData(GL_ARRAY_BUFFER, 24 * nTiles * sizeof(float), &vertices[0], GL_STATIC_DRAW);
 	posLocation = program.bindVertexAttribute("position", 2, 4*sizeof(float), 0);
 	texCoordLocation = program.bindVertexAttribute("texCoord", 2, 4*sizeof(float), (void *)(2*sizeof(float)));
+
+
+	vector<float> backgroundVertices;
+	//First triangle
+	backgroundVertices.push_back(0.f); backgroundVertices.push_back(0.f);
+	backgroundVertices.push_back(0.f); backgroundVertices.push_back(0.f);
+	backgroundVertices.push_back(backgroundSize.x); backgroundVertices.push_back(0.f);
+	backgroundVertices.push_back(1.f); backgroundVertices.push_back(0.f);
+	backgroundVertices.push_back(backgroundSize.x); backgroundVertices.push_back(backgroundSize.y);
+	backgroundVertices.push_back(1.f); backgroundVertices.push_back(1.f);
+	//Second triangle
+	backgroundVertices.push_back(0.f); backgroundVertices.push_back(0.f);
+	backgroundVertices.push_back(0.f); backgroundVertices.push_back(0.f);
+	backgroundVertices.push_back(backgroundSize.x); backgroundVertices.push_back(backgroundSize.y);
+	backgroundVertices.push_back(1.f); backgroundVertices.push_back(1.f);
+	backgroundVertices.push_back(0.f); backgroundVertices.push_back(backgroundSize.y);
+	backgroundVertices.push_back(0.f); backgroundVertices.push_back(1.f);
+
+	glGenVertexArrays(1, &bVao);
+	glBindVertexArray(bVao);
+	glGenBuffers(1, &bVbo);
+	glBindBuffer(GL_ARRAY_BUFFER, bVbo);
+	glBufferData(GL_ARRAY_BUFFER, 24 * sizeof(float), &backgroundVertices[0], GL_STATIC_DRAW);
+	backPosLocation = program.bindVertexAttribute("position", 2, 4 * sizeof(float), 0);
+	backTexCoordLocation = program.bindVertexAttribute("texCoord", 2, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+
 }
 
 // Collision tests for axis aligned bounding boxes.

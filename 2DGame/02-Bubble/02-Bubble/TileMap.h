@@ -39,13 +39,14 @@ private:
 	void prepareArrays(const glm::vec2 &minCoords, ShaderProgram &program);
 
 private:
-	GLuint vao;
-	GLuint vbo;
+	GLuint vao,bVao;
+	GLuint vbo,bVbo;
 	GLint posLocation, texCoordLocation;
+	GLint backPosLocation, backTexCoordLocation;
 	int nTiles;
-	glm::ivec2 position, mapSize, tilesheetSize;
+	glm::ivec2 position, mapSize, tilesheetSize, backgroundSize;
 	int tileSize, blockSize;
-	Texture tilesheet;
+	Texture tilesheet, background;
 	glm::vec2 tileTexSize;
 	int *map;
 
