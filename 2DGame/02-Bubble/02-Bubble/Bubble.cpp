@@ -9,7 +9,8 @@ void Bubble::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, co
 {
 	
 	spritesheet.loadFromFile("images/Bubbles.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sprite = Sprite::createSprite(glm::ivec2(48, 40), glm::vec2(1, 1.0/3.0), &spritesheet, &shaderProgram);
+	sizeQuad = glm::ivec2(48, 40);
+	sprite = Sprite::createSprite(sizeQuad, glm::vec2(1, 1.0/3.0), &spritesheet, &shaderProgram);
 	tileMapDispl = tileMapPos;
 	this->speed = speed;
 	this->posPlayer = this->initPosPlayer = initPos;
@@ -68,4 +69,14 @@ void Bubble::setPosition(const glm::vec2& pos)
 glm::ivec2 Bubble::getPosition()
 {
 	return posPlayer;
+}
+
+glm::vec2 Bubble::getSpeed()
+{
+	return glm::vec2(speed.x, speed.y + g*t);
+}
+
+bool Bubble::circle_test(const glm::ivec2& pos)
+{
+	return ((posPlayer.x - pos.x) * (posPlayer.x - pos.x) + (posPlayer.y - pos.y) * (posPlayer.y - pos.y)) <= sizeQuad.y * sizeQuad.y;
 }

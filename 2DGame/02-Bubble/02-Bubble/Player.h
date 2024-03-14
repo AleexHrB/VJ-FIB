@@ -23,6 +23,8 @@ public:
 	glm::ivec2 getPosition();
 	glm::ivec2 getHookPosition();
 	void setShoot(bool hit_hook);
+	bool substract_live();
+	bool hook_test(const glm::ivec2& posBubble);
 private:
 	bool bJumping;
 	glm::ivec2 tileMapDispl, posPlayer;
@@ -38,6 +40,8 @@ private:
 	};
 	bool shoot = false;
 	hook hk;
+	unsigned int lives = 3;
+	bool god_mode = false;
 
 };
 

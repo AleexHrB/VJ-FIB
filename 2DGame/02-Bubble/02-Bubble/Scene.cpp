@@ -52,12 +52,21 @@ void Scene::update(int deltaTime)
 	while (it != l.end()) {
 		Bubble* bub = *it;
 		bub -> update(deltaTime);
-		if (hook_test(bub -> getPosition()) && hitted()) {
+		if (bub->circle_test(player->getPosition()) && hitted()) {
+			cout << "hit" << endl;
+			bool dead = player->substract_live();
+			if (dead) {
+				cout << "Game Over" << endl;
+				exit(0);
+			}
+		}
+		if (player -> hook_test(bub -> getPosition()) && hitted()) {
 			l.push_back(new Bubble());
-			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub -> getPosition(), glm::ivec2(1, 0));
+			glm::ivec2 bub_sp = bub->getSpeed();
+			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub -> getPosition(), bub_sp);
 			l.back()->setTileMap(map);
 			l.push_back(new Bubble());
-			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub->getPosition(), glm::ivec2(-1, 0));
+			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub->getPosition(), glm::ivec2(-bub_sp.x, bub_sp.y));
 			l.back()->setTileMap(map);
 			delete bub;
 			it = l.erase(it);
@@ -111,27 +120,15 @@ void Scene::initShaders()
 	fShader.free();
 }
 
-inline bool Scene::circle_test(glm::ivec2 posBubble)
-{
-	glm::ivec2 posPlayer = player->getPosition();
-	return (posPlayer.x - posBubble.x) * (posPlayer.x - posBubble.x) + (posPlayer.y - posBubble.y) * (posPlayer.y - posBubble.y) <= 24 * 24;
-}
 
 inline bool Scene::hitted()
 {
-	if (currentTime - inmuneTime > 90) {
+	if (currentTime - inmuneTime > 1000) {
 		inmuneTime = currentTime;
 		return true;
 	}
 
 	else return false;
-}
-
-inline bool Scene::hook_test(glm::ivec2& posBubble)
-{
-	glm::ivec2 posHook = player->getHookPosition();
-
-	return posBubble.x == posHook.x && posHook.y <= posBubble.y;
 }
 
 
