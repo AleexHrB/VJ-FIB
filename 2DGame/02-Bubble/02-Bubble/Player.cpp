@@ -139,7 +139,7 @@ void Player::update(int deltaTime)
 	
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
 	if (shoot) {
-		hk.sprite = Sprite::createSprite(glm::ivec2(9, ((posPlayer.y + 64) - hk.posHook.y)), glm::vec2(1.0f, (posPlayer.y + 64 - hk.posHook.y) / 188.0), &hk.spritesheet, &hk.sh);
+		hk.sprite = Sprite::createSprite(glm::ivec2(9, ((posPlayer.y + 64) - hk.posHook.y)), glm::vec2(1.0f, (posPlayer.y - hk.posHook.y) / 188.0), &hk.spritesheet, &hk.sh);
 		if (hk.posHook.y > 16) hk.posHook.y -= 4;
 		else shoot = false;
 		hk.sprite->setPosition(glm::vec2(float(tileMapDispl.x + hk.posHook.x), float(tileMapDispl.y + hk.posHook.y)));
@@ -149,7 +149,7 @@ void Player::update(int deltaTime)
 void Player::render()
 {
 	sprite->render();
-	hk.sprite->render();
+	if (shoot) hk.sprite->render();
 }
 
 void Player::setTileMap(TileMap *tileMap)
@@ -185,9 +185,15 @@ bool Player::substract_live()
 	return lives == 0;
 }
 
+//9x6
 bool Player::hook_test(const glm::ivec2& posBubble)
 {
-	return shoot && posBubble.x == hk.posHook.x && hk.posHook.y <= posBubble.y;
+	//Left
+	glm::ivec2 pos_l = posBubble + glm::ivec2(0,40);
+	glm::ivec2 pos_r = posBubble + glm::ivec2(48, 40);
+	bool b1 = pos_l.x <= hk.posHook.x && hk.posHook.y <= pos_l.y;
+	bool b2 = pos_r.x >= (hk.posHook.x + 9);
+	return b1 && b2 && shoot;
 }
 
 

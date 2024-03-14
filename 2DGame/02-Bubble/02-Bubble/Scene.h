@@ -37,6 +37,7 @@ private:
 	glm::mat4 projection;
 	list<Bubble*> l;
 	inline bool hitted();
+	inline bool hook_test(const glm::ivec2& bub);
 
 };
 

@@ -30,7 +30,7 @@ Scene::~Scene()
 void Scene::init()
 {
 	initShaders();
-	map = TileMap::createTileMap("levels/level02.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
+	map = TileMap::createTileMap("levels/level00.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 	player = new Player();
 	l.push_back(new Bubble());
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
@@ -52,7 +52,7 @@ void Scene::update(int deltaTime)
 	while (it != l.end()) {
 		Bubble* bub = *it;
 		bub -> update(deltaTime);
-		if (bub->circle_test(player->getPosition()) && hitted()) {
+		if (bub->circle_test(player->getPosition())) {
 			cout << "hit" << endl;
 			bool dead = player->substract_live();
 			if (dead) {
@@ -60,17 +60,18 @@ void Scene::update(int deltaTime)
 				exit(0);
 			}
 		}
-		if (player -> hook_test(bub -> getPosition()) && hitted()) {
+		if (hook_test(bub -> getPosition()) && hitted()) {
+			player->setShoot(false);
+			cout << "AA" << endl;
 			l.push_back(new Bubble());
 			glm::ivec2 bub_sp = bub->getSpeed();
 			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub -> getPosition(), bub_sp);
 			l.back()->setTileMap(map);
 			l.push_back(new Bubble());
-			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub->getPosition(), glm::ivec2(-bub_sp.x, bub_sp.y));
+			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub->getPosition(), glm::ivec2(-2*bub_sp.x, bub_sp.y));
 			l.back()->setTileMap(map);
 			delete bub;
-			it = l.erase(it);
-			player->setShoot(false);
+			it = l.erase(it);	
 		}
 		else ++it;
 	}
@@ -123,12 +124,16 @@ void Scene::initShaders()
 
 inline bool Scene::hitted()
 {
-	if (currentTime - inmuneTime > 1000) {
+	if (currentTime - inmuneTime > 100) {
 		inmuneTime = currentTime;
 		return true;
 	}
 
 	else return false;
+}
+
+inline bool Scene::hook_test(const glm::ivec2& bub) {
+	return player->hook_test(bub);
 }
 
 
