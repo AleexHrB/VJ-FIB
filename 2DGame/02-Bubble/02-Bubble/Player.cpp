@@ -61,7 +61,7 @@ void Player::update(int deltaTime)
 	if (Game::instance().getKey(GLFW_KEY_C))
 	{
 		hk.posHook = posPlayer;
-		cout << hk.posHook.x << " " << hk.posHook.y << endl;
+		hk.posHook += 32;
 		shoot = true;
 		if (sprite->animation() != SHOOT)
 			sprite->changeAnimation(SHOOT);
@@ -139,7 +139,7 @@ void Player::update(int deltaTime)
 	
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
 	if (shoot) {
-		hk.sprite = Sprite::createSprite(glm::ivec2(9, (posPlayer.y - hk.posHook.y) * 6), glm::vec2(1.0f, (posPlayer.y - hk.posHook.y) * 6.0 / 188.0), &hk.spritesheet, &hk.sh);
+		hk.sprite = Sprite::createSprite(glm::ivec2(9, ((posPlayer.y + 64) - hk.posHook.y)), glm::vec2(1.0f, (posPlayer.y + 64 - hk.posHook.y) / 188.0), &hk.spritesheet, &hk.sh);
 		if (hk.posHook.y > 16) hk.posHook.y -= 4;
 		else shoot = false;
 		hk.sprite->setPosition(glm::vec2(float(tileMapDispl.x + hk.posHook.x), float(tileMapDispl.y + hk.posHook.y)));
