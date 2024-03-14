@@ -42,6 +42,7 @@ private:
 	hook hk;
 	unsigned int lives = 3;
 	bool god_mode = false;
+	bool G_pressed;
 
 };
 

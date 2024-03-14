@@ -1,3 +1,7 @@
 ﻿  Player.cpp
+C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.h(36,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Player.cpp')
+  
 C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\Player.cpp(21,13): warning C4305: 'initializing': truncation from 'double' to 'float'
+SOIL.lib(image_helper.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(image_helper.obj)' or at ''; linking object as if no debug info
   02-Bubble.vcxproj -> C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\Debug\02-Bubble.exe

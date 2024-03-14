@@ -23,8 +23,8 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	spritesheet.loadFromFile("images/Pedro.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	hk.sh = shaderProgram;
 	hk.spritesheet.loadFromFile("images/hook.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	hk.sprite = Sprite::createSprite(glm::ivec2(9, 6), glm::vec2(1.0f, 6.0/188.0), &hk.spritesheet, &shaderProgram);
 	sprite = Sprite::createSprite(glm::ivec2(64, 64), glm::vec2(unit, 0.5), &spritesheet, &shaderProgram);
+	hk.sprite = Sprite::createSprite(glm::ivec2(9, 6), glm::vec2(1.0f,0.333f), &hk.spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(SIZE);
 	
 		sprite->setAnimationSpeed(STAND_LEFT, 8);
@@ -50,6 +50,9 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	tileMapDispl = tileMapPos;
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
 	
+	//hk.sprite->setNumberAnimations(1);
+
+	
 }
 
 void Player::update(int deltaTime)
@@ -58,6 +61,7 @@ void Player::update(int deltaTime)
 	if (Game::instance().getKey(GLFW_KEY_C))
 	{
 		hk.posHook = posPlayer;
+		cout << hk.posHook.x << " " << hk.posHook.y << endl;
 		shoot = true;
 		if (sprite->animation() != SHOOT)
 			sprite->changeAnimation(SHOOT);
@@ -88,7 +92,10 @@ void Player::update(int deltaTime)
 
 	else if (Game::instance().getKey(GLFW_KEY_G))
 	{
-		god_mode = !god_mode;
+		if (!G_pressed) {
+			god_mode = !god_mode;
+			G_pressed = true;
+		}
 		cout << "God mode = " << god_mode << endl;
 	}
 	else
@@ -98,6 +105,7 @@ void Player::update(int deltaTime)
 			sprite->changeAnimation(STAND_LEFT);
 		else if (sprite->animation() == MOVE_RIGHT)
 			sprite->changeAnimation(STAND_RIGHT);
+		G_pressed = false;
 	}
 	
 	if(bJumping)
@@ -132,7 +140,7 @@ void Player::update(int deltaTime)
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
 	if (shoot) {
 		hk.sprite = Sprite::createSprite(glm::ivec2(9, (posPlayer.y - hk.posHook.y) * 6), glm::vec2(1.0f, (posPlayer.y - hk.posHook.y) * 6.0 / 188.0), &hk.spritesheet, &hk.sh);
-		if (hk.posHook.y > 4) hk.posHook.y -= 4;
+		if (hk.posHook.y > 16) hk.posHook.y -= 4;
 		else shoot = false;
 		hk.sprite->setPosition(glm::vec2(float(tileMapDispl.x + hk.posHook.x), float(tileMapDispl.y + hk.posHook.y)));
 	}
@@ -141,7 +149,7 @@ void Player::update(int deltaTime)
 void Player::render()
 {
 	sprite->render();
-	if (shoot) hk.sprite->render();
+	hk.sprite->render();
 }
 
 void Player::setTileMap(TileMap *tileMap)
