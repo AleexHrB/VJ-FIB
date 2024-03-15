@@ -1,5 +1,6 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
 #include "Game.h"
 
 
@@ -67,6 +68,7 @@ int main(void)
 	while (!glfwWindowShouldClose(window))
 	{
 		currentTime = glfwGetTime();
+		//if (int(currentTime*1000)%100 == 0) std::cout << currentTime << std::endl;
 		if (currentTime - timePreviousFrame >= timePerFrame)
 		{
 			/* Update & render steps of the game loop */

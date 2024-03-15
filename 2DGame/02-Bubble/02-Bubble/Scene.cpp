@@ -5,6 +5,7 @@
 #include "Game.h"
 
 
+
 #define SCREEN_X 0
 #define SCREEN_Y 0
 
@@ -41,6 +42,12 @@ void Scene::init()
 	l.back()->setTileMap(map);
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGHT), 0.f);
 	currentTime = 0.0f;
+	
+	// Select which font you want to use
+	if (!text.init("fonts/OpenSans-Regular.ttf"))
+	//if(!text.init("fonts/OpenSans-Bold.ttf"))
+	//if(!text.init("fonts/DroidSerif.ttf"))
+	cout << "Could not load font!!!" << endl;
 }
 
 void Scene::update(int deltaTime)
@@ -89,6 +96,7 @@ void Scene::render()
 	map->render();
 	player->render();
 	for (Bubble* bub : l) bub->render();
+	text.render("Time: " + to_string(int(currentTime/1000)), glm::vec2(20, 460), 32, glm::vec4(1, 1, 1, 1));
 }
 
 void Scene::initShaders()

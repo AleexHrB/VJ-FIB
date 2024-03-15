@@ -8,6 +8,7 @@
 #include "TileMap.h"
 #include "Player.h"
 #include "Bubble.h"
+#include "text.h"
 
 
 // Scene contains all the entities of our game.
@@ -38,6 +39,7 @@ private:
 	list<Bubble*> l;
 	inline bool hitted();
 	inline bool hook_test(const glm::ivec2& bub);
+	Text text;
 
 };
 
