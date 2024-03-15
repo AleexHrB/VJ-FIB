@@ -22,7 +22,7 @@ public:
 	Scene();
 	~Scene();
 
-	void init();
+	void init(const string &level);
 	void update(int deltaTime);
 	void render();
 

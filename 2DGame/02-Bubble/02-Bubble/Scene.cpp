@@ -19,6 +19,7 @@ Scene::Scene()
 	player = NULL;
 }
 
+
 Scene::~Scene()
 {
 	if(map != NULL)
@@ -28,14 +29,15 @@ Scene::~Scene()
 }
 
 
-void Scene::init()
+void Scene::init(const string &level)
 {
 	initShaders();
-	map = TileMap::createTileMap("levels/level00.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
+	map = TileMap::createTileMap(level, glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 	player = new Player();
+	l = list<Bubble*>();
 	l.push_back(new Bubble());
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::ivec2(20, 50), glm::ivec2(4, 0));
+	l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::ivec2(320, 320), glm::ivec2(4, 0));
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
 	//bubble->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
