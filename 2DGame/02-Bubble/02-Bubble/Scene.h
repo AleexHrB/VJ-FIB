@@ -40,7 +40,7 @@ private:
 	inline bool hitted();
 	inline bool hook_test(const glm::ivec2& bub);
 	Text text;
-	bool renderPlayer;
+	bool menu;
 };
 
 
