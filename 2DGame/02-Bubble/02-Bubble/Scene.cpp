@@ -29,7 +29,7 @@ Scene::~Scene()
 }
 
 
-void Scene::init(const string &level)
+void Scene::init(const string &level, bool menu)
 {
 	initShaders();
 	map = TileMap::createTileMap(level, glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
@@ -50,6 +50,7 @@ void Scene::init(const string &level)
 	//if(!text.init("fonts/OpenSans-Bold.ttf"))
 	//if(!text.init("fonts/DroidSerif.ttf"))
 	cout << "Could not load font!!!" << endl;
+	renderPlayer = !menu;
 }
 
 void Scene::update(int deltaTime)
@@ -96,7 +97,7 @@ void Scene::render()
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 	map->render();
-	player->render();
+	if(renderPlayer) player->render();
 	for (Bubble* bub : l) bub->render();
 	text.render("Time: " + to_string(int(currentTime/1000)), glm::vec2(20, 460), 32, glm::vec4(1, 1, 1, 1));
 }

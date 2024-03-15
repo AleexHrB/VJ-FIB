@@ -22,7 +22,7 @@ public:
 	Scene();
 	~Scene();
 
-	void init(const string &level);
+	void init(const string &level, bool menu);
 	void update(int deltaTime);
 	void render();
 
@@ -40,7 +40,7 @@ private:
 	inline bool hitted();
 	inline bool hook_test(const glm::ivec2& bub);
 	Text text;
-
+	bool renderPlayer;
 };
 
 
