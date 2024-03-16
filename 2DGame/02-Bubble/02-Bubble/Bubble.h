@@ -14,24 +14,28 @@ class Bubble
 {
 
 public:
-	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, const glm::ivec2& initPos, const glm::ivec2& speed);
+	void init(ShaderProgram& shaderProgram, const glm::ivec2& initPos, const glm::ivec2& speed, const glm::ivec2& size, unsigned int color);
 	void update(int deltaTime);
 	void render();
-
 	void setTileMap(TileMap* tileMap);
 	void setPosition(const glm::vec2& pos);
 	glm::ivec2 getPosition();
 	glm::vec2 getSpeed();
 	bool circle_test(const glm::ivec2& pos);
+	glm::ivec2 getSize();
+	enum {
+		RED,
+		BLUE,
+		GREEN
+	};
 
 private:
-	bool bJumping;
-	glm::ivec2 tileMapDispl, posPlayer, sizeQuad;
-	int jumpAngle, startY;
+	glm::ivec2 posBubble, sizeQuad;
 	Texture spritesheet;
 	Sprite* sprite;
 	TileMap* map;
-	glm::vec2 speed, initPosPlayer, actualSpeed;
+	//Needed for projectile motion equations
+	glm::vec2 speed, initposBubble, actualSpeed;
 	float t = 0;
 	float g = 1.8;
 

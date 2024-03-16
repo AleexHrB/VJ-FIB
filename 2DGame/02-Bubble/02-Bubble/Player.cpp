@@ -186,11 +186,11 @@ bool Player::substract_live()
 }
 
 //9x6
-bool Player::hook_test(const glm::ivec2& posBubble)
+bool Player::hook_test(const glm::ivec2& posBubble, const glm::ivec2& sizeBubble)
 {
 	//Left
-	glm::ivec2 pos_l = posBubble + glm::ivec2(0,40);
-	glm::ivec2 pos_r = posBubble + glm::ivec2(48, 40);
+	glm::ivec2 pos_l = posBubble + glm::ivec2(0,sizeBubble.y);
+	glm::ivec2 pos_r = posBubble + sizeBubble;
 	bool b1 = pos_l.x <= hk.posHook.x && hk.posHook.y <= pos_l.y;
 	bool b2 = pos_r.x >= (hk.posHook.x + 9);
 	return b1 && b2 && shoot;

@@ -8,6 +8,7 @@
 #include "TileMap.h"
 #include "Player.h"
 #include "Bubble.h"
+#include "Enemy.h"
 #include "text.h"
 
 
@@ -37,8 +38,9 @@ private:
 	float inmuneTime = 0.0f;
 	glm::mat4 projection;
 	list<Bubble*> l;
+	list<Enemy*> l_e;
 	inline bool hitted();
-	inline bool hook_test(const glm::ivec2& bub);
+	//inline bool hook_test(const glm::ivec2& bub);
 	Text text;
 	bool menu;
 };

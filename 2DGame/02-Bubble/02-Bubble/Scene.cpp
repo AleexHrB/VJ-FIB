@@ -37,7 +37,7 @@ void Scene::init(const string &level, bool menu)
 	l = list<Bubble*>();
 	l.push_back(new Bubble());
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::ivec2(320, 320), glm::ivec2(4, 0));
+	l.back()->init(texProgram, glm::ivec2(320, 320), glm::ivec2(-4, 0), glm::ivec2(48,40), l.back() -> BLUE);
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
 	//bubble->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
@@ -57,6 +57,7 @@ void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
 	player->update(deltaTime);
+	for (Enemy* e : l_e) e->update(deltaTime);
 	
 	auto it = l.begin();
 	while (it != l.end()) {
@@ -70,18 +71,23 @@ void Scene::update(int deltaTime)
 				exit(0);
 			}
 		}
-		if (hook_test(bub -> getPosition()) && hitted()) {
+		if (player -> hook_test(bub -> getPosition(), bub -> getSize()) && hitted()) {
 			player->setShoot(false);
-			cout << "AA" << endl;
-			l.push_back(new Bubble());
-			glm::ivec2 bub_sp = bub->getSpeed();
-			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub -> getPosition(), bub_sp);
-			l.back()->setTileMap(map);
-			l.push_back(new Bubble());
-			l.back()->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, bub->getPosition(), glm::ivec2(-2*bub_sp.x, bub_sp.y));
-			l.back()->setTileMap(map);
+			
+			if ((bub->getSize() / 2).x > 6) {
+				glm::ivec2 bub_sp = bub->getSpeed();
+				l.push_back(new Bubble());
+				l.back()->init(texProgram, bub->getPosition(), bub_sp, bub->getSize() / 2, l.back() -> BLUE);
+				l.back()->setTileMap(map);
+				l.push_back(new Bubble());
+				l.back()->init(texProgram, bub->getPosition(), glm::ivec2(-2 * bub_sp.x, bub_sp.y), bub->getSize() / 2, l.back()->BLUE);
+				l.back()->setTileMap(map);
+			}
 			delete bub;
 			it = l.erase(it);	
+			l_e.push_back(new Enemy());
+			l_e.back() -> init(texProgram, glm::ivec2(48,40), glm::ivec2(5, 0), glm::ivec2(32,32));
+
 		}
 		else ++it;
 	}
@@ -99,6 +105,7 @@ void Scene::render()
 	map->render();
 	if(!menu) player->render();
 	for (Bubble* bub : l) bub->render();
+	for (Enemy* e : l_e) e->render();
 	if(!menu) text.render("Time: " + to_string(int(currentTime/1000)), glm::vec2(20, 460), 32, glm::vec4(1, 1, 1, 1));
 }
 
@@ -141,10 +148,6 @@ inline bool Scene::hitted()
 	}
 
 	else return false;
-}
-
-inline bool Scene::hook_test(const glm::ivec2& bub) {
-	return player->hook_test(bub);
 }
 
 
