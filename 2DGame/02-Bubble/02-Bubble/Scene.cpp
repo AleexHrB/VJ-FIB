@@ -57,7 +57,17 @@ void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
 	player->update(deltaTime);
-	for (Enemy* e : l_e) e->update(deltaTime);
+	auto itt = l_e.begin();
+	while (itt != l_e.end()) {
+		Enemy* e = *itt;
+		e->update(deltaTime);
+		if (e->getPosition().x > 760) {
+			delete e;
+			itt = l_e.erase(itt);
+		}
+		else ++itt;
+	}
+
 	
 	auto it = l.begin();
 	while (it != l.end()) {
@@ -86,7 +96,7 @@ void Scene::update(int deltaTime)
 			delete bub;
 			it = l.erase(it);	
 			l_e.push_back(new Enemy());
-			l_e.back() -> init(texProgram, glm::ivec2(48,40), glm::ivec2(5, 0), glm::ivec2(32,32));
+			l_e.back() -> init(texProgram, glm::ivec2(0,370), glm::ivec2(10, 0), glm::ivec2(32,32));
 
 		}
 		else ++it;
