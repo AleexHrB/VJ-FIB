@@ -82,7 +82,7 @@ void Scene::update(int deltaTime)
 	while (it != l.end()) {
 		Bubble* bub = *it;
 		bub -> update(deltaTime);
-		if (bub->circle_test(player->getPosition()) && hitted()) {
+		if (hitCircle(bub -> getHitboxBubble(), player -> getHitboxPlayer()) && hitted()) {
 			cout << "hit" << endl;
 			bool dead = player->substract_live();
 			if (dead) {
@@ -90,7 +90,7 @@ void Scene::update(int deltaTime)
 				exit(0);
 			}
 		}
-		if (player -> hook_test(bub -> getPosition(), bub -> getSizeV()) ) {
+		if (hitCircle(bub -> getHitboxBubble(), player -> getHitboxHook())) {
 			player->setShoot(false);
 			
 			if (bub -> getSize() != bub -> TINY) {
@@ -190,12 +190,21 @@ inline bool Scene::hitted()
 
 inline bool Scene::hitRectangle(const pair<glm::ivec2, glm::ivec2>& r1, const pair<glm::ivec2, glm::ivec2>& r2)
 {
-	
+	glm::ivec2 l1 = r1.second;
+	glm::ivec2 rr1 = l1 + r1.first;
+	glm::ivec2 l2 = r2.second;
+	glm::ivec2 rr2 = l2 + r2.first;
+
+	if (l1.x > rr2.x || l2.x > rr1.x) return false;
+	if (rr1.y > l2.y || rr2.y > l1.y) return false;
+	return true;
 }
 
 inline bool Scene::hitCircle(const pair<glm::ivec2, glm::ivec2>& c, const pair<glm::ivec2, glm::ivec2>& r1)
 {
-	return false;
+	glm::ivec2 cen = c.second;
+	glm::ivec2 p = r1.second;
+	return (p.x - cen.x) * (p.x - cen.x) + (p.y - cen.y) * (p.y - cen.y) <= c.first.x * c.first.x;
 }
 
 

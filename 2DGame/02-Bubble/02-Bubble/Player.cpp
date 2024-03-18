@@ -193,13 +193,15 @@ int Player::get_lives() {
 pair<glm::ivec2, glm::ivec2> Player::getHitboxPlayer()
 {
 	//Size, Position
-	return { glm::ivec2(9, ((posPlayer.y + 64) - hk.posHook.y)) ,hk.posHook};
+	return { glm::ivec2(64,64), posPlayer };
 }
 
 pair<glm::ivec2, glm::ivec2> Player::getHitboxHook()
 {
 	//Size, Position
-	return { glm::ivec2(64,64),posPlayer };
+	pair<glm::ivec2, glm::ivec2> p1 = { glm::ivec2(9, ((posPlayer.y + 64) - hk.posHook.y)) ,hk.posHook };
+	pair<glm::ivec2, glm::ivec2> p2 = { glm::ivec2(-1,-1),glm::ivec2(-1, -1)};
+	return shoot ? p1 : p2;
 }
 
 //9x6
