@@ -23,7 +23,7 @@ public:
 	Scene();
 	~Scene();
 
-	void init(const string &level, bool menu);
+	void init(unsigned int level);
 	void update(int deltaTime);
 	void render();
 
@@ -43,6 +43,9 @@ private:
 	//inline bool hook_test(const glm::ivec2& bub);
 	Text text;
 	bool menu;
+	int score;
+	unsigned int level;
+	int timeLimit;
 };
 
 

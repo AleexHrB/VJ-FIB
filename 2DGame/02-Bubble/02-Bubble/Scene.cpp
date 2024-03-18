@@ -29,12 +29,15 @@ Scene::~Scene()
 }
 
 
-void Scene::init(const string &level, bool menu)
+void Scene::init(unsigned int level)
 {
 	initShaders();
-	map = TileMap::createTileMap(level, glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
+	this->level = level;
+	string levelFile = "levels/level" + to_string(level) + ".txt";
+	map = TileMap::createTileMap(levelFile, glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 	player = new Player();
 	l = list<Bubble*>();
+	l_e = list<Enemy*>();
 	l.push_back(new Bubble());
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	l.back()->init(texProgram, glm::ivec2(320, 320), glm::ivec2(-4, 0), glm::ivec2(48,40), l.back() -> BLUE);
@@ -50,7 +53,9 @@ void Scene::init(const string &level, bool menu)
 	//if(!text.init("fonts/OpenSans-Bold.ttf"))
 	//if(!text.init("fonts/DroidSerif.ttf"))
 	cout << "Could not load font!!!" << endl;
-	this -> menu = menu;
+	this->menu = level == 0;
+	score = 0;
+	timeLimit = 10;
 }
 
 void Scene::update(int deltaTime)
@@ -92,14 +97,23 @@ void Scene::update(int deltaTime)
 				l.push_back(new Bubble());
 				l.back()->init(texProgram, bub->getPosition(), glm::ivec2(-2 * bub_sp.x, bub_sp.y), bub->getSize() / 2, l.back()->BLUE);
 				l.back()->setTileMap(map);
+				
 			}
+			score += 4*(bub -> getSize().x);
 			delete bub;
 			it = l.erase(it);	
 			l_e.push_back(new Enemy());
 			l_e.back() -> init(texProgram, glm::ivec2(0,370), glm::ivec2(10, 0), glm::ivec2(32,32));
-
 		}
 		else ++it;
+	}
+	if (l.size() == 0) {
+		score += 1000;
+		this->init((level%3) + 1);
+	}
+	if (int(currentTime / 1000) == timeLimit) {
+		cout << "Game Over" << endl;
+		exit(0);
 	}
 }
 
@@ -116,7 +130,13 @@ void Scene::render()
 	if(!menu) player->render();
 	for (Bubble* bub : l) bub->render();
 	for (Enemy* e : l_e) e->render();
-	if(!menu) text.render("Time: " + to_string(int(currentTime/1000)), glm::vec2(20, 460), 32, glm::vec4(1, 1, 1, 1));
+	if (!menu) {
+		string time = to_string(int(timeLimit - currentTime / 1000));
+		if (int(timeLimit - currentTime / 1000) < 100 && int(timeLimit - currentTime / 1000) > 9) time = "0" + time;
+		else if (currentTime != 100) time = "00" + time;
+		text.render(("Time: " + time), glm::vec2(600, 48), 32, glm::vec4(1, 1, 1, 1));
+		text.render("Score: " + to_string(score), glm::vec2(20, 460), 16, glm::vec4(1, 1, 1, 1));
+	}
 }
 
 void Scene::initShaders()

@@ -93,6 +93,7 @@ void Player::update(int deltaTime)
 	else if (Game::instance().getKey(GLFW_KEY_G))
 	{
 		if (!G_pressed) {
+			cout << "God mode = " << god_mode << endl;
 			god_mode = !god_mode;
 			G_pressed = true;
 		}
