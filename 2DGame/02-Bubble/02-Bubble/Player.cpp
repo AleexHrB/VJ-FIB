@@ -186,6 +186,10 @@ bool Player::substract_live()
 	return lives == 0;
 }
 
+int Player::get_lives() {
+	return lives;
+}
+
 //9x6
 bool Player::hook_test(const glm::ivec2& posBubble, const glm::ivec2& sizeBubble)
 {

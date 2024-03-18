@@ -25,6 +25,7 @@ public:
 	void setShoot(bool hit_hook);
 	bool substract_live();
 	bool hook_test(const glm::ivec2& posBubble, const glm::ivec2& sizeBubble);
+	int get_lives();
 private:
 	bool bJumping;
 	glm::ivec2 tileMapDispl, posPlayer;

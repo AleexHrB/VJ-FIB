@@ -135,7 +135,8 @@ void Scene::render()
 		if (int(timeLimit - currentTime / 1000) < 100 && int(timeLimit - currentTime / 1000) > 9) time = "0" + time;
 		else if (currentTime != 100) time = "00" + time;
 		text.render(("Time: " + time), glm::vec2(600, 48), 32, glm::vec4(1, 1, 1, 1));
-		text.render("Score: " + to_string(score), glm::vec2(20, 460), 16, glm::vec4(1, 1, 1, 1));
+		text.render("Score: " + to_string(score), glm::vec2(20, 440), 16, glm::vec4(1, 1, 1, 1));
+		text.render("Lives: " + to_string(player -> get_lives()), glm::vec2(20, 460), 16, glm::vec4(1, 1, 1, 1));
 	}
 }
 
