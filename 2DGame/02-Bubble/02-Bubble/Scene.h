@@ -23,7 +23,7 @@ public:
 	Scene();
 	~Scene();
 
-	void init(const string &level, bool menu);
+	void init(unsigned int level);
 	void update(int deltaTime);
 	void render();
 
@@ -43,6 +43,11 @@ private:
 	//inline bool hook_test(const glm::ivec2& bub);
 	Text text;
 	bool menu;
+	int score;
+	unsigned int level;
+	int timeLimit;
+	inline bool hitRectangle(const pair<glm::ivec2, glm::ivec2>& r1, const pair<glm::ivec2, glm::ivec2>& r2);
+	inline bool hitCircle(const pair<glm::ivec2, glm::ivec2>& c, const pair<glm::ivec2, glm::ivec2>& r1);
 };
 
 

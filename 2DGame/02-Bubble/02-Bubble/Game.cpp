@@ -7,7 +7,7 @@ void Game::init()
 {
 	bPlay = true;
 	glClearColor(0.f, 0.f, 0.f, 1.0f);
-	scene.init("levels/menu.txt", true);
+	scene.init(0);
 }
 
 bool Game::update(int deltaTime)
@@ -28,13 +28,13 @@ void Game::keyPressed(int key)
 	if (key == GLFW_KEY_ESCAPE) // Escape code
 		bPlay = false;
 	else if (key == GLFW_KEY_0)
-		scene.init("levels/menu.txt", true);
+		scene.init(0);
 	else if (key == GLFW_KEY_1)
-		scene.init("levels/level00.txt", false);
+		scene.init(1);
 	else if (key == GLFW_KEY_2)
-		scene.init("levels/level01.txt", false);
+		scene.init(2);
 	else if (key == GLFW_KEY_3)
-		scene.init("levels/level02.txt", false);
+		scene.init(3);
 	keys[key] = true;
 }
 

@@ -23,6 +23,7 @@ public:
 	glm::vec2 getSpeed();
 	//bool circle_test(const glm::ivec2& pos);
 	glm::ivec2 getSize();
+	pair<glm::ivec2, glm::ivec2> getHitboxEnemy();
 
 private:
 	glm::ivec2 posEnemy, sizeQuad;

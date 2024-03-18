@@ -5,11 +5,13 @@
 #include "Game.h"
 
 
-void Bubble::init(ShaderProgram& shaderProgram, const glm::ivec2& initPos, const glm::ivec2& speed, const glm::ivec2& size, unsigned int color)
+void Bubble::init(ShaderProgram& shaderProgram, const glm::ivec2& initPos, const glm::ivec2& speed, Color color, Size s)
 {
 	
 	spritesheet.loadFromFile("images/Bubbles.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sizeQuad = size;
+	const glm::ivec2 bigSize = glm::ivec2(80,80);
+	sizeQuad = bigSize / (1 << s);
+	sizeQuadEnum = s;
 	sprite = Sprite::createSprite(sizeQuad, glm::vec2(1.0, 1.0/3.0), &spritesheet, &shaderProgram);
 	this->speed = speed;
 	this->posBubble = this->initposBubble = initPos;
@@ -84,6 +86,37 @@ bool Bubble::circle_test(const glm::ivec2& pos)
 	return ((posBubble.x - pos.x) * (posBubble.x - pos.x) + (posBubble.y - pos.y) * (posBubble.y - pos.y)) <= sizeQuad.y * sizeQuad.y;
 }
 
-glm::ivec2 Bubble::getSize() {
+Bubble::Size Bubble::getSize() {
+	return sizeQuadEnum;
+}
+
+Bubble::Size Bubble::getNextSize()
+{
+	switch (sizeQuadEnum) {
+	case BIG:
+		return MIDDLE;
+		break;
+
+	case MIDDLE:
+		return SMALL;
+		break;
+
+	case SMALL:
+		return TINY;
+		break;
+
+	case TINY:
+		return NONE;
+		break;
+	}
+}
+
+glm::ivec2 Bubble::getSizeV()
+{
 	return sizeQuad;
+}
+
+pair<glm::ivec2, glm::ivec2> Bubble::getHitboxBubble()
+{
+	return {sizeQuad, posBubble};
 }

@@ -93,6 +93,7 @@ void Player::update(int deltaTime)
 	else if (Game::instance().getKey(GLFW_KEY_G))
 	{
 		if (!G_pressed) {
+			cout << "God mode = " << god_mode << endl;
 			god_mode = !god_mode;
 			G_pressed = true;
 		}
@@ -183,6 +184,22 @@ bool Player::substract_live()
 	if (!god_mode) --lives;
 
 	return lives == 0;
+}
+
+int Player::get_lives() {
+	return lives;
+}
+
+pair<glm::ivec2, glm::ivec2> Player::getHitboxPlayer()
+{
+	//Size, Position
+	return { glm::ivec2(9, ((posPlayer.y + 64) - hk.posHook.y)) ,hk.posHook};
+}
+
+pair<glm::ivec2, glm::ivec2> Player::getHitboxHook()
+{
+	//Size, Position
+	return { glm::ivec2(64,64),posPlayer };
 }
 
 //9x6

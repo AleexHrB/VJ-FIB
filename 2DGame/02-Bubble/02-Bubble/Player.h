@@ -24,7 +24,10 @@ public:
 	glm::ivec2 getHookPosition();
 	void setShoot(bool hit_hook);
 	bool substract_live();
+	pair<glm::ivec2, glm::ivec2> getHitboxHook();
 	bool hook_test(const glm::ivec2& posBubble, const glm::ivec2& sizeBubble);
+	int get_lives();
+	pair<glm::ivec2, glm::ivec2> getHitboxPlayer();
 private:
 	bool bJumping;
 	glm::ivec2 tileMapDispl, posPlayer;

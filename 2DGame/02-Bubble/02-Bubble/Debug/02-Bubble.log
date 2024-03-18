@@ -1,8 +1,106 @@
-﻿  Scene.cpp
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.h(40,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿  Bubble.cpp
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.h(50,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Bubble.cpp')
+  
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.h(36,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Bubble.cpp')
+  
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(28,17): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(29,32): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(29,32): warning C4244:         with
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(29,32): warning C4244:         [
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(29,32): warning C4244:             T=float
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(29,32): warning C4244:         ]
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(29,32): warning C4244:         and
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(29,32): warning C4244:         [
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(29,32): warning C4244:             T=int
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(29,32): warning C4244:         ]
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(30,46): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(30,46): warning C4244:         with
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(30,46): warning C4244:         [
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(30,46): warning C4244:             T=int
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(30,46): warning C4244:         ]
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(33,20): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(34,33): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(34,33): warning C4244:         with
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(34,33): warning C4244:         [
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(34,33): warning C4244:             T=float
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(34,33): warning C4244:         ]
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(34,33): warning C4244:         and
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(34,33): warning C4244:         [
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(34,33): warning C4244:             T=int
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(34,33): warning C4244:         ]
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(35,47): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(35,47): warning C4244:         with
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(35,47): warning C4244:         [
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(35,47): warning C4244:             T=int
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(35,47): warning C4244:         ]
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(39,7): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(44,20): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(45,33): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(45,33): warning C4244:         with
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(45,33): warning C4244:         [
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(45,33): warning C4244:             T=float
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(45,33): warning C4244:         ]
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(45,33): warning C4244:         and
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(45,33): warning C4244:         [
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(45,33): warning C4244:             T=int
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(45,33): warning C4244:         ]
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(46,47): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(46,47): warning C4244:         with
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(46,47): warning C4244:         [
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(46,47): warning C4244:             T=int
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(46,47): warning C4244:         ]
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(50,7): warning C4305: '=': truncation from 'double' to 'float'
+  Enemy.cpp
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.h(36,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Enemy.cpp')
+  
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.h(50,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Enemy.cpp')
+  
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.cpp(37,17): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.cpp(38,22): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.cpp(72,21): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.cpp(72,21): warning C4244:         with
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.cpp(72,21): warning C4244:         [
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.cpp(72,21): warning C4244:             T=int
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.cpp(72,21): warning C4244:         ]
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.cpp(73,21): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.cpp(73,21): warning C4244:         with
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.cpp(73,21): warning C4244:         [
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.cpp(73,21): warning C4244:             T=int
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.cpp(73,21): warning C4244:         ]
+  Game.cpp
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.h(50,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Game.cpp')
+  
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.h(36,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Game.cpp')
+  
+  Player.cpp
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.h(50,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Player.cpp')
+  
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.h(36,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Player.cpp')
+  
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Player.cpp(21,13): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Scene.cpp
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.h(50,12): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file 'Scene.cpp')
   
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.h(35,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.h(36,12): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file 'Scene.cpp')
   
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Scene.cpp(35,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  main.cpp
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.h(50,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'main.cpp')
+  
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Enemy.h(36,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'main.cpp')
+  
+  Generating Code...
+C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Bubble.cpp(112,1): warning C4715: 'Bubble::getNextSize': not all control paths return a value
   02-Bubble.vcxproj -> C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\Debug\02-Bubble.exe

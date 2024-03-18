@@ -82,3 +82,8 @@ glm::vec2 Enemy::getSpeed()
 glm::ivec2 Enemy::getSize() {
 	return sizeQuad;
 }
+
+pair<glm::ivec2, glm::ivec2> Enemy::getHitboxEnemy()
+{
+	return {sizeQuad, getPosition()};
+}

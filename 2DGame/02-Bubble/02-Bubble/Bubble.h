@@ -14,7 +14,20 @@ class Bubble
 {
 
 public:
-	void init(ShaderProgram& shaderProgram, const glm::ivec2& initPos, const glm::ivec2& speed, const glm::ivec2& size, unsigned int color);
+	enum Color {
+		RED,
+		BLUE,
+		GREEN
+	};
+
+	enum Size {
+		BIG,
+		MIDDLE,
+		SMALL,
+		TINY,
+		NONE
+	};
+	void init(ShaderProgram& shaderProgram, const glm::ivec2& initPos, const glm::ivec2& speed, Color color, Size s);
 	void update(int deltaTime);
 	void render();
 	void setTileMap(TileMap* tileMap);
@@ -22,15 +35,13 @@ public:
 	glm::ivec2 getPosition();
 	glm::vec2 getSpeed();
 	bool circle_test(const glm::ivec2& pos);
-	glm::ivec2 getSize();
-	enum {
-		RED,
-		BLUE,
-		GREEN
-	};
-
+	Size getSize();
+	Size getNextSize();
+	glm::ivec2 getSizeV();
+	pair<glm::ivec2, glm::ivec2> getHitboxBubble();
 private:
 	glm::ivec2 posBubble, sizeQuad;
+	Size sizeQuadEnum;
 	Texture spritesheet;
 	Sprite* sprite;
 	TileMap* map;
