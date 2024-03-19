@@ -49,9 +49,17 @@ private:
 	bool menu;
 	int score;
 	unsigned int level;
-	int timeLimit;
+	unsigned int timeLimit;
 	inline bool hitRectangle(const pair<glm::ivec2, glm::ivec2>& r1, const pair<glm::ivec2, glm::ivec2>& r2);
 	inline bool hitCircle(const pair<glm::ivec2, glm::ivec2>& c, const pair<glm::ivec2, glm::ivec2>& r1);
+	inline int getMinimumDistance (int minEdge, int maxEdge, int centerCoord) {
+		if (centerCoord >= minEdge && centerCoord <= maxEdge) {
+			// The center is inside the rectangle along this axis, so distance is 0.
+			return 0;
+		}
+		// The center is outside the rectangle; calculate the distance to the closer edge.
+		return centerCoord < minEdge ? minEdge - centerCoord : centerCoord - maxEdge;
+	}
 };
 
 

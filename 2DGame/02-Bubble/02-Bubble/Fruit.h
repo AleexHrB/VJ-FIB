@@ -40,9 +40,11 @@ public:
 	//bool circle_test(const glm::ivec2& pos);
 	glm::ivec2 getSize();
 	pair<glm::ivec2, glm::ivec2> getHitboxFruit();
+	unsigned int getBonus();
 
 private:
 	glm::ivec2 posFruit, sizeQuad;
+	inline void calculateBonus();
 	Texture spritesheet;
 	Sprite* sprite;
 	TileMap* map;
@@ -52,6 +54,7 @@ private:
 	float g = 1.8;
 	bool b = true;
 	float t_anim = 0;
+	unsigned int points;
 
 };
 

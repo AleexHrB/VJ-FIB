@@ -24,6 +24,7 @@ void Fruit::init(ShaderProgram& shaderProgram, const glm::ivec2& initPos, const 
 	sprite->setAnimationSpeed(0, 8);
 	sprite->addKeyframe(0, glm::vec2((type%5) / 5.0, int(type/5)/2));
 	sprite->changeAnimation(0);
+	calculateBonus();
 }
 
 void Fruit::update(int deltaTime)
@@ -81,4 +82,15 @@ glm::ivec2 Fruit::getSize() {
 pair<glm::ivec2, glm::ivec2> Fruit::getHitboxFruit()
 {
 	return { sizeQuad, getPosition() };
+}
+
+unsigned int Fruit::getBonus()
+{
+	return points;
+}
+
+inline void Fruit::calculateBonus()
+{
+	//Esto estaría bien poner un switch con todos los tipos de frutas y con ello calcular los puntos que te da
+	points = 1000;
 }

@@ -60,11 +60,14 @@ void Player::update(int deltaTime)
 	sprite->update(deltaTime);
 	if (Game::instance().getKey(GLFW_KEY_C))
 	{
-		hk.posHook = posPlayer;
-		hk.posHook += 32;
-		shoot = true;
-		if (sprite->animation() != SHOOT)
-			sprite->changeAnimation(SHOOT);
+		if (!shoot) {
+			hk.posHook = posPlayer;
+			hk.posHook += 32;
+			shoot = true;
+			if (sprite->animation() != SHOOT)
+				sprite->changeAnimation(SHOOT);
+
+		}
 	}
 	else if(Game::instance().getKey(GLFW_KEY_LEFT))
 	{

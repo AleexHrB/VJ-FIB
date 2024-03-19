@@ -66,7 +66,7 @@ void Scene::init(unsigned int level)
 	//bubble->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	l.back()->setTileMap(map);
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGHT), 0.f);
-	currentTime = 0.0f;
+
 	
 	// Select which font you want to use
 	if (!text.init("fonts/OpenSans-Regular.ttf"))
@@ -74,7 +74,11 @@ void Scene::init(unsigned int level)
 	//if(!text.init("fonts/DroidSerif.ttf"))
 	cout << "Could not load font!!!" << endl;
 	
-	score = 0;
+	
+	if (currentTime == 0.0f) {
+		score = 0;
+	}
+	currentTime = 0.0f;
 	timeLimit = 100;
 }
 
@@ -112,11 +116,15 @@ void Scene::update(int deltaTime)
 		Bubble* bub = *it;
 		bub -> update(deltaTime);
 		if (!menu && hitCircle(bub -> getHitboxBubble(), player -> getHitboxPlayer()) && hitted()) {
-			cout << "hit" << endl;
 			bool dead = player->substract_live();
 			if (dead) {
 				cout << "Game Over" << endl;
 				exit(0);
+			}
+
+			else {
+				init(this->level);
+				break;
 			}
 		}
 		if (!menu && hitCircle(bub -> getHitboxBubble(), player -> getHitboxHook())) {
@@ -192,6 +200,37 @@ void Scene::update(int deltaTime)
 		cout << "Game Over" << endl;
 		exit(0);
 	}
+
+	for (auto it_f = l_f.begin(); !menu && it_f != l_f.end();) {
+		Fruit* f = *it_f;
+		if (hitRectangle(player->getHitboxPlayer(), f->getHitboxFruit())) {
+			score += f->getBonus();
+			delete f;
+			it_f = l_f.erase(it_f);
+		}
+
+		else ++it_f;
+	}
+
+	for (auto it_e = l_e.begin(); !menu && it_e != l_e.end();) {
+		Enemy *e = *it_e;
+		if (hitRectangle(player->getHitboxPlayer(), e->getHitboxEnemy())) {
+			delete e;
+			it_e = l_e.erase(it_e);
+			bool dead = player->substract_live();
+			if (dead) {
+				cout << "Game Over" << endl;
+				exit(0);
+			}
+
+			else {
+				init(this->level);
+				break;
+			}
+		}
+
+		else ++it_e;
+	}
 }
 
 void Scene::render()
@@ -260,6 +299,7 @@ inline bool Scene::hitted()
 	else return false;
 }
 
+//Source: GeeksForGeeks
 inline bool Scene::hitRectangle(const pair<glm::ivec2, glm::ivec2>& r1, const pair<glm::ivec2, glm::ivec2>& r2)
 {
 	glm::ivec2 l1 = r1.second;
@@ -267,16 +307,18 @@ inline bool Scene::hitRectangle(const pair<glm::ivec2, glm::ivec2>& r1, const pa
 	glm::ivec2 l2 = r2.second;
 	glm::ivec2 rr2 = l2 + r2.first;
 
-	if (l1.x > rr2.x || l2.x > rr1.x) return false;
-	if (rr1.y > l2.y || rr2.y > l1.y) return false;
+	if (rr1.x < l2.x || rr2.x < l1.x) return false;
+	if (rr1.y < l2.y || rr2.y < l1.y) return false;
 	return true;
 }
 
+//Source: https://algo.monster/liteproblems/1401
 inline bool Scene::hitCircle(const pair<glm::ivec2, glm::ivec2>& c, const pair<glm::ivec2, glm::ivec2>& r1)
 {
-	glm::ivec2 cen = c.second + c.first/2;
-	glm::ivec2 p = r1.second;
-	return (p.x - cen.x) * (p.x - cen.x) + (p.y - cen.y) * (p.y - cen.y) <= c.first.x * c.first.x/2;
+	int deltaX = getMinimumDistance(r1.second.x, r1.second.x + r1.first.x, (c.second + c.first / 2).x);
+	int deltaY = getMinimumDistance(r1.second.y, r1.second.y + r1.first.y, (c.second + c.first / 2).y);
+
+	return deltaX * deltaX + deltaY * deltaY <= c.first.x * c.first.x / 4;
 }
 
 
