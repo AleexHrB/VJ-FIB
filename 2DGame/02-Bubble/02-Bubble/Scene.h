@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include "text.h"
 #include "Fruit.h"
+#include "PowerUp.h"
 
 
 // Scene contains all the entities of our game.
@@ -41,6 +42,7 @@ private:
 	list<Bubble*> l;
 	list<Fruit*> l_f;
 	list<Enemy*> l_e;
+	list<PowerUp*> l_p;
 	inline bool hitted();
 	//inline bool hook_test(const glm::ivec2& bub);
 	Text text;

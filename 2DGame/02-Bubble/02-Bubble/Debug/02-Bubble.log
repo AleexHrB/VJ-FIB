@@ -8,5 +8,8 @@ C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\0
 C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\Fruit.h(52,12): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file 'Scene.cpp')
   
+C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\PowerUp.h(46,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Scene.cpp')
+  
 C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\Scene.cpp(35,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   02-Bubble.vcxproj -> C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\Debug\02-Bubble.exe

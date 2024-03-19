@@ -41,10 +41,26 @@ void Scene::init(unsigned int level)
 	l = list<Bubble*>();
 	l_e = list<Enemy*>();
 	l_f = list<Fruit*>();
+	l_p = list<PowerUp*>();
 	l.push_back(new Bubble());
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	if (menu) l.back()->init(texProgram, glm::ivec2(320, 320), glm::ivec2(-4, 0), l.back() -> BLUE, l.back() -> MIDDLE);
-	else l.back()->init(texProgram, glm::ivec2(320, 120), glm::ivec2(-4, 0), l.back()->BLUE, l.back()->BIG);
+
+	Bubble::Color rn;
+	switch (rand()%3)
+	{
+	case 0:
+		rn = Bubble::Color::BLUE;
+		break;
+	case 1:
+		rn = Bubble::Color::RED;
+		break;
+	case 2:
+		rn = Bubble::Color::GREEN;
+		break;
+	}
+
+	if (menu) l.back()->init(texProgram, glm::ivec2(320, 320), glm::ivec2(-8, 0), rn, l.back() -> MIDDLE);
+	else l.back()->init(texProgram, glm::ivec2(320, 120), glm::ivec2(-8, 0), l.back()->BLUE, l.back()->BIG);
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
 	//bubble->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
@@ -83,11 +99,19 @@ void Scene::update(int deltaTime)
 		if (f->getPosition().y <= 384)f->update(deltaTime);
 		++itf;
 	}
+
+	auto itp = l_p.begin();
+	while (itp != l_p.end()) {
+		PowerUp* p = *itp;
+		if (p->getPosition().y <= 368)p->update(deltaTime);
+		++itp;
+	}
+	
 	auto it = l.begin();
 	while (it != l.end()) {
 		Bubble* bub = *it;
 		bub -> update(deltaTime);
-		if (hitCircle(bub -> getHitboxBubble(), player -> getHitboxPlayer()) && hitted()) {
+		if (!menu && hitCircle(bub -> getHitboxBubble(), player -> getHitboxPlayer()) && hitted()) {
 			cout << "hit" << endl;
 			bool dead = player->substract_live();
 			if (dead) {
@@ -95,7 +119,7 @@ void Scene::update(int deltaTime)
 				exit(0);
 			}
 		}
-		if (hitCircle(bub -> getHitboxBubble(), player -> getHitboxHook())) {
+		if (!menu && hitCircle(bub -> getHitboxBubble(), player -> getHitboxHook())) {
 			player->setShoot(false);
 			
 			if (bub -> getSize() != bub -> TINY) {
@@ -127,26 +151,44 @@ void Scene::update(int deltaTime)
 				break;
 			}
 
-			delete bub;
-			it = l.erase(it);	
 			int rng = rand() % 7;
 			if (rng == 0) {
 				l_e.push_back(new Enemy());
 				l_e.back()->init(texProgram, glm::ivec2(0, 370), glm::ivec2(10, 0), glm::ivec2(32, 32));
 			}
-			else if (rng == 1 || rng == 2) {
+			else if (rng == 1) {
 				l_f.push_back(new Fruit());
 				l_f.back()->init(texProgram, glm::ivec2(384, 16), glm::ivec2(0, 10), glm::ivec2(16, 16), Fruit::FruitType::BANNANA);
 			}
+			else if (rng == 2) {
+				l_f.push_back(new Fruit());
+				l_f.back()->init(texProgram, glm::ivec2(384, 16), glm::ivec2(0, 10), glm::ivec2(16, 16), Fruit::FruitType::WATERMELON);
+			}
+			else if (rng == 3) {
+				l_p.push_back(new PowerUp());
+				l_p.back()->init(texProgram, bub->getPosition(), glm::ivec2(0, 10), glm::ivec2(32, 32), PowerUp::PowerUpType::PISTOL);
+			}
+			else if (rng == 4) {
+				l_p.push_back(new PowerUp());
+				l_p.back()->init(texProgram, bub->getPosition(), glm::ivec2(0, 10), glm::ivec2(32, 32), PowerUp::PowerUpType::DOUBLEHOOK);
+			}
+			else if (rng == 5) {
+				l_p.push_back(new PowerUp());
+				l_p.back()->init(texProgram, bub ->getPosition(), glm::ivec2(0, 10), glm::ivec2(32, 32), PowerUp::PowerUpType::STICKYHOOK);
+			}
+
+			delete bub;
+			it = l.erase(it);	
+			
 			
 		}
 		else ++it;
 	}
-	if (l.size() == 0) {
+	if (!menu &&  l.size() == 0) {
 		score += 1000;
 		this->init((level%3) + 1);
 	}
-	if (int(currentTime / 1000) == timeLimit) {
+	if (!menu && int(currentTime / 1000) == timeLimit) {
 		cout << "Game Over" << endl;
 		exit(0);
 	}
@@ -166,6 +208,7 @@ void Scene::render()
 	for (Bubble* bub : l) bub->render();
 	for (Enemy* e : l_e) e->render();
 	for (Fruit* f : l_f) f->render();
+	for (PowerUp* p : l_p) p->render();
 	if (!menu) {
 		string time = to_string(int(timeLimit - currentTime / 1000));
 		if (int(timeLimit - currentTime / 1000) < 100 && int(timeLimit - currentTime / 1000) > 9) time = "0" + time;
@@ -231,9 +274,9 @@ inline bool Scene::hitRectangle(const pair<glm::ivec2, glm::ivec2>& r1, const pa
 
 inline bool Scene::hitCircle(const pair<glm::ivec2, glm::ivec2>& c, const pair<glm::ivec2, glm::ivec2>& r1)
 {
-	glm::ivec2 cen = c.second;
+	glm::ivec2 cen = c.second + c.first/2;
 	glm::ivec2 p = r1.second;
-	return (p.x - cen.x) * (p.x - cen.x) + (p.y - cen.y) * (p.y - cen.y) <= c.first.x * c.first.x;
+	return (p.x - cen.x) * (p.x - cen.x) + (p.y - cen.y) * (p.y - cen.y) <= c.first.x * c.first.x/2;
 }
 
 
