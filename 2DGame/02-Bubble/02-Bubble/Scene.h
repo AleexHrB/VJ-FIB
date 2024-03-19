@@ -10,6 +10,7 @@
 #include "Bubble.h"
 #include "Enemy.h"
 #include "text.h"
+#include "Fruit.h"
 
 
 // Scene contains all the entities of our game.
@@ -38,6 +39,7 @@ private:
 	float inmuneTime = 0.0f;
 	glm::mat4 projection;
 	list<Bubble*> l;
+	list<Fruit*> l_f;
 	list<Enemy*> l_e;
 	inline bool hitted();
 	//inline bool hook_test(const glm::ivec2& bub);

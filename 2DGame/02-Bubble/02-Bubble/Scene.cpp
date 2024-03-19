@@ -38,12 +38,12 @@ void Scene::init(unsigned int level)
 	string levelFile = "levels/level" + to_string(level) + ".txt";
 	map = TileMap::createTileMap(levelFile, glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 	player = new Player();
-	for (Bubble* b : l) delete b;
 	l = list<Bubble*>();
 	l_e = list<Enemy*>();
+	l_f = list<Fruit*>();
 	l.push_back(new Bubble());
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	if (menu) l.back()->init(texProgram, glm::ivec2(320, 320), glm::ivec2(-4, 0), l.back() -> BLUE, l.back() -> BIG);
+	if (menu) l.back()->init(texProgram, glm::ivec2(320, 320), glm::ivec2(-4, 0), l.back() -> BLUE, l.back() -> MIDDLE);
 	else l.back()->init(texProgram, glm::ivec2(320, 120), glm::ivec2(-4, 0), l.back()->BLUE, l.back()->BIG);
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
@@ -77,7 +77,12 @@ void Scene::update(int deltaTime)
 		else ++itt;
 	}
 
-	
+	auto itf = l_f.begin();
+	while (itf != l_f.end()) {
+		Fruit* f = *itf;
+		if (f->getPosition().y <= 384)f->update(deltaTime);
+		++itf;
+	}
 	auto it = l.begin();
 	while (it != l.end()) {
 		Bubble* bub = *it;
@@ -103,12 +108,35 @@ void Scene::update(int deltaTime)
 				l.back()->setTileMap(map);
 				
 			}
-			score += 4*(bub -> getSizeV().x);
+			Bubble::Size s = bub -> getSize();
+			switch (s)
+			{
+			case Bubble::BIG:
+				score += 50;
+				break;
+			case Bubble::MIDDLE:
+				score += 100;
+				break;
+			case Bubble::SMALL:
+				score += 150;
+				break;
+			case Bubble::TINY:
+				score += 200;
+				break;
+			case Bubble::NONE:
+				break;
+			}
+
 			delete bub;
 			it = l.erase(it);	
-			if (rand() % 7 == 0) {
+			int rng = rand() % 7;
+			if (rng == 0) {
 				l_e.push_back(new Enemy());
 				l_e.back()->init(texProgram, glm::ivec2(0, 370), glm::ivec2(10, 0), glm::ivec2(32, 32));
+			}
+			else if (rng == 1 || rng == 2) {
+				l_f.push_back(new Fruit());
+				l_f.back()->init(texProgram, glm::ivec2(384, 16), glm::ivec2(0, 10), glm::ivec2(16, 16), Fruit::FruitType::BANNANA);
 			}
 			
 		}
@@ -137,6 +165,7 @@ void Scene::render()
 	if(!menu) player->render();
 	for (Bubble* bub : l) bub->render();
 	for (Enemy* e : l_e) e->render();
+	for (Fruit* f : l_f) f->render();
 	if (!menu) {
 		string time = to_string(int(timeLimit - currentTime / 1000));
 		if (int(timeLimit - currentTime / 1000) < 100 && int(timeLimit - currentTime / 1000) > 9) time = "0" + time;
