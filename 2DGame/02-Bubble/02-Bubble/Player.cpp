@@ -161,6 +161,12 @@ void Player::setTileMap(TileMap *tileMap)
 	map = tileMap;
 }
 
+void Player::setLife(unsigned int lives)
+{
+	this->lives = lives;
+}
+
+
 void Player::setPosition(const glm::vec2 &pos)
 {
 	posPlayer = pos;

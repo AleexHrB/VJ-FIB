@@ -37,13 +37,13 @@ void Scene::init(unsigned int level)
 	this->level = level;
 	string levelFile = "levels/level" + to_string(level) + ".txt";
 	map = TileMap::createTileMap(levelFile, glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
-	player = new Player();
+	
 	l = list<Bubble*>();
 	l_e = list<Enemy*>();
 	l_f = list<Fruit*>();
 	l_p = list<PowerUp*>();
 	l.push_back(new Bubble());
-	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+
 
 	Bubble::Color rn;
 	switch (rand()%3)
@@ -61,8 +61,7 @@ void Scene::init(unsigned int level)
 
 	if (menu) l.back()->init(texProgram, glm::ivec2(320, 320), glm::ivec2(-8, 0), rn, l.back() -> MIDDLE);
 	else l.back()->init(texProgram, glm::ivec2(320, 120), glm::ivec2(-8, 0), l.back()->BLUE, l.back()->BIG);
-	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
-	player->setTileMap(map);
+
 	//bubble->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	l.back()->setTileMap(map);
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGHT), 0.f);
@@ -76,8 +75,14 @@ void Scene::init(unsigned int level)
 	
 	
 	if (currentTime == 0.0f) {
+		player = new Player();
 		score = 0;
+	
 	}
+	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
+	player->setTileMap(map);
+
 	currentTime = 0.0f;
 	timeLimit = 100;
 }
