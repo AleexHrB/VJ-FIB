@@ -20,11 +20,9 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
 	float unit = 0.14285714285;
 	bJumping = false;
+	sizeQuad = glm::ivec2(64, 64);
 	spritesheet.loadFromFile("images/Pedro.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	hk.sh = shaderProgram;
-	hk.spritesheet.loadFromFile("images/hook.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sprite = Sprite::createSprite(glm::ivec2(64, 64), glm::vec2(unit, 0.5), &spritesheet, &shaderProgram);
-	hk.sprite = Sprite::createSprite(glm::ivec2(9, 6), glm::vec2(1.0f,0.333f), &hk.spritesheet, &shaderProgram);
+	sprite = Sprite::createSprite(sizeQuad, glm::vec2(unit, 0.5), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(SIZE);
 	
 		sprite->setAnimationSpeed(STAND_LEFT, 8);
@@ -48,35 +46,31 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 		
 	sprite->changeAnimation(0);
 	tileMapDispl = tileMapPos;
-	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
-	
-	//hk.sprite->setNumberAnimations(1);
-
+	sprite->setPosition(glm::vec2(float(tileMapDispl.x + position.x), float(tileMapDispl.y + position.y)));
+	speed = glm::ivec2(3, 3);
+	w = new Hook();
+	w->init(tileMapPos, shaderProgram);
 	
 }
 
 void Player::update(int deltaTime)
 {
 	sprite->update(deltaTime);
+	w->update(deltaTime);
 	if (Game::instance().getKey(GLFW_KEY_C))
 	{
-		if (!shoot) {
-			hk.posHook = posPlayer;
-			hk.posHook += 32;
-			shoot = true;
+			w->shoot(position + sizeQuad/2);
 			if (sprite->animation() != SHOOT)
 				sprite->changeAnimation(SHOOT);
-
-		}
 	}
 	else if(Game::instance().getKey(GLFW_KEY_LEFT))
 	{
 		if(sprite->animation() != MOVE_LEFT)
 			sprite->changeAnimation(MOVE_LEFT);
-		posPlayer.x -= 3;
-		if(map->collisionMoveLeft(posPlayer, glm::ivec2(32, 32)))
+		position.x -= speed.x;
+		if(map->collisionMoveLeft(position, glm::ivec2(32, 32)))
 		{
-			posPlayer.x += 3;
+			position.x += speed.x;
 			sprite->changeAnimation(STAND_LEFT);
 		}
 	}
@@ -84,10 +78,10 @@ void Player::update(int deltaTime)
 	{
 		if(sprite->animation() != MOVE_RIGHT)
 			sprite->changeAnimation(MOVE_RIGHT);
-		posPlayer.x += 3;
-		if(map->collisionMoveRight(posPlayer, glm::ivec2(32, 32)))
+		position.x += speed.x;
+		if(map->collisionMoveRight(position, glm::ivec2(32, 32)))
 		{
-			posPlayer.x -= 3;
+			position.x -= speed.x;
 			sprite->changeAnimation(STAND_RIGHT);
 		}
 	}
@@ -96,11 +90,9 @@ void Player::update(int deltaTime)
 	else if (Game::instance().getKey(GLFW_KEY_G))
 	{
 		if (!G_pressed) {
-			cout << "God mode = " << god_mode << endl;
 			god_mode = !god_mode;
 			G_pressed = true;
 		}
-		cout << "God mode = " << god_mode << endl;
 	}
 	else
 	{
@@ -118,19 +110,19 @@ void Player::update(int deltaTime)
 		if(jumpAngle == 180)
 		{
 			bJumping = false;
-			posPlayer.y = startY;
+			position.y = startY;
 		}
 		else
 		{
-			posPlayer.y = int(startY - 96 * sin(3.14159f * jumpAngle / 180.f));
+			position.y = int(startY - 96 * sin(3.14159f * jumpAngle / 180.f));
 			if(jumpAngle > 90)
-				bJumping = !map->collisionMoveDown(posPlayer, glm::ivec2(64, 64), &posPlayer.y);
+				bJumping = !map->collisionMoveDown(position, glm::ivec2(64, 64), &position.y);
 		}
 	}
 	else
 	{
-		posPlayer.y += FALL_STEP;
-		if(map->collisionMoveDown(posPlayer, glm::ivec2(64, 64), &posPlayer.y))
+		position.y += FALL_STEP;
+		if(map->collisionMoveDown(position, glm::ivec2(64, 64), &position.y))
 		{
 			/*if (Game::instance().getKey(GLFW_KEY_UP))
 			{
@@ -141,87 +133,37 @@ void Player::update(int deltaTime)
 		}
 	}
 	
-	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
-	if (shoot) {
-		hk.sprite = Sprite::createSprite(glm::ivec2(9, ((posPlayer.y + 64) - hk.posHook.y)), glm::vec2(1.0f, (posPlayer.y - hk.posHook.y) / 188.0), &hk.spritesheet, &hk.sh);
-		if (hk.posHook.y > 16) hk.posHook.y -= 4;
-		else shoot = false;
-		hk.sprite->setPosition(glm::vec2(float(tileMapDispl.x + hk.posHook.x), float(tileMapDispl.y + hk.posHook.y)));
-	}
+	sprite->setPosition(glm::vec2(float(tileMapDispl.x + position.x), float(tileMapDispl.y + position.y)));
 }
 
 void Player::render()
 {
 	sprite->render();
-	if (shoot) hk.sprite->render();
-}
-
-void Player::setTileMap(TileMap *tileMap)
-{
-	map = tileMap;
-}
-
-void Player::setLife(unsigned int lives)
-{
-	this->lives = lives;
+	w->render();
 }
 
 
-void Player::setPosition(const glm::vec2 &pos)
-{
-	posPlayer = pos;
-	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
-}
-
-glm::ivec2 Player::getPosition()
-{
-	return posPlayer;
-}
-
-glm::ivec2 Player::getHookPosition()
-{
-	return hk.posHook;
-}
-
-void Player::setShoot(bool hit_hook)
+void Player::showHook(bool hit_hook)
 {
 	this->shoot = hit_hook;
 }
 
-bool Player::substract_live()
+bool Player::substractLive()
 {
 	if (!god_mode) --lives;
 
 	return lives == 0;
 }
 
-int Player::get_lives() {
+int Player::getLives() {
 	return lives;
 }
 
-pair<glm::ivec2, glm::ivec2> Player::getHitboxPlayer()
+void Player::changeWeapon(Types t)
 {
-	//Size, Position
-	return { glm::ivec2(64,64), posPlayer };
+	this->actual_weapon = t;
 }
 
-pair<glm::ivec2, glm::ivec2> Player::getHitboxHook()
-{
-	//Size, Position
-	pair<glm::ivec2, glm::ivec2> p1 = { glm::ivec2(9, ((posPlayer.y + 64) - hk.posHook.y)) ,hk.posHook };
-	pair<glm::ivec2, glm::ivec2> p2 = { glm::ivec2(-1,-1),glm::ivec2(-1, -1)};
-	return shoot ? p1 : p2;
-}
 
-//9x6
-bool Player::hook_test(const glm::ivec2& posBubble, const glm::ivec2& sizeBubble)
-{
-	//Left
-	glm::ivec2 pos_l = posBubble + glm::ivec2(0,sizeBubble.y);
-	glm::ivec2 pos_r = posBubble + sizeBubble;
-	bool b1 = pos_l.x <= hk.posHook.x && hk.posHook.y <= pos_l.y;
-	bool b2 = pos_r.x >= (hk.posHook.x + 9);
-	return b1 && b2 && shoot;
-}
 
 

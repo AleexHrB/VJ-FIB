@@ -1,18 +1,7 @@
-#ifndef _BUBBLE_INCLUDE
-#define _BUBBLE_INCLUDE
+#pragma once
+#include "Enemy.h"
 
-
-#include "Sprite.h"
-#include "TileMap.h"
-
-
-// Player is basically a Sprite that represents the player. As such it has
-// all properties it needs to track its movement, jumping, and collisions.
-
-
-class Bubble
-{
-
+class Bubble : public Enemy {
 public:
 	enum Color {
 		RED,
@@ -22,35 +11,27 @@ public:
 
 	enum Size {
 		BIG,
-		MIDDLE,
+		MID,
 		SMALL,
-		TINY,
-		NONE
+		TINY
 	};
-	void init(ShaderProgram& shaderProgram, const glm::ivec2& initPos, const glm::ivec2& speed, Color color, Size s);
-	void update(int deltaTime);
-	void render();
-	void setTileMap(TileMap* tileMap);
-	void setPosition(const glm::vec2& pos);
-	glm::ivec2 getPosition();
-	glm::vec2 getSpeed();
-	bool circle_test(const glm::ivec2& pos);
-	Size getSize();
-	Size getNextSize();
-	glm::ivec2 getSizeV();
-	pair<glm::ivec2, glm::ivec2> getHitboxBubble();
+	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, Color c, Size s, const glm::vec2& initPos);
+	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram) override;
+	void update(int deltaTime) override;
+	bool checkCollision(const pair<glm::ivec2, glm::ivec2>& hitbox) override;
+	unsigned int getBonus() override;
 private:
-	glm::ivec2 posBubble, sizeQuad;
-	Size sizeQuadEnum;
-	Texture spritesheet;
-	Sprite* sprite;
-	TileMap* map;
-	//Needed for projectile motion equations
-	glm::vec2 speed, initposBubble, actualSpeed;
 	float t = 0;
-	float g = 1.8;
+	glm::vec2 initPosBubble;
+	Size s;
+	//Source: https://algo.monster/liteproblems/1401
+	inline unsigned int getMinimumDistance(int minEdge, int maxEdge, int centerCoord) {
+		if (centerCoord >= minEdge && centerCoord <= maxEdge) {
+			// The center is inside the rectangle along this axis, so distance is 0.
+			return 0;
+		}
+		// The center is outside the rectangle; calculate the distance to the closer edge.
+		return centerCoord < minEdge ? minEdge - centerCoord : centerCoord - maxEdge;
+	}
 
 };
-
-
-#endif // _PLAYER_INCLUDE

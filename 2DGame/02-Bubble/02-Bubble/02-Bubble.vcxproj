@@ -13,9 +13,14 @@
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
     <ClInclude Include="Bubble.h" />
+    <ClInclude Include="DoubleHook.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Fruit.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gun.h" />
+    <ClInclude Include="Hook.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Scene.h" />
@@ -26,13 +31,18 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TexturedQuad.h" />
     <ClInclude Include="TileMap.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bubble.cpp" />
-    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="DoubleHook.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Fruit.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="Hook.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Scene.cpp" />
