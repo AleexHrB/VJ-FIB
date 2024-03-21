@@ -20,6 +20,12 @@ private:
 	TileMap(const string &levelFile, const glm::vec2 &minCoords, ShaderProgram &program);
 
 public:
+	enum TileType {
+		Ladder,
+		Air,
+		SolidBlock,
+		BreakableBlock
+	};
 	// Tile maps can only be created inside an OpenGL context
 	static TileMap *createTileMap(const string &levelFile, const glm::vec2 &minCoords, ShaderProgram &program);
 
@@ -29,6 +35,7 @@ public:
 	void free();
 	
 	int getTileSize() const { return tileSize; }
+	TileType getTileType(int x, int y);
 
 	bool collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) const;
 	bool collisionMoveRight(const glm::ivec2 &pos, const glm::ivec2 &size) const;
@@ -49,7 +56,7 @@ private:
 	Texture tilesheet, background;
 	glm::vec2 tileTexSize;
 	int *map;
-
+	TileType *tileType;
 };
 
 

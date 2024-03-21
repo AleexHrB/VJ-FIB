@@ -8,6 +8,7 @@
 using namespace std;
 
 
+
 TileMap *TileMap::createTileMap(const string &levelFile, const glm::vec2 &minCoords, ShaderProgram &program)
 {
 	TileMap *map = new TileMap(levelFile, minCoords, program);
@@ -96,6 +97,7 @@ bool TileMap::loadLevel(const string &levelFile)
 	backgroundSize.y = mapSize.y * blockSize;
 
 	map = new int[mapSize.x * mapSize.y];
+	tileType = new TileType[mapSize.x * mapSize.y];
 	for(int j=0; j<mapSize.y; j++)
 	{
 		getline(fin, line);
@@ -104,6 +106,11 @@ bool TileMap::loadLevel(const string &levelFile)
 		{
 			sstream >> tile;
 			map[j*mapSize.x+i] = tile;
+			if (tile == 0) tileType[j * mapSize.x + i] = TileMap::Air;
+			else if (tile > 0 && tile <= 12) tileType[j * mapSize.x + i] = TileMap::Ladder;
+			else if (tile > 12 && tile <= 38) tileType[j * mapSize.x + i] = TileMap::BreakableBlock;
+			else tileType[j * mapSize.x + i] = TileMap::SolidBlock;
+
 		}
 
 	}
@@ -191,6 +198,11 @@ void TileMap::prepareArrays(const glm::vec2 &minCoords, ShaderProgram &program)
 // Method collisionMoveDown also corrects Y coordinate if the box is
 // already intersecting a tile below.
 
+TileMap::TileType TileMap::getTileType(int x, int y)
+{
+	return tileType[y*mapSize.x + x];
+}
+
 bool TileMap::collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) const
 {
 	int x, y0, y1;
@@ -200,7 +212,7 @@ bool TileMap::collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) c
 	y1 = (pos.y + size.y - 1) / tileSize;
 	for(int y=y0; y<=y1; y++)
 	{
-		if(map[y*mapSize.x+x] != 0)
+		if(tileType[y*mapSize.x+x] == TileMap::SolidBlock || tileType[y * mapSize.x + x] == TileMap::BreakableBlock)
 			return true;
 	}
 	
@@ -216,7 +228,7 @@ bool TileMap::collisionMoveRight(const glm::ivec2 &pos, const glm::ivec2 &size) 
 	y1 = (pos.y + size.y - 1) / tileSize;
 	for(int y=y0; y<=y1; y++)
 	{
-		if(map[y*mapSize.x+x] != 0)
+		if (tileType[y * mapSize.x + x + 1] == TileMap::SolidBlock || tileType[y * mapSize.x + x + 1] == TileMap::BreakableBlock)
 			return true;
 	}
 	
@@ -232,7 +244,7 @@ bool TileMap::collisionMoveDown(const glm::ivec2 &pos, const glm::ivec2 &size, i
 	y = (pos.y + size.y - 1) / tileSize;
 	for(int x=x0; x<=x1; x++)
 	{
-		if(map[y*mapSize.x+x] != 0)
+		if (tileType[y * mapSize.x + x] == TileMap::SolidBlock || tileType[y * mapSize.x + x] == TileMap::BreakableBlock)
 		{
 			if(*posY - tileSize * y + size.y <= 4)
 			{
