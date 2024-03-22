@@ -1,70 +1,45 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\",
+  "WorkspaceRootPath": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Crab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Crab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Crab.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Crab.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Weapon.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Weapon.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Hook.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Hook.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Hook.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Hook.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Entity.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Entity.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Entity.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Entity.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Enemy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Enemy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Bubble.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Bubble.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\DoubleHook.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\DoubleHook.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Gun.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Gun.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Bubble.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Entity.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Entity.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\PROGRAM FILES\\MICROSOFT VISUAL STUDIO\\2022\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.39.33519\\INCLUDE\\VECTOR||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Crab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Crab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -80,11 +55,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Scene.cpp",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.cpp",
               "RelativeDocumentMoniker": "02-Bubble\\Scene.cpp",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.cpp",
               "RelativeToolTip": "02-Bubble\\Scene.cpp",
-              "ViewState": "AQIAAHgAAAAAAAAAAAAAAJAAAAAZAAAA",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAkwFYAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-03-21T16:59:10.345Z",
               "IsPinned": true,
@@ -93,197 +68,119 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Crab.cpp",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Crab.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\Crab.cpp",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Crab.cpp",
-              "RelativeToolTip": "02-Bubble\\Crab.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAABAAAA",
+              "Title": "Bubble.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Bubble.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.cpp",
+              "RelativeToolTip": "02-Bubble\\Bubble.cpp",
+              "ViewState": "AQIAACMAAAAAAAAAAADwv0EAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-22T08:35:31.85Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Crab.h",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Crab.h",
-              "RelativeDocumentMoniker": "02-Bubble\\Crab.h",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Crab.h",
-              "RelativeToolTip": "02-Bubble\\Crab.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-22T08:33:48.946Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Player.h",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Player.h",
-              "RelativeDocumentMoniker": "02-Bubble\\Player.h",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Player.h",
-              "RelativeToolTip": "02-Bubble\\Player.h",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAB0AAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-21T17:33:02.652Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Player.cpp",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Player.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\Player.cpp",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Player.cpp",
-              "RelativeToolTip": "02-Bubble\\Player.cpp",
-              "ViewState": "AQIAAIEAAAAAAAAAAAAAAJMAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-21T17:51:59.873Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Gun.h",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Gun.h",
-              "RelativeDocumentMoniker": "02-Bubble\\Gun.h",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Gun.h",
-              "RelativeToolTip": "02-Bubble\\Gun.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-21T17:54:25.403Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "DoubleHook.h",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\DoubleHook.h",
-              "RelativeDocumentMoniker": "02-Bubble\\DoubleHook.h",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\DoubleHook.h",
-              "RelativeToolTip": "02-Bubble\\DoubleHook.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-21T17:53:59.898Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Hook.cpp",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Hook.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\Hook.cpp",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Hook.cpp",
-              "RelativeToolTip": "02-Bubble\\Hook.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-21T17:41:11.696Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Hook.h",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Hook.h",
-              "RelativeDocumentMoniker": "02-Bubble\\Hook.h",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Hook.h",
-              "RelativeToolTip": "02-Bubble\\Hook.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-21T17:40:35.864Z",
+              "WhenOpened": "2024-03-21T16:28:20.072Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Weapon.h",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Weapon.h",
-              "RelativeDocumentMoniker": "02-Bubble\\Weapon.h",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Weapon.h",
-              "RelativeToolTip": "02-Bubble\\Weapon.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-21T17:32:48.986Z",
+              "Title": "Game.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Game.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Game.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Game.cpp",
+              "RelativeToolTip": "02-Bubble\\Game.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-22T16:07:43.344Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Scene.h",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.h",
-              "RelativeDocumentMoniker": "02-Bubble\\Scene.h",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.h",
-              "RelativeToolTip": "02-Bubble\\Scene.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-21T17:02:46.599Z",
+              "DocumentIndex": 6,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\main.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\main.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\main.cpp",
+              "RelativeToolTip": "02-Bubble\\main.cpp",
+              "ViewState": "AQIAADcAAAAAAAAAAAAiwEoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-22T16:07:40.264Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Entity.cpp",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Entity.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\Entity.cpp",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Entity.cpp",
-              "RelativeToolTip": "02-Bubble\\Entity.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-21T17:01:00.042Z",
+              "Title": "vector",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector",
+              "ViewState": "AQIAAFEHAAAAAAAAAAAiwGMHAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-03-22T11:46:20.784Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 7,
+              "Title": "TileMap.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TileMap.h",
+              "RelativeDocumentMoniker": "02-Bubble\\TileMap.h",
+              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TileMap.h",
+              "RelativeToolTip": "02-Bubble\\TileMap.h",
+              "ViewState": "AQIAAB0AAAAAAAAAAAArwCwAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-22T10:58:46.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TileMap.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TileMap.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\TileMap.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TileMap.cpp",
+              "RelativeToolTip": "02-Bubble\\TileMap.cpp",
+              "ViewState": "AQIAALAAAAAAAAAAAAAiwMgAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-22T09:45:27.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Entity.h",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Entity.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Entity.h",
               "RelativeDocumentMoniker": "02-Bubble\\Entity.h",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Entity.h",
+              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Entity.h",
               "RelativeToolTip": "02-Bubble\\Entity.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABPAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-03-21T16:43:41.931Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Enemy.h",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Enemy.h",
-              "RelativeDocumentMoniker": "02-Bubble\\Enemy.h",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Enemy.h",
-              "RelativeToolTip": "02-Bubble\\Enemy.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-21T16:29:51.334Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 3,
               "Title": "Bubble.h",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.h",
               "RelativeDocumentMoniker": "02-Bubble\\Bubble.h",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.h",
+              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.h",
               "RelativeToolTip": "02-Bubble\\Bubble.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAACIAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-03-21T16:28:36.972Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Bubble.cpp",
-              "DocumentMoniker": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\Bubble.cpp",
-              "ToolTip": "C:\\Users\\shado\\Desktop\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.cpp",
-              "RelativeToolTip": "02-Bubble\\Bubble.cpp",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAgAAAANAAAA",
+              "DocumentIndex": 9,
+              "Title": "Crab.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Crab.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Crab.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Crab.cpp",
+              "RelativeToolTip": "02-Bubble\\Crab.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-21T16:28:20.072Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-22T08:35:31.85Z"
             }
           ]
         }

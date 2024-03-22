@@ -1,26 +1,12 @@
-﻿  Crab.cpp
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Entity.h(25,12): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file 'Crab.cpp')
-  
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Crab.cpp(32,17): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Crab.cpp(33,22): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Crab.cpp(36,25): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Crab.cpp(36,25): warning C4244:         with
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Crab.cpp(36,25): warning C4244:         [
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Crab.cpp(36,25): warning C4244:             T=int
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Crab.cpp(36,25): warning C4244:         ]
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Crab.cpp(37,25): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Crab.cpp(37,25): warning C4244:         with
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Crab.cpp(37,25): warning C4244:         [
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Crab.cpp(37,25): warning C4244:             T=int
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Crab.cpp(37,25): warning C4244:         ]
-  Scene.cpp
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Entity.h(25,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿  Scene.cpp
+C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\Entity.h(25,12): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file 'Scene.cpp')
   
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\PowerUp.h(46,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\PowerUp.h(46,12): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file 'Scene.cpp')
   
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Scene.cpp(37,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
-  02-Bubble.vcxproj -> C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\Debug\02-Bubble.exe
+C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\Scene.cpp(39,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+SOIL.lib(image_DXT.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(image_DXT.obj)' or at ''; linking object as if no debug info
+SOIL.lib(image_helper.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(image_helper.obj)' or at ''; linking object as if no debug info
+SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(stb_image_aug.obj)' or at ''; linking object as if no debug info
+  02-Bubble.vcxproj -> C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\Debug\02-Bubble.exe
