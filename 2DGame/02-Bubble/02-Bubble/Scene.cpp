@@ -33,6 +33,7 @@ void Scene::init(unsigned int level)
 {
 	this->menu = level == 0;
 	lB = list<Bubble*>();
+	lE = list<Enemy*>();
 	srand(time(NULL));
 	initShaders();
 	this->level = level;
@@ -55,8 +56,8 @@ void Scene::init(unsigned int level)
 	}
 
 	lB.push_back(new Bubble());
-	if (menu) lB.back()->init(glm::ivec2(320, 320), texProgram, rn, Bubble::Size::MID, glm::ivec2(80, 80));
-	else lB.back()->init(glm::ivec2(320, 120), texProgram, Bubble::Color::RED, Bubble::Size::BIG, glm::ivec2(80, 80));
+	if (menu) lB.back()->init(glm::ivec2(320, 320), texProgram, rn, Bubble::Size::MID, glm::ivec2(80, 80), glm::vec2(-8,0));
+	else lB.back()->init(glm::ivec2(320, 120), texProgram, Bubble::Color::RED, Bubble::Size::BIG, glm::ivec2(80, 80), glm::vec2(-8, 0));
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGHT), 0.f);
 	lB.back()->setTileMap(map);
 
@@ -85,7 +86,27 @@ void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
 	player->update(deltaTime);
-	for (Bubble* b : lB) {
+	for (auto itE = lE.begin(); itE != lE.end();) {
+		Enemy* e = *itE;
+		e->update(deltaTime);
+		if (e->checkCollision(player->getHitbox()) && hitted()) {
+			bool dead = player->substractLive();
+			if (dead) exit(0);
+			else init(this->level);
+			break;
+		}
+
+		else if (e->checkCollision(player->getWeaponHitbox())) {
+			itE = lE.erase(itE);
+			delete e;
+			player->hitWeapon();
+		}
+
+		else ++itE;
+	}
+
+	for (auto itB = lB.begin(); itB != lB.end();) {
+		Bubble* b = *itB;
 		b->update(deltaTime);
 		if (b->checkCollision(player->getHitbox()) && hitted()) {
 			bool dead = player->substractLive();
@@ -93,7 +114,48 @@ void Scene::update(int deltaTime)
 			else init(this->level);
 			break;
 		}
+
+		else if (b->checkCollision(player->getWeaponHitbox())) {
+			Bubble::Size s = b->getSize();
+			Bubble::Color c = b->getColor();
+			player->hitWeapon();
+			this->score += b->getBonus();
+			
+			if (s != Bubble::Size::TINY) {
+				Bubble::Size next;
+
+				switch (s) {
+				case Bubble::BIG:
+					next = Bubble::MID;
+					break;
+				case Bubble::MID:
+					next = Bubble::SMALL;
+					break;
+				default:
+					next = Bubble::TINY;
+				}
+				glm::vec2 speed = b->getSpeed();
+				lB.push_back(new Bubble());
+				lB.back()->init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), speed);
+				lB.back()->setTileMap(map);
+				lB.push_back(new Bubble());
+				lB.back() -> init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), glm::vec2(-speed.x, speed.y));
+				lB.back()->setTileMap(map);
+
+				if (rand()% 5 == 0) {
+					lE.push_back(new Crab());
+					lE.back()->init(glm::ivec2(320, 320), texProgram);
+				}
+			}
+
+			delete b;
+			itB = lB.erase(itB);
+		}
+
+		else ++itB;
 	}
+
+
 	if (!menu && int(currentTime / 1000) == timeLimit) {
 		cout << "Game Over" << endl;
 		exit(0);
@@ -111,6 +173,7 @@ void Scene::render()
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 	map->render();
 	for (Bubble* b : lB) b->render();
+	for (Enemy* e : lE) e->render();
 	if(!menu) player->render();
 	if (!menu) {
 		string time = to_string(int(timeLimit - currentTime / 1000));

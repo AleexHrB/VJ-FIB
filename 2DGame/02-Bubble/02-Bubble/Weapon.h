@@ -10,6 +10,9 @@ public:
 	void render() override {
 		if (shooted) sprite->render();
 	};
+	void hitted() {
+		shooted = false;
+	}
 
 protected:
 	bool shooted = false;

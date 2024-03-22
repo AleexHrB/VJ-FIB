@@ -27,10 +27,11 @@ public:
 	void init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram) override;
 	void update(int deltaTime) override; 
 	void render() override;
-	void showHook(bool show);
+	void hitWeapon();
 	bool substractLive();
 	int getLives();
 	void changeWeapon(Types t);
+	pair<glm::ivec2, glm::ivec2> getWeaponHitbox();
 private:
 	bool bJumping = false;
 	int jumpAngle, startY;

@@ -1,13 +1,14 @@
 #include "Bubble.h"
 
-void Bubble::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, Color c, Size s, const glm::vec2& initPos)
+void Bubble::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, Color c, Size s, const glm::vec2& initPos, const glm::vec2& speed)
 {
 	spritesheet.loadFromFile("images/Bubbles.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	const glm::ivec2 bigSize = glm::ivec2(80, 80);
 	sizeQuad = bigSize / (1 << s);
 	this -> s = s;
+	this->c = c;
 	sprite = Sprite::createSprite(sizeQuad, glm::vec2(1.0, 1.0 / 3.0), &spritesheet, &shaderProgram);
-	this->speed = glm::ivec2(8,0);
+	this->speed = speed;
 	this->position = this-> initPosBubble = initPos;
 	sprite->setPosition(glm::vec2(float(position.x), float(position.y)));
 	sprite->setNumberAnimations(1);
@@ -64,4 +65,14 @@ bool Bubble::checkCollision(const pair<glm::ivec2, glm::ivec2>& hitbox)
 unsigned int Bubble::getBonus()
 {
 	return 10;
+}
+
+Bubble::Size Bubble::getSize()
+{
+	return this -> s;
+}
+
+Bubble::Color Bubble::getColor()
+{
+	return this -> c;
 }

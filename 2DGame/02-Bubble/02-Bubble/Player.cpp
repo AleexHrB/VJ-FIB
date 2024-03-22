@@ -143,9 +143,9 @@ void Player::render()
 }
 
 
-void Player::showHook(bool hit_hook)
+void Player::hitWeapon()
 {
-	this->shoot = hit_hook;
+	w ->hitted();
 }
 
 bool Player::substractLive()
@@ -162,6 +162,11 @@ int Player::getLives() {
 void Player::changeWeapon(Types t)
 {
 	this->actual_weapon = t;
+}
+
+pair<glm::ivec2, glm::ivec2> Player::getWeaponHitbox()
+{
+	return w->getHitbox();
 }
 
 

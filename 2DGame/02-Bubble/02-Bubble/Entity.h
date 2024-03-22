@@ -11,7 +11,7 @@ public:
 	glm::ivec2 getPosition();
 	void setPosition(const glm::ivec2& pos);
 	void setTileMap(TileMap* tileMap);
-	pair<glm::ivec2, glm::ivec2> getHitbox();
+	virtual pair<glm::ivec2, glm::ivec2> getHitbox();
 	virtual bool checkCollision(const pair<glm::ivec2, glm::ivec2>& hitbox);
 	glm::ivec2 getSpeed();
 	void setSpeed(const glm::ivec2& s);

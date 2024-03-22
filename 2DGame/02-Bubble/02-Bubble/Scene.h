@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include "text.h"
 #include "Fruit.h"
+#include "Crab.h"
 #include "PowerUp.h"
 
 
@@ -47,6 +48,7 @@ private:
 	unsigned int timeLimit;
 
 	list<Bubble*> lB;
+	list<Enemy*> lE;
 };
 
 
