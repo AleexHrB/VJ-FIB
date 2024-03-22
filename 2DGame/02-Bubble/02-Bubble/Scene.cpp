@@ -55,11 +55,49 @@ void Scene::init(unsigned int level)
 		break;
 	}
 
-	lB.push_back(new Bubble());
-	if (menu) lB.back()->init(glm::ivec2(320, 320), texProgram, rn, Bubble::Size::MID, glm::ivec2(80, 80), glm::vec2(-8,0));
-	else lB.back()->init(glm::ivec2(320, 120), texProgram, Bubble::Color::RED, Bubble::Size::BIG, glm::ivec2(80, 80), glm::vec2(-8, 0));
+	int n = map[0].getBubNumber();
+	int* bubs = map[0].getBubData();
+	cout << n << endl;
+	for (int i = 0; i < n; ++i) {
+		cout << bubs[i] << " " << bubs[i + 1] << " " << bubs[i + 2] << " " << bubs[i + 3] << endl;
+		Bubble::Color col;
+		switch (bubs[i + 2]) {
+			case 0:
+				col = Bubble::Color::BLUE;
+				break;
+			case 1:
+				col = Bubble::Color::RED;
+				break;
+			case 2:
+				col = Bubble::Color::GREEN;
+				break;
+		}
+
+		Bubble::Size siz;
+		switch (bubs[i + 3]) {
+			case 0:
+				siz = Bubble::Size::TINY;
+				break;
+			case 1:
+				siz = Bubble::Size::SMALL;
+				break;
+			case 2:
+				siz = Bubble::Size::MID;
+				break;
+			case 3:
+				siz = Bubble::Size::BIG;
+				break;
+		}
+
+		lB.push_back(new Bubble());
+		lB.back()->init(glm::ivec2(0, 0), texProgram, col, siz, glm::ivec2(bubs[i], bubs[i + 1]), glm::vec2(8, 2));
+		lB.back()->setTileMap(map);
+	}
+
+	//lB.push_back(new Bubble());
+	//if (menu) lB.back()->init(glm::ivec2(320, 320), texProgram, rn, Bubble::Size::MID, glm::ivec2(340, 320), glm::vec2(8,2));
+	//else lB.back()->init(glm::ivec2(320, 80), texProgram, Bubble::Color::RED, Bubble::Size::BIG, glm::ivec2(320, 32), glm::vec2(-8, 0));
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGHT), 0.f);
-	lB.back()->setTileMap(map);
 
 	
 	// Select which font you want to use

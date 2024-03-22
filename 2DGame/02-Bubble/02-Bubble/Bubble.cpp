@@ -1,4 +1,5 @@
 #include "Bubble.h"
+#include<iostream>
 
 void Bubble::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, Color c, Size s, const glm::vec2& initPos, const glm::vec2& speed)
 {
@@ -28,6 +29,7 @@ void Bubble::update(int deltaTime)
 	position.x = initPosBubble.x + speed.x * t;
 	position.y = initPosBubble.y + speed.y * t + 0.5 * g * t * t;
 
+
 	if (map->collisionMoveDown(position, sizeQuad, &position.y)) {
 		t -= 2 * deltaTime / 100.0;
 		position.x = initPosBubble.x + speed.x * t;
@@ -38,8 +40,27 @@ void Bubble::update(int deltaTime)
 		t = 0.1;
 	}
 
-	if (map->collisionMoveLeft(position, sizeQuad) || map->collisionMoveRight(position, sizeQuad))
+	else if (map->collisionMoveUp(position, sizeQuad, &position.y)) {
+		t -= 2 * deltaTime / 100.0;
+		position.x = initPosBubble.x + speed.x * t;
+		position.y = initPosBubble.y + speed.y * t + 0.5 * g * t * t;
+		initPosBubble = position;
+		speed.y += g * t;
+		speed.y *= -1;
+		t = 0.1;
+	}
+
+	if (map->collisionMoveRight(position, sizeQuad))
 	{
+		t -= 2 * deltaTime / 100.0;
+		position.x = initPosBubble.x + speed.x * t;
+		position.y = initPosBubble.y + speed.y * t + 0.5 * g * t * t;
+		initPosBubble = position;
+		speed.y += g * t;
+		speed.x *= -1;
+		t = 0.1;
+	}
+	else if (map->collisionMoveLeft(position, sizeQuad)) {
 		t -= 2 * deltaTime / 100.0;
 		position.x = initPosBubble.x + speed.x * t;
 		position.y = initPosBubble.y + speed.y * t + 0.5 * g * t * t;

@@ -110,10 +110,20 @@ bool TileMap::loadLevel(const string &levelFile)
 			else if (tile > 0 && tile <= 12) tileType[j * mapSize.x + i] = TileMap::Ladder;
 			else if (tile > 12 && tile <= 38) tileType[j * mapSize.x + i] = TileMap::BreakableBlock;
 			else tileType[j * mapSize.x + i] = TileMap::SolidBlock;
-
 		}
-
 	}
+
+	getline(fin, line);
+	sstream.str(line);
+	sstream >> nBub;
+
+	bubData = new int[nBub*4];
+	for (int i = 0; i < nBub; ++i) {
+		getline(fin, line);
+		sstream.str(line);
+		sstream >> bubData[i] >> bubData[i + 1] >> bubData[i + 2] >> bubData[i + 3];
+	}
+
 	fin.close();
 	
 	return true;
@@ -158,6 +168,7 @@ void TileMap::prepareArrays(const glm::vec2 &minCoords, ShaderProgram &program)
 			}
 		}
 	}
+
 
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
@@ -212,7 +223,7 @@ bool TileMap::collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) c
 	y1 = (pos.y + size.y - 1) / tileSize;
 	for(int y=y0; y<=y1; y++)
 	{
-		if(tileType[y*mapSize.x+x] == TileMap::SolidBlock || tileType[y * mapSize.x + x] == TileMap::BreakableBlock)
+		if(tileType[y*mapSize.x+x - 1] == TileMap::SolidBlock || tileType[y * mapSize.x + x - 1] == TileMap::BreakableBlock)
 			return true;
 	}
 	
@@ -238,7 +249,6 @@ bool TileMap::collisionMoveRight(const glm::ivec2 &pos, const glm::ivec2 &size) 
 bool TileMap::collisionMoveDown(const glm::ivec2 &pos, const glm::ivec2 &size, int *posY) const
 {
 	int x0, x1, y;
-	
 	x0 = pos.x / tileSize;
 	x1 = (pos.x + size.x - 1) / tileSize;
 	y = (pos.y + size.y - 1) / tileSize;
@@ -257,7 +267,36 @@ bool TileMap::collisionMoveDown(const glm::ivec2 &pos, const glm::ivec2 &size, i
 	return false;
 }
 
+bool TileMap::collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size, int* posY) const
+{
+	int x0, x1, y;
 
+	x0 = pos.x / tileSize;
+	x1 = (pos.x + size.x - 1) / tileSize;
+	y = pos.y / tileSize;
+	for (int x = x0; x <= x1; x++)
+	{
+		//cout << x << " " << y << endl;
+		if (tileType[y*mapSize.x + x] == TileMap::SolidBlock || tileType[y * mapSize.x + x] == TileMap::BreakableBlock)
+		{
+	
+			*posY = tileSize * y + size.y;
+			return true;
+
+		}
+	}
+
+	return false;
+}
+
+int* TileMap::getBubData()
+{
+	return bubData;
+}
+
+int TileMap::getBubNumber() {
+	return nBub;
+}
 
 
 
