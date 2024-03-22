@@ -17,5 +17,13 @@ public:
 		STRAWBERRY,
 		MELON
 	};
+	
+	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram) override;
+	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, FruitType f, const glm::vec2& pos);
 	unsigned int getBonus() override;
+	Effects applyEffect() override;
+
+	private
+		FruitType f;
+
 };
