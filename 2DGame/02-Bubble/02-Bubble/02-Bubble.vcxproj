@@ -12,18 +12,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
+    <ClInclude Include="Bird.h" />
     <ClInclude Include="Bubble.h" />
     <ClInclude Include="Crab.h" />
     <ClInclude Include="DoubleHook.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="Fruit.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gun.h" />
+    <ClInclude Include="Effects.h" />
     <ClInclude Include="Hook.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
@@ -35,18 +35,17 @@
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bird.cpp" />
     <ClCompile Include="Bubble.cpp" />
     <ClCompile Include="Crab.cpp" />
     <ClCompile Include="DoubleHook.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Fruit.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Hook.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />

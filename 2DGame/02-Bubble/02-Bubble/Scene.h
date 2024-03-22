@@ -10,9 +10,9 @@
 #include "Bubble.h"
 #include "Enemy.h"
 #include "text.h"
-#include "Fruit.h"
 #include "Crab.h"
-#include "PowerUp.h"
+#include "Bird.h"
+#include "Object.h"
 
 
 // Scene contains all the entities of our game.
@@ -49,6 +49,7 @@ private:
 
 	list<Bubble*> lB;
 	list<Enemy*> lE;
+	list<Object*> lO;
 };
 
 

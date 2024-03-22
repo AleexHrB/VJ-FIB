@@ -12,7 +12,7 @@ void Crab::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 	sizeQuad = glm::ivec2(40,40);
 	sprite = Sprite::createSprite(sizeQuad, glm::vec2(1.0 / 3.0, 1.0), &spritesheet, &shaderProgram);
 	this->speed = glm::ivec2(8,0);
-	this->initPos = this -> position = glm::ivec2(0, 370);
+	this->initPos = this -> position = glm::ivec2(2, 365);
 	sprite->setPosition(initPos);
 
 	sprite->setNumberAnimations(SIZE);
@@ -31,7 +31,11 @@ void Crab::update(int deltaTime)
 	sprite->update(deltaTime);
 	t += deltaTime / 100.0;
 	t_anim += deltaTime / 100.0;
-
+	if (position.x > 800 || position.x < -100) {
+		this->speed.x *= -1;
+		t = 1;
+		initPos = position;
+	}
 	
 	position.x = initPos.x + t * speed.x;
 	position.y = initPos.y + t * speed.y;

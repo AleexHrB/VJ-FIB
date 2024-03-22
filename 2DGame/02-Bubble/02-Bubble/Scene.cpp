@@ -124,6 +124,17 @@ void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
 	player->update(deltaTime);
+
+	for (auto itO = lO.begin(); itO != lO.end();) {
+		Object* o = *itO;
+		o->update(deltaTime);
+		if (o->checkCollision(player->getHitbox())) {
+			delete o;
+			itO = lO.erase(itO);
+		}
+		else ++itO;
+	}
+
 	for (auto itE = lE.begin(); itE != lE.end();) {
 		Enemy* e = *itE;
 		e->update(deltaTime);
@@ -180,9 +191,14 @@ void Scene::update(int deltaTime)
 				lB.back() -> init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), glm::vec2(-speed.x, speed.y));
 				lB.back()->setTileMap(map);
 
-				if (rand()% 5 == 0) {
-					lE.push_back(new Crab());
+				if (rand()% 2 == 0) {
+					Enemy* next;
+					if (rand() % 2 == 0) next = new Bird();
+					else next = new Crab();
+					lE.push_back(next);
 					lE.back()->init(glm::ivec2(320, 320), texProgram);
+					lO.push_back(new Object());
+					lO.back()->init(glm::ivec2(320, 320), texProgram, Effects::STICK, b -> getPosition());
 				}
 			}
 
@@ -212,6 +228,7 @@ void Scene::render()
 	map->render();
 	for (Bubble* b : lB) b->render();
 	for (Enemy* e : lE) e->render();
+	for (Object* o : lO) o->render();
 	if(!menu) player->render();
 	if (!menu) {
 		string time = to_string(int(timeLimit - currentTime / 1000));
