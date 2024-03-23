@@ -9,6 +9,7 @@ public:
 	bool shoot(const glm::ivec2& pos) override;
 	pair<glm::ivec2, glm::ivec2> getHitbox() override;
 	void render() override;
+	void hitted() override;
 	bool checkCollisionProj(const pair<glm::ivec2, glm::ivec2>& hitbox, Bubble* b) override;
 
 private:

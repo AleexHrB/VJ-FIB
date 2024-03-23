@@ -8,6 +8,7 @@ public:
 	void update(int deltaTime) override;
 	bool shoot(const glm::ivec2& pos) override;
 	pair<glm::ivec2, glm::ivec2> getHitbox() override;
+	void hitted() override;
 	void render() override;
 	bool checkCollisionProj(const pair<glm::ivec2, glm::ivec2>& hitbox, Bubble* b) override;
 

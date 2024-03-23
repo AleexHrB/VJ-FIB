@@ -11,7 +11,7 @@ public:
 	void render() override {
 		if (shooted) sprite->render();
 	};
-	void hitted() {
+	virtual void hitted() {
 		shooted = false;
 	}
 

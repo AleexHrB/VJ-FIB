@@ -45,6 +45,13 @@ pair<glm::ivec2, glm::ivec2> DoubleHook::getHitbox()
 	return shooted ? p : p2;
 }
 
+void DoubleHook::hitted()
+{
+	shooted = false;
+	currentHooks = 0;
+	for (unsigned int i = 0; i < v.size(); ++i) used[i] = false;
+}
+
 void DoubleHook::render()
 {
 	for (unsigned int i = 0; i < v.size(); ++i) if (used[i]) v[i].second->render();

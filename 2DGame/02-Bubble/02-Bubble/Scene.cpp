@@ -118,6 +118,7 @@ void Scene::init(unsigned int level)
 
 	currentTime = 0.0f;
 	timeLimit = 100;
+	freeze = false;
 }
 
 void Scene::update(int deltaTime)
@@ -133,15 +134,15 @@ void Scene::update(int deltaTime)
 			Effects eff = o->applyEffect();
 			delete o;
 			itO = lO.erase(itO);
-			if (eff == Effects::GUN || eff == Effects::STICK || eff == Effects::DOUBLE) player->changeWeapon(eff);
+			this -> treatPowerUp(eff);
 		}
 		else ++itO;
 	}
 
 	for (auto itE = lE.begin(); itE != lE.end();) {
 		Enemy* e = *itE;
-		e->update(deltaTime);
-		if (e->checkCollision(player->getHitbox()) && hitted()) {
+		if (!freeze) e->update(deltaTime);
+		if (!godMode && e->checkCollision(player->getHitbox()) && hitted()) {
 			bool dead = player->substractLive();
 			if (dead) exit(0);
 			else init(this->level);
@@ -159,8 +160,8 @@ void Scene::update(int deltaTime)
 
 	for (auto itB = lB.begin(); itB != lB.end();) {
 		Bubble* b = *itB;
-		b->update(deltaTime);
-		if (b->checkCollision(player->getHitbox()) && hitted()) {
+		if (!freeze) b->update(deltaTime);
+		if (!godMode && b->checkCollision(player->getHitbox()) && hitted()) {
 			bool dead = player->substractLive();
 			if (dead) exit(0);
 			else init(this->level);
@@ -188,10 +189,10 @@ void Scene::update(int deltaTime)
 				}
 				glm::vec2 speed = b->getSpeed();
 				lB.push_back(new Bubble());
-				lB.back()->init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), glm::vec2(speed.x, 0));
+				lB.back()->init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), glm::vec2(speed.x, -15));
 				lB.back()->setTileMap(map);
 				lB.push_back(new Bubble());
-				lB.back() -> init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), glm::vec2(-speed.x, 0));
+				lB.back() -> init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), glm::vec2(-speed.x, -15));
 				lB.back()->setTileMap(map);
 
 				if (rand()% 1 == 0) {
@@ -274,6 +275,32 @@ void Scene::initShaders()
 }
 
 
+
+
+void Scene::explodeBubbles()
+{
+
+	unsigned int size = lB.size();
+	unsigned int i = 0;
+	list<Bubble*>::iterator itB = lB.begin();
+
+	while (i < size) {
+		Bubble* b = *itB;
+		Bubble::Color c = b->getColor();
+		auto speed = b->getSpeed();
+		lB.push_back(new Bubble());
+		lB.back()->init(glm::ivec2(320, 320), texProgram, c, Bubble::Size::TINY, b->getPosition(), glm::vec2(speed.x, -15));
+		lB.back()->setTileMap(map);
+		lB.push_back(new Bubble());
+		lB.back()->init(glm::ivec2(320, 320), texProgram, c, Bubble::Size::TINY, b->getPosition(), glm::vec2(-speed.x, -15));
+		lB.back()->setTileMap(map);
+		
+		delete b;
+		itB = lB.erase(itB);
+		++i;
+	}
+}
+
 inline bool Scene::hitted()
 {
 	if (currentTime - inmuneTime > 500) {
@@ -285,4 +312,30 @@ inline bool Scene::hitted()
 }
 
 
+void Scene::treatPowerUp(Effects f)
+{
+	switch (f) {
+	case Effects::GUN:
+		player->changeWeapon(f);
+		break;
+	case Effects::STICK:
+		player->changeWeapon(f);
+		break;
+	case Effects::DOUBLE:
+		player->changeWeapon(f);
+		break;
+	case Effects::DYNAMITE:
+		this->explodeBubbles();
+		break;
+	case Effects::FREEZE:
+		freeze = true;
+		break;
+	case Effects::GET_BONUS:
+		break;
+	case Effects::SLOW:
+		break;
+	default:
+		break;
+	}
+}
 

@@ -37,14 +37,18 @@ private:
 	TileMap *map;
 	Player *player;
 	ShaderProgram texProgram;
+	void treatPowerUp(Effects f);
+	void explodeBubbles();
 	float currentTime;
 	float inmuneTime = 0.0f;
 	glm::mat4 projection;
 	inline bool hitted();
 	Text text;
 	bool menu;
+	bool freeze = false;
 	int score;
 	unsigned int level;
+	bool godMode = true;
 	unsigned int timeLimit;
 
 	list<Bubble*> lB;

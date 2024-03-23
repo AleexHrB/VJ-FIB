@@ -93,7 +93,17 @@ void Player::update(int deltaTime)
 			sprite->changeAnimation(STAND_RIGHT);
 		}
 	}
+
+	else if (Game::instance().getKey(GLFW_KEY_UP) && sprite->animation() != SHOOT)
+	{
+		if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, sizeQuad.y - 1)) == TileMap::TileType::Ladder) position.y -= 8;
+		else if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, 1)) == TileMap::TileType::Ladder) position.y -= 8;
+	}
 	
+	else if (Game::instance().getKey(GLFW_KEY_DOWN) && sprite->animation() != SHOOT)
+	{
+		if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, sizeQuad.y + 1)) == TileMap::TileType::Ladder) position.y += 8;
+	}
 	
 
 	else

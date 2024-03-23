@@ -71,6 +71,13 @@ void Gun::render()
 	for (unsigned int i = 0; i < v.size(); ++i) if (used[i]) v[i].second->render();
 }
 
+void Gun::hitted()
+{
+	shooted = false;
+	currentBullets = 0;
+	for (unsigned int i = 0; i < v.size(); ++i) used[i] = false;
+}
+
 bool Gun::checkCollisionProj(const pair<glm::ivec2, glm::ivec2>& hitbox, Bubble* b)
 {
 

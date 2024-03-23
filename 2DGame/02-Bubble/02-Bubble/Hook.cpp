@@ -23,6 +23,7 @@ bool Hook::shoot(const glm::ivec2& pos)
 	if (!shooted) {
 		position = pos;
 		y0 = pos.y + 32;
+		sprite = Sprite::createSprite(glm::ivec2(9, y0 - position.y), glm::vec2(1.0f, (y0 - position.y) / 188.0), &spritesheet, &texProgram);
 		shooted = true;
 		return true;
 	}

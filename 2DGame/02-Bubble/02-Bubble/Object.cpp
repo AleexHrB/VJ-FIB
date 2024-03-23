@@ -43,6 +43,7 @@ void Object::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, co
     this->texProgram = shaderProgram;
     sizeQuad = glm::ivec2(20, 20);
     eff = Effects(rand() % SIZE_EFF);
+    //eff = Effects::FREEZE;
     if (eff == Effects::GET_BONUS) loadFruit();
     else loadPowerUp();
     this->speed = glm::ivec2(0, 3*g);
@@ -68,24 +69,33 @@ void Object::loadFruit()
 
 void Object::loadPowerUp()
 {
-    spritesheet.loadFromFile("images/powerup.png", TEXTURE_PIXEL_FORMAT_RGBA);
+    spritesheet.loadFromFile("images/PowerUpsMin.png", TEXTURE_PIXEL_FORMAT_RGBA);
     unsigned int fr;
     switch (this->eff) {
     case Effects::GUN:
-        fr = 0;
+        fr = 12;
         break;
     case Effects::DOUBLE:
-        fr = 1;
+        fr = 6;
         break;
     case Effects::STICK:
+        fr = 0;
+        break;
+    case Effects::DYNAMITE:
+        fr = 7;
+        break;
+    case Effects::FREEZE:
         fr = 2;
+        break;
+    case Effects::SLOW:
+        fr = 8;
         break;
     default:
         fr = 0;
     }
-    sprite = Sprite::createSprite(sizeQuad, glm::vec2(1.0 / 3.0, 1.0), &spritesheet, &texProgram);
+    sprite = Sprite::createSprite(sizeQuad, glm::vec2(1.0 / 6.0, 1.0 / 3.0), &spritesheet, &texProgram);
     sprite->setNumberAnimations(1);
     sprite->setAnimationSpeed(0, 1);
-    sprite->addKeyframe(0, glm::vec2(fr / 3.0, 0.0));
+    sprite->addKeyframe(0, glm::vec2(fr % 6 / 6.0, fr / 6 / 3.0));
     sprite->changeAnimation(0);
 }

@@ -4,6 +4,9 @@ enum Effects {
 	GUN,
 	DOUBLE,
 	STICK,
+	DYNAMITE,
+	FREEZE,
+	SLOW,
 	SIZE_EFF
 };
 
