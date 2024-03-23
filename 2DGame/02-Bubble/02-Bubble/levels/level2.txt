@@ -2,7 +2,7 @@ TILEMAP
 48 26                           -- Size of tile map in tiles
 16  16                             -- Tile size & block size
 images/TileMap.png     -- Tilesheet
-images/SagradaFamilia.png -- Background
+images/MontanaMuerte.png -- Background
 24 3                                 -- Number of tiles in tilesheet
 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 72 72 72 72 72 72 72 72 72 72 72 72 72 48 48 
 48 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 44 0 0 0 0 0 0 0 0 0 0 0 0 0 0 44 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 48 
