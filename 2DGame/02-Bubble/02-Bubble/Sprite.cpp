@@ -2,6 +2,7 @@
 #include <GL/gl.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Sprite.h"
+#include <iostream>
 
 
 Sprite *Sprite::createSprite(const glm::vec2 &quadSize, const glm::vec2 &sizeInSpritesheet, Texture *spritesheet, ShaderProgram *program)
@@ -41,17 +42,16 @@ void Sprite::update(int deltaTime)
 		timeAnimation += deltaTime;
 		while (timeAnimation > animations[currentAnimation].millisecsPerKeyframe)
 		{
+			
 			timeAnimation -= animations[currentAnimation].millisecsPerKeyframe;
 
 			int frameCount = animations[currentAnimation].keyframeDispl.size();
-			int loopStart = animations[currentAnimation].loopStart;
-			loopStart = (loopStart < frameCount) ? loopStart : frameCount;
 
-			currentKeyframe = (currentKeyframe + 1) % animations[currentAnimation].keyframeDispl.size();
+			currentKeyframe = (currentKeyframe) % animations[currentAnimation].keyframeDispl.size() + 1;
 			if (currentKeyframe >= frameCount) {
-				int nextAnim = animations[currentAnimation].nextAnimation;
-				if (nextAnim == -1)
-					currentKeyframe = loopStart;
+				int nextAnim = this -> nextAnimation;
+				if (animations[currentAnimation].loop)
+					currentKeyframe = 0;
 				else {
 					changeAnimation(nextAnim);
 				}
@@ -97,6 +97,17 @@ void Sprite::addKeyframe(int animId, const glm::vec2 &displacement)
 {
 	if(animId < int(animations.size()))
 		animations[animId].keyframeDispl.push_back(displacement);
+}
+
+void Sprite::loopAnimation(int animId, bool loop) {
+	if (animId < int(animations.size()))
+		animations[animId].loop = loop;
+}
+
+void Sprite::setNextAnimation(int animId)
+{
+	if (animId < int(animations.size())) 
+		nextAnimation = animId;
 }
 
 void Sprite::changeAnimation(int animId)

@@ -25,7 +25,7 @@ void DoubleHook::update(int deltaTime)
 	}
 }
 
-void DoubleHook::shoot(const glm::ivec2& pos)
+bool DoubleHook::shoot(const glm::ivec2& pos)
 {
 	if (currentHooks < 2) {
 		y0[nextPlace] = pos.y + 32;
@@ -33,7 +33,9 @@ void DoubleHook::shoot(const glm::ivec2& pos)
 		used[nextPlace] = true;
 		++currentHooks;
 		nextPlace = (nextPlace+1)%2;
+		return true;
 	}
+	return false;
 }
 
 pair<glm::ivec2, glm::ivec2> DoubleHook::getHitbox()

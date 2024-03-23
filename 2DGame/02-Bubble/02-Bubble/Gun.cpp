@@ -47,14 +47,16 @@ void Gun::update(int deltaTime)
 	}
 }
 
-void Gun::shoot(const glm::ivec2& pos)
+bool Gun::shoot(const glm::ivec2& pos)
 {
 	if (currentBullets < 4) {
 		v[nextPlace] = {pos, this -> newBullet()};
 		used[nextPlace] = true;
 		++currentBullets;
 		nextPlace = (nextPlace+1) % 4;
+		return true;
 	}
+	return false;
 }
 
 pair<glm::ivec2, glm::ivec2> Gun::getHitbox()

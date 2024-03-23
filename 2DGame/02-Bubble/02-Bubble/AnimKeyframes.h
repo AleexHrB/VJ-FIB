@@ -17,9 +17,9 @@ struct AnimKeyframes
 {
     float millisecsPerKeyframe;
     vector<glm::vec2> keyframeDispl;
-    int loopStart;
+    bool loop = true;
     //bool mirror;
-    int nextAnimation;
+  
 };
 
 

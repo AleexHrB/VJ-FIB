@@ -17,14 +17,16 @@ void StickyHook::update(int deltaTime)
 	}
 }
 
-void StickyHook::shoot(const glm::ivec2& pos)
+bool StickyHook::shoot(const glm::ivec2& pos)
 {
 	if (!shooted) {
 		spritesheet.loadFromFile("images/Hook.png", TEXTURE_PIXEL_FORMAT_RGBA);
 		position = pos;
 		y0 = pos.y + 32;
 		shooted = true;
+		return true;
 	}
+	return false;
 }
 
 pair<glm::ivec2, glm::ivec2> StickyHook::getHitbox()

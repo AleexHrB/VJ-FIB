@@ -18,13 +18,15 @@ void Hook::update(int deltaTime)
 	}
 }
 
-void Hook::shoot(const glm::ivec2& pos)
+bool Hook::shoot(const glm::ivec2& pos)
 {
 	if (!shooted) {
 		position = pos;
 		y0 = pos.y + 32;
 		shooted = true;
+		return true;
 	}
+	return false;
 }
 
 pair<glm::ivec2, glm::ivec2> Hook::getHitbox()

@@ -6,6 +6,7 @@
 
 
 
+
 #define SCREEN_X 0
 #define SCREEN_Y 0
 
@@ -58,9 +59,7 @@ void Scene::init(unsigned int level)
 
 	int n = map[0].getBubNumber();
 	int* bubs = map[0].getBubData();
-	cout << n << endl;
 	for (int i = 0; i < n; ++i) {
-		cout << bubs[i] << " " << bubs[i + 1] << " " << bubs[i + 2] << " " << bubs[i + 3] << endl;
 		Bubble::Color col;
 		switch (bubs[i + 2]) {
 			case 0:
@@ -102,7 +101,7 @@ void Scene::init(unsigned int level)
 
 	
 	// Select which font you want to use
-	if (!text.init("fonts/OpenSans-Regular.ttf"))
+	if (!text.init("fonts/ArcadeClassic.ttf"))
 	//if(!text.init("fonts/OpenSans-Bold.ttf"))
 	//if(!text.init("fonts/DroidSerif.ttf"))
 	cout << "Could not load font!!!" << endl;
@@ -238,9 +237,9 @@ void Scene::render()
 		string time = to_string(int(timeLimit - currentTime / 1000));
 		if (int(timeLimit - currentTime / 1000) < 100 && int(timeLimit - currentTime / 1000) > 9) time = "0" + time;
 		else if (currentTime != 100) time = "00" + time;
-		text.render(("Time: " + time), glm::vec2(600, 48), 32, glm::vec4(1, 1, 1, 1));
-		text.render("Score: " + to_string(score), glm::vec2(20, 440), 16, glm::vec4(1, 1, 1, 1));
-		text.render("Lives: " + to_string(player -> getLives()), glm::vec2(20, 460), 16, glm::vec4(1, 1, 1, 1));
+		text.render(("Time  " + time), glm::vec2(560, 48), 32, glm::vec4(1, 1, 1, 1));
+		text.render("Score  " + to_string(score), glm::vec2(20, 440), 16, glm::vec4(1, 1, 1, 1));
+		text.render("Lives  " + to_string(player -> getLives()), glm::vec2(20, 460), 16, glm::vec4(1, 1, 1, 1));
 	}
 }
 

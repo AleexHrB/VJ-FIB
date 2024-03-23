@@ -40,6 +40,7 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 		sprite->addKeyframe(MOVE_RIGHT, glm::vec2(unit, 0.f));
 		sprite->addKeyframe(MOVE_RIGHT, glm::vec2(unit, 0.5f));
 
+		sprite->loopAnimation(SHOOT, false);
 		sprite->setAnimationSpeed(SHOOT, 16);
 		sprite->addKeyframe(SHOOT, glm::vec2(0.f, 0.f));
 		sprite->addKeyframe(SHOOT, glm::vec2(0.f, 0.5f));
@@ -58,16 +59,19 @@ void Player::update(int deltaTime)
 {
 	sprite->update(deltaTime);
 	w->update(deltaTime);
-	if (Game::instance().getKey(GLFW_KEY_C))
+	if (Game::instance().getKey(GLFW_KEY_C) && !C_pressed)
 	{
-		if (!C_pressed) {
-			w->shoot(position + sizeQuad / 2);
-			if (sprite->animation() != SHOOT)
-				sprite->changeAnimation(SHOOT);
-			C_pressed = true;
-		}			
+		if (w->shoot(position + sizeQuad / 2)) {
+			sprite->setNextAnimation(sprite->animation());
+			sprite->changeAnimation(SHOOT);
+		}
+		
+				
+		C_pressed = true;		
 	}
-	else if(Game::instance().getKey(GLFW_KEY_LEFT))
+	
+
+	else if(Game::instance().getKey(GLFW_KEY_LEFT) && sprite->animation() != SHOOT)
 	{
 		if(sprite->animation() != MOVE_LEFT)
 			sprite->changeAnimation(MOVE_LEFT);
@@ -78,7 +82,7 @@ void Player::update(int deltaTime)
 			sprite->changeAnimation(STAND_LEFT);
 		}
 	}
-	else if(Game::instance().getKey(GLFW_KEY_RIGHT))
+	else if(Game::instance().getKey(GLFW_KEY_RIGHT) && sprite->animation() != SHOOT)
 	{
 		if(sprite->animation() != MOVE_RIGHT)
 			sprite->changeAnimation(MOVE_RIGHT);
@@ -90,25 +94,34 @@ void Player::update(int deltaTime)
 		}
 	}
 	
+	
 
-	else if (Game::instance().getKey(GLFW_KEY_G))
+	else
+	{
+
+		if (sprite->animation() == MOVE_LEFT)
+			sprite->changeAnimation(STAND_LEFT);
+		else if (sprite->animation() == MOVE_RIGHT)
+			sprite->changeAnimation(STAND_RIGHT);
+
+	}
+
+	if (!Game::instance().getKey(GLFW_KEY_C)) {
+		C_pressed = false;
+	}
+
+	if (Game::instance().getKey(GLFW_KEY_G))
 	{
 		if (!G_pressed) {
 			god_mode = !god_mode;
 			G_pressed = true;
 		}
 	}
-	else
-	{
-		
-		if (sprite->animation() == MOVE_LEFT)
-			sprite->changeAnimation(STAND_LEFT);
-		else if (sprite->animation() == MOVE_RIGHT)
-			sprite->changeAnimation(STAND_RIGHT);
+	else {
 		G_pressed = false;
-		C_pressed = false;
 	}
 	
+
 	if(bJumping)
 	{
 		jumpAngle += JUMP_ANGLE_STEP;

@@ -209,9 +209,12 @@ void TileMap::prepareArrays(const glm::vec2 &minCoords, ShaderProgram &program)
 // Method collisionMoveDown also corrects Y coordinate if the box is
 // already intersecting a tile below.
 
-TileMap::TileType TileMap::getTileType(int x, int y)
+TileMap::TileType TileMap::getTileType(glm::ivec2 pos)
 {
-	return tileType[y*mapSize.x + x];
+	int xTile, yTile;
+	xTile = pos.x / tileSize;
+	yTile = pos.y / tileSize;
+	return tileType[yTile*mapSize.x + xTile];
 }
 
 bool TileMap::collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) const
