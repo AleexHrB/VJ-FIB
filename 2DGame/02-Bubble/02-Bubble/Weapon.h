@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+#include "Bubble.h"
 
 class Weapon : public Entity
 {
@@ -14,6 +15,12 @@ public:
 		shooted = false;
 	}
 
+	virtual bool checkCollisionProj(const pair<glm::ivec2, glm::ivec2>& hitbox, Bubble* b) {
+		if (!shooted) return false;
+
+		if (b == nullptr) return this->checkCollision(hitbox);
+		else return b->checkCollision(getHitbox());
+	}
 protected:
 	bool shooted = false;
 };

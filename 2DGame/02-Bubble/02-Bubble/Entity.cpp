@@ -27,8 +27,8 @@ pair<glm::ivec2, glm::ivec2> Entity::getHitbox()
 
 bool Entity::checkCollision(const pair<glm::ivec2, glm::ivec2>& hitbox)
 {
-	glm::ivec2 l1 = position;
-	glm::ivec2 rr1 = l1 + sizeQuad;
+	glm::ivec2 l1 = getHitbox().second;
+	glm::ivec2 rr1 = l1 + getHitbox().first;
 	glm::ivec2 l2 = hitbox.second;
 	glm::ivec2 rr2 = l2 + hitbox.first;
 

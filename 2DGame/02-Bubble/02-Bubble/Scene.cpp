@@ -34,6 +34,7 @@ void Scene::init(unsigned int level)
 	this->menu = level == 0;
 	lB = list<Bubble*>();
 	lE = list<Enemy*>();
+	lO = list<Object*>();
 	srand(time(NULL));
 	initShaders();
 	this->level = level;
@@ -129,8 +130,11 @@ void Scene::update(int deltaTime)
 		Object* o = *itO;
 		o->update(deltaTime);
 		if (o->checkCollision(player->getHitbox())) {
+			this->score += o->getBonus();
+			Effects eff = o->applyEffect();
 			delete o;
 			itO = lO.erase(itO);
+			if (eff == Effects::GUN || eff == Effects::STICK || eff == Effects::DOUBLE) player->changeWeapon(eff);
 		}
 		else ++itO;
 	}
@@ -145,7 +149,7 @@ void Scene::update(int deltaTime)
 			break;
 		}
 
-		else if (e->checkCollision(player->getWeaponHitbox())) {
+		else if (player -> checkProjectileHitbox(e -> getHitbox(), nullptr)) {
 			itE = lE.erase(itE);
 			delete e;
 			player->hitWeapon();
@@ -164,7 +168,7 @@ void Scene::update(int deltaTime)
 			break;
 		}
 
-		else if (b->checkCollision(player->getWeaponHitbox())) {
+		else if (player->checkProjectileHitbox(b->getHitbox(), b)) {
 			Bubble::Size s = b->getSize();
 			Bubble::Color c = b->getColor();
 			player->hitWeapon();
@@ -185,20 +189,20 @@ void Scene::update(int deltaTime)
 				}
 				glm::vec2 speed = b->getSpeed();
 				lB.push_back(new Bubble());
-				lB.back()->init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), speed);
+				lB.back()->init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), glm::vec2(speed.x, 0));
 				lB.back()->setTileMap(map);
 				lB.push_back(new Bubble());
-				lB.back() -> init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), glm::vec2(-speed.x, speed.y));
+				lB.back() -> init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), glm::vec2(-speed.x, 0));
 				lB.back()->setTileMap(map);
 
-				if (rand()% 2 == 0) {
+				if (rand()% 1 == 0) {
 					Enemy* next;
 					if (rand() % 2 == 0) next = new Bird();
 					else next = new Crab();
 					lE.push_back(next);
 					lE.back()->init(glm::ivec2(320, 320), texProgram);
 					lO.push_back(new Object());
-					lO.back()->init(glm::ivec2(320, 320), texProgram, Effects::STICK, b -> getPosition());
+					lO.back()->init(glm::ivec2(320, 320), texProgram, b -> getPosition());
 				}
 			}
 
@@ -229,8 +233,8 @@ void Scene::render()
 	for (Bubble* b : lB) b->render();
 	for (Enemy* e : lE) e->render();
 	for (Object* o : lO) o->render();
-	if(!menu) player->render();
 	if (!menu) {
+		player->render();
 		string time = to_string(int(timeLimit - currentTime / 1000));
 		if (int(timeLimit - currentTime / 1000) < 100 && int(timeLimit - currentTime / 1000) > 9) time = "0" + time;
 		else if (currentTime != 100) time = "00" + time;

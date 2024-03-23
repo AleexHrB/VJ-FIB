@@ -21,9 +21,10 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	float unit = 0.14285714285;
 	bJumping = false;
 	sizeQuad = glm::ivec2(64, 64);
+	this->texProgram = shaderProgram;
 	spritesheet.loadFromFile("images/Pedro.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sprite = Sprite::createSprite(sizeQuad, glm::vec2(unit, 0.5), &spritesheet, &shaderProgram);
-	sprite->setNumberAnimations(SIZE);
+	sprite->setNumberAnimations(PlayerAnims::SIZE);
 	
 		sprite->setAnimationSpeed(STAND_LEFT, 8);
 		sprite->addKeyframe(STAND_LEFT, glm::vec2(2*unit, 0.f));
@@ -59,9 +60,12 @@ void Player::update(int deltaTime)
 	w->update(deltaTime);
 	if (Game::instance().getKey(GLFW_KEY_C))
 	{
-			w->shoot(position + sizeQuad/2);
+		if (!C_pressed) {
+			w->shoot(position + sizeQuad / 2);
 			if (sprite->animation() != SHOOT)
 				sprite->changeAnimation(SHOOT);
+			C_pressed = true;
+		}			
 	}
 	else if(Game::instance().getKey(GLFW_KEY_LEFT))
 	{
@@ -102,6 +106,7 @@ void Player::update(int deltaTime)
 		else if (sprite->animation() == MOVE_RIGHT)
 			sprite->changeAnimation(STAND_RIGHT);
 		G_pressed = false;
+		C_pressed = false;
 	}
 	
 	if(bJumping)
@@ -159,14 +164,38 @@ int Player::getLives() {
 	return lives;
 }
 
-void Player::changeWeapon(Types t)
+void Player::changeWeapon(Effects eff)
 {
-	this->actual_weapon = t;
+	this->actual_weapon = eff;
+
+	switch (eff) {
+	case Effects::GUN:
+		delete w;
+		w = new Gun();
+		w->init(glm::ivec2(0,0), texProgram);
+		break;
+	case Effects::STICK:
+		delete w;
+		w = new StickyHook();
+		w->init(glm::ivec2(0, 0), texProgram);
+		break;
+	case Effects::DOUBLE:
+		delete w;
+		w = new DoubleHook();
+		w->init(glm::ivec2(0, 0), texProgram);
+		break;
+
+	}
 }
 
 pair<glm::ivec2, glm::ivec2> Player::getWeaponHitbox()
 {
 	return w->getHitbox();
+}
+
+bool Player::checkProjectileHitbox(const pair<glm::ivec2, glm::ivec2>& hitbox, Bubble* b)
+{
+	return w->checkCollisionProj(hitbox, b);
 }
 
 

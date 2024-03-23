@@ -9,14 +9,15 @@ public:
 	virtual Effects applyEffect();
 
 	unsigned int getBonus();
-	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, Effects f, const glm::vec2& pos);
-	pair<glm::ivec2, glm::ivec2> getHitbox() override;
+	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, const glm::vec2& pos);
 	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram) override;
 
 private:
 	float t = 0;
-	Effects f;
+	Effects eff;
+	Fruit f;
 	void loadFruit();
 	void loadPowerUp();
+	glm::ivec2 initPos;
 };
 
