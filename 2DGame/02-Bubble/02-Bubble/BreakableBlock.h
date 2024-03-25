@@ -9,12 +9,16 @@ public:
 	void render();
 	void prepareArrays(ShaderProgram &shaderProgram);
 	glm::ivec2 getPosition();
+	int getSize();
+	glm::ivec2* getBlocks();
+	void destroy();
 
 protected:
 	glm::ivec2 position, size;
 	Texture spritesheet;
 	int color;
 	bool horizontal;
+	bool broken = false;
 	ShaderProgram texProgram;
 	Sprite* sprite;
 	float g = 1.8;

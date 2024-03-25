@@ -251,8 +251,39 @@ TileMap::TileType TileMap::getTileType(const glm::ivec2 &pos)
 	return tileType[yTile*mapSize.x + xTile];
 }
 
-bool TileMap::hookColision(const glm::ivec2 &pos, const glm::ivec2 &size)
+bool TileMap::weaponColision(const glm::ivec2 &pos, const glm::ivec2 &size)
 {
+	int x0, x1, y;
+
+	x0 = pos.x / tileSize;
+	x1 = (pos.x + size.x - 1) / tileSize;
+	y = pos.y / tileSize;
+	for (int x = x0; x <= x1; x++)
+	{
+		//cout << x << " " << y << endl;
+		if (tileType[y * mapSize.x + x] == TileMap::Breakable)
+		{
+			
+			for(int i = 0; i < nBBlocks; ++i) {
+
+				glm::ivec2* blocks = breakableBlocks[i].getBlocks();
+				int siz = breakableBlocks[i].getSize();
+				
+				for (int j = 0; j < siz; ++j) {
+					
+					if (glm::ivec2(x, y) == blocks[j]) {
+						for (int k = 0; k < siz; ++k) {
+							int xBlock = blocks[k].x;
+							int yBlock = blocks[k].y;
+							tileType[yBlock * mapSize.x + xBlock] = TileMap::Air;
+						}
+						breakableBlocks[i].destroy();
+					}
+				}		
+			}
+		}
+	}
+
 	return false;
 }
 

@@ -44,7 +44,7 @@ void Gun::update(int deltaTime)
 		else {
 			used[i] = false;
 			--currentBullets;
-			map->hookColision(v[i].first, this -> sizeQuad);
+			map->weaponColision(v[i].first, this -> sizeQuad);
 		}
 	}
 }

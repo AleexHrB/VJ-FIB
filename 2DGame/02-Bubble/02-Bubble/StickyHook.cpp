@@ -17,7 +17,7 @@ void StickyHook::update(int deltaTime)
 	if (shooted) {
 		if (!map->collisionMoveUp(position, glm::ivec2(9, y0 - position.y), &position.y)) position.y -= 4;
 		else {
-			bool destroy = map->hookColision(position, glm::ivec2(9, y0 - position.y));
+			bool destroy = map->weaponColision(position, glm::ivec2(9, y0 - position.y));
 			if (destroy) shooted = false;
 			else if (!stick) {
 				stick = true;

@@ -20,7 +20,6 @@ void BreakableBlock::init(const glm::ivec2& inPos, bool horizontal, unsigned int
 	
 	this->horizontal = horizontal;
 
-
 	/*sprite->setNumberAnimations(SIZE);
 
 	sprite->setAnimationSpeed(LEFT, 2);
@@ -35,7 +34,7 @@ void BreakableBlock::init(const glm::ivec2& inPos, bool horizontal, unsigned int
 
 void BreakableBlock::render()
 {
-	sprite->render();
+	if(!broken) sprite->render();
 }
 
 void BreakableBlock::prepareArrays(ShaderProgram& shaderProgram)
@@ -58,5 +57,35 @@ void BreakableBlock::prepareArrays(ShaderProgram& shaderProgram)
 
 glm::ivec2 BreakableBlock::getPosition()
 {
-	return glm::ivec2();
+	return position;
 }
+
+int BreakableBlock::getSize()
+{
+	if (horizontal)
+		return size.x / 16;
+	else
+		return size.y / 16;
+}
+
+glm::ivec2* BreakableBlock::getBlocks()
+{
+	if (horizontal) {
+		int siz = size.x / 16;
+		glm::ivec2* ret = new glm::ivec2 [siz];
+		for (int i = 0; i < siz; ++i) {
+			ret[i] = glm::ivec2(position.x / 16 + i, position.y / 16);
+		}
+		return ret;
+	}
+	else {
+
+	}
+	return nullptr;
+}
+
+void BreakableBlock::destroy()
+{
+	broken = true;
+}
+

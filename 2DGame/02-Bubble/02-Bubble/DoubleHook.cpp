@@ -21,7 +21,7 @@ void DoubleHook::update(int deltaTime)
 		else {
 			used[i] = false;
 			--currentHooks;
-			map->hookColision(v[i].first, glm::ivec2(9, y0[i] - v[i].first.y));
+			map->weaponColision(v[i].first, glm::ivec2(9, y0[i] - v[i].first.y));
 		}
 	}
 }
