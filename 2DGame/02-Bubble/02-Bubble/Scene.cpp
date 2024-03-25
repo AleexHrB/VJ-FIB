@@ -41,7 +41,8 @@ void Scene::init(unsigned int level)
 	this->level = level;
 	string levelFile = "levels/level" + to_string(level) + ".txt";
 	map = TileMap::createTileMap(levelFile, glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
-
+	SoundManager::instance().init();
+	SoundManager::instance().changeBgMusic("sounds/8_bit_ballroom_dance.mp3", true, false);
 
 	Bubble::Color rn;
 	switch (rand()%3)
@@ -213,10 +214,14 @@ void Scene::update(int deltaTime)
 		else ++itB;
 	}
 
-
+	
 	if (!menu && int(currentTime / 1000) == timeLimit) {
 		cout << "Game Over" << endl;
 		exit(0);
+	}
+
+	if (!menu && lB.size() == 0) {
+		this->init((level + 1)%4);
 	}
 }
 

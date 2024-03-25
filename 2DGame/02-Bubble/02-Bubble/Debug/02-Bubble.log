@@ -1,21 +1,4 @@
-<<<<<<< HEAD
-﻿  Scene.cpp
-C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\Entity.h(25,12): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file 'Scene.cpp')
-  
-C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\PowerUp.h(46,12): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file 'Scene.cpp')
-  
-C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\Scene.cpp(39,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-SOIL.lib(image_DXT.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(image_DXT.obj)' or at ''; linking object as if no debug info
-SOIL.lib(image_helper.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(image_helper.obj)' or at ''; linking object as if no debug info
-SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(stb_image_aug.obj)' or at ''; linking object as if no debug info
-  02-Bubble.vcxproj -> C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\Debug\02-Bubble.exe
-=======
-﻿  Object.cpp
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Entity.h(25,12): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file 'Object.cpp')
-  
-C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\02-Bubble\Object.cpp(7,24): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-  02-Bubble.vcxproj -> C:\Users\shado\Desktop\VJ-FIB\2DGame\02-Bubble\Debug\02-Bubble.exe
->>>>>>> main
+﻿LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+SoundManager.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) class irrklang::ISoundEngine * __cdecl irrklang::createIrrKlangDevice(enum irrklang::E_SOUND_OUTPUT_DRIVER,int,char const *,char const *)" (__imp_?createIrrKlangDevice@irrklang@@YAPAVISoundEngine@1@W4E_SOUND_OUTPUT_DRIVER@1@HPBD1@Z) referenced in function "public: void __thiscall SoundManager::init(void)" (?init@SoundManager@@QAEXXZ)
+..\..\..\libs\irrKlang-64bit-1.6.0\lib\Winx64-visualStudio\irrKlang.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\Debug\02-Bubble.exe : fatal error LNK1120: 1 unresolved externals

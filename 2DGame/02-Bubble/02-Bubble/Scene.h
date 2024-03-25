@@ -13,6 +13,7 @@
 #include "Crab.h"
 #include "Bird.h"
 #include "Object.h"
+#include "SoundManager.h"
 
 
 // Scene contains all the entities of our game.

@@ -5,6 +5,7 @@
 #include <glm/glm.hpp>
 #include "Texture.h"
 #include "ShaderProgram.h"
+#include "BreakableBlock.h"
 
 
 // Class Tilemap is capable of loading a tile map from a text file in a very
@@ -24,7 +25,7 @@ public:
 		Ladder,
 		Air,
 		SolidBlock,
-		BreakableBlock
+		Breakable
 	};
 	// Tile maps can only be created inside an OpenGL context
 	static TileMap *createTileMap(const string &levelFile, const glm::vec2 &minCoords, ShaderProgram &program);
@@ -59,9 +60,10 @@ private:
 	int tileSize, blockSize;
 	Texture tilesheet, background;
 	glm::vec2 tileTexSize;
+	BreakableBlock *breakableBlocks;
 	int *map;
 	TileType *tileType;
-	int nBub;
+	int nBub, nBBlocks;
 	int* bubData;
 };
 

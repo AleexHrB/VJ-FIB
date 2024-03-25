@@ -45,6 +45,10 @@ void TileMap::render() const
 	glDrawArrays(GL_TRIANGLES, 0, 6 * nTiles);
 	
 	glDisable(GL_TEXTURE_2D);
+
+	for (int i = 0; i < nBBlocks; ++i) {
+		breakableBlocks[i].render();
+	}
 }
 
 void TileMap::free()
@@ -98,6 +102,34 @@ bool TileMap::loadLevel(const string &levelFile)
 
 	map = new int[mapSize.x * mapSize.y];
 	tileType = new TileType[mapSize.x * mapSize.y];
+
+	getline(fin, line);
+	sstream.str(line);
+	sstream >> nBBlocks;
+	breakableBlocks = new BreakableBlock[nBBlocks];
+	for (int i = 0; i < nBBlocks; ++i) {
+		int x, y, size, color;
+		bool horizontal;
+		getline(fin, line);
+		sstream.str(line);
+		sstream >> x >> y >> horizontal >> size >> color;
+		glm::ivec2 inPos(x, y);
+		breakableBlocks[i].init(inPos, horizontal, size, color);
+		if (horizontal) {
+			size = (size - 1) % 4 + 1;
+			for (int j = 0; j < size; ++j) {
+				tileType[y * mapSize.x + x + j] = Breakable;
+			}
+		}
+		else {
+			size = (size - 1) % 4 + 1;
+			for (int j = 0; j < size; ++j) {
+				tileType[(y + j)*mapSize.x + x] = Breakable;
+			}
+		}
+		
+		tileType[y * mapSize.x + x] = Breakable;
+	}
 	for(int j=0; j<mapSize.y; j++)
 	{
 		getline(fin, line);
@@ -108,8 +140,7 @@ bool TileMap::loadLevel(const string &levelFile)
 			map[j*mapSize.x+i] = tile;
 			if (tile == 0) tileType[j * mapSize.x + i] = TileMap::Air;
 			else if (tile > 0 && tile <= 12) tileType[j * mapSize.x + i] = TileMap::Ladder;
-			else if (tile > 12 && tile <= 38) tileType[j * mapSize.x + i] = TileMap::BreakableBlock;
-			else tileType[j * mapSize.x + i] = TileMap::SolidBlock;
+			else if (tileType[j * mapSize.x + i] != TileMap::Breakable) tileType[j * mapSize.x + i] = TileMap::SolidBlock;
 		}
 	}
 
@@ -142,7 +173,7 @@ void TileMap::prepareArrays(const glm::vec2 &minCoords, ShaderProgram &program)
 		for(int i=0; i<mapSize.x; i++)
 		{
 			tile = map[j * mapSize.x + i];
-			if(tile != 0)
+			if(tile != 0 && tileType[j * mapSize.x + i] != TileMap::Breakable)
 			{
 				// Non-empty tile
 				nTiles++;
@@ -167,6 +198,9 @@ void TileMap::prepareArrays(const glm::vec2 &minCoords, ShaderProgram &program)
 				vertices.push_back(texCoordTile[0].x); vertices.push_back(texCoordTile[1].y);
 			}
 		}
+	}
+	for (int i = 0; i < nBBlocks; ++i) {
+		breakableBlocks[i].prepareArrays(program);
 	}
 
 
@@ -231,7 +265,7 @@ bool TileMap::collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) c
 	y1 = (pos.y + size.y - 1) / tileSize;
 	for(int y=y0; y<=y1; y++)
 	{
-		if(tileType[y*mapSize.x+x - 1] == TileMap::SolidBlock || tileType[y * mapSize.x + x - 1] == TileMap::BreakableBlock)
+		if(tileType[y*mapSize.x+x - 1] == TileMap::SolidBlock || tileType[y * mapSize.x + x - 1] == TileMap::Breakable)
 			return true;
 	}
 	
@@ -247,7 +281,7 @@ bool TileMap::collisionMoveRight(const glm::ivec2 &pos, const glm::ivec2 &size) 
 	y1 = (pos.y + size.y - 1) / tileSize;
 	for(int y=y0; y<=y1; y++)
 	{
-		if (tileType[y * mapSize.x + x + 1] == TileMap::SolidBlock || tileType[y * mapSize.x + x + 1] == TileMap::BreakableBlock)
+		if (tileType[y * mapSize.x + x + 1] == TileMap::SolidBlock || tileType[y * mapSize.x + x + 1] == TileMap::Breakable)
 			return true;
 	}
 	
@@ -262,7 +296,7 @@ bool TileMap::collisionMoveDown(const glm::ivec2 &pos, const glm::ivec2 &size, i
 	y = (pos.y + size.y - 1) / tileSize;
 	for(int x=x0; x<=x1; x++)
 	{
-		if (tileType[y * mapSize.x + x] == TileMap::SolidBlock || tileType[y * mapSize.x + x] == TileMap::BreakableBlock)
+		if (tileType[y * mapSize.x + x] == TileMap::SolidBlock || tileType[y * mapSize.x + x] == TileMap::Breakable)
 		{
 			if(*posY - tileSize * y + size.y <= 4)
 			{
@@ -285,7 +319,7 @@ bool TileMap::collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size, int
 	for (int x = x0; x <= x1; x++)
 	{
 		//cout << x << " " << y << endl;
-		if (tileType[y*mapSize.x + x] == TileMap::SolidBlock || tileType[y * mapSize.x + x] == TileMap::BreakableBlock)
+		if (tileType[y*mapSize.x + x] == TileMap::SolidBlock || tileType[y * mapSize.x + x] == TileMap::Breakable)
 		{
 	
 			*posY = tileSize * y + size.y;
