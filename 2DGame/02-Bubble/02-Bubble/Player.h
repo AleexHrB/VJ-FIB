@@ -30,17 +30,24 @@ public:
 	int getLives();
 	void changeWeapon(Effects t);
 	pair<glm::ivec2, glm::ivec2> getWeaponHitbox();
+	pair<glm::ivec2, glm::ivec2> getHitbox() override;
 	bool checkProjectileHitbox(const pair<glm::ivec2, glm::ivec2>& hitbox, Bubble* b);
+	void setTileMap(TileMap* tileMap) override;
 private:
 	bool bJumping = false;
 	int jumpAngle, startY;
 	bool shoot = false;
 	unsigned int lives = 3;
-	bool god_mode = false;
-	bool G_pressed;
 	bool C_pressed;
 	Effects actual_weapon;
 	Weapon* w = nullptr;
+
+	enum PlayerAnims
+	{
+		STAND_LEFT, STAND_RIGHT, MOVE_LEFT, MOVE_RIGHT, SHOOT, SIZE
+	};
+
+	PlayerAnims lastAnim;
 
 };
 

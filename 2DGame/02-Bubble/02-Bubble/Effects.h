@@ -4,6 +4,7 @@ enum Effects {
 	GUN,
 	DOUBLE,
 	STICK,
+	HOOK,
 	DYNAMITE,
 	FREEZE,
 	SLOW,

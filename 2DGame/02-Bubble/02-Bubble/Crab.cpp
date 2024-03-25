@@ -12,16 +12,16 @@ void Crab::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 	sizeQuad = glm::ivec2(40,40);
 	sprite = Sprite::createSprite(sizeQuad, glm::vec2(1.0 / 3.0, 1.0), &spritesheet, &shaderProgram);
 	this->speed = glm::ivec2(8,0);
-	this->initPos = this -> position = glm::ivec2(2, 365);
+	this->initPos = this -> position = glm::ivec2(2, 360);
 	sprite->setPosition(initPos);
 
 	sprite->setNumberAnimations(SIZE);
 
 	sprite->setAnimationSpeed(LEFT, 2);
-	sprite->addKeyframe(LEFT, glm::vec2(1.0 / 3.0, 0.f));
+	sprite->addKeyframe(LEFT, glm::vec2(0.0f, 0.f));
 
 	sprite->setAnimationSpeed(RIGHT, 2);
-	sprite->addKeyframe(RIGHT, glm::vec2(2.0 / 3.0, 0.f));
+	sprite->addKeyframe(RIGHT, glm::vec2(1.0 / 3.0, 0.f));
 
 	sprite->changeAnimation(LEFT);
 }
@@ -52,5 +52,5 @@ void Crab::update(int deltaTime)
 
 unsigned int Crab::getBonus()
 {
-	return 100;
+	return 200;
 }

@@ -13,7 +13,7 @@ void DoubleHook::update(int deltaTime)
 {
 	for (unsigned int i = 0; i < v.size(); ++i) {
 		if (!used[i]) continue;
-		if (v[i].first.y > 16) {
+		if (!map->collisionMoveUp(v[i].first, glm::ivec2(9, y0[i] - v[i].first.y), &v[i].first.y)) {
 			v[i].first.y -= 4;
 			v[i].second = Sprite::createSprite(glm::ivec2(9, y0[i] - v[i].first.y), glm::vec2(1.0f, (y0[i] - v[i].first.y) / 188.0), &spritesheet, &texProgram);
 			v[i].second ->setPosition(v[i].first);
@@ -21,6 +21,7 @@ void DoubleHook::update(int deltaTime)
 		else {
 			used[i] = false;
 			--currentHooks;
+			map->hookColision(v[i].first, glm::ivec2(9, y0[i] - v[i].first.y));
 		}
 	}
 }

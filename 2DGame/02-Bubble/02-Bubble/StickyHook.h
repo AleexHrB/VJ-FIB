@@ -10,5 +10,7 @@ public:
 
 private:
 	unsigned int y0;
+	bool stick = false;
+	float t = 0;
 };
 

@@ -30,6 +30,8 @@ public:
 	void init(unsigned int level);
 	void update(int deltaTime);
 	void render();
+	void treatPowerUp(Effects f);
+	void changeGodMode();
 
 private:
 	void initShaders();
@@ -38,7 +40,6 @@ private:
 	TileMap *map;
 	Player *player;
 	ShaderProgram texProgram;
-	void treatPowerUp(Effects f);
 	void explodeBubbles();
 	float currentTime;
 	float inmuneTime = 0.0f;
@@ -49,12 +50,17 @@ private:
 	bool freeze = false;
 	int score;
 	unsigned int level;
-	bool godMode = true;
+	bool godMode = false;
 	unsigned int timeLimit;
+	unsigned int mult = 1;
+	Bubble::Size lastSize = Bubble::Size::NONE;
+	void updatePowerUps(int deltaTime);
 
 	list<Bubble*> lB;
 	list<Enemy*> lE;
 	list<Object*> lO;
+
+	float powerUpTimers[Effects::SIZE_EFF];
 };
 
 

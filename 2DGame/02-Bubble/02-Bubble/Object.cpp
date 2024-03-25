@@ -3,7 +3,7 @@
 void Object::update(int deltaTime)
 {
     sprite->update(deltaTime);
-    if (position.y  < 370) {
+    if (!map->collisionMoveDown(position, sizeQuad, &position.y)) {
         t += deltaTime / 100.0;
         position.x = initPos.x + t * speed.x;
         position.y = initPos.y + t * speed.y;
@@ -19,23 +19,7 @@ Effects Object::applyEffect()
 unsigned int Object::getBonus()
 {
     if (this -> eff != Effects::GET_BONUS) return 0;
-
-    //Poner las frutas bien
-    else {
-        switch (this->f) {
-        case Fruit::APPLE:
-            return 100;
-
-        case Fruit::BANNANA:
-            return 200;
-
-        case Fruit::CHERRY:
-            return 300;
-
-        default:
-            return 400;
-        }
-    }
+    else return this -> f == Fruit::CHERRY ? 500 : this->f * 1000;
 }
 
 void Object::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, const glm::vec2& pos)
@@ -43,7 +27,6 @@ void Object::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, co
     this->texProgram = shaderProgram;
     sizeQuad = glm::ivec2(20, 20);
     eff = Effects(rand() % SIZE_EFF);
-    //eff = Effects::FREEZE;
     if (eff == Effects::GET_BONUS) loadFruit();
     else loadPowerUp();
     this->speed = glm::ivec2(0, 3*g);

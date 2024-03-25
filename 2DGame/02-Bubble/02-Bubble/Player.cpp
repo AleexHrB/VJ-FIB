@@ -10,12 +10,6 @@
 #define FALL_STEP 4
 
 
-enum PlayerAnims
-{
-	STAND_LEFT, STAND_RIGHT, MOVE_LEFT, MOVE_RIGHT, SHOOT, SIZE
-};
-
-
 void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
 	float unit = 0.14285714285;
@@ -47,6 +41,7 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 		
 		
 	sprite->changeAnimation(0);
+	lastAnim = STAND_LEFT;
 	tileMapDispl = tileMapPos;
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + position.x), float(tileMapDispl.y + position.y)));
 	speed = glm::ivec2(3, 3);
@@ -59,6 +54,7 @@ void Player::update(int deltaTime)
 {
 	sprite->update(deltaTime);
 	w->update(deltaTime);
+
 	if (Game::instance().getKey(GLFW_KEY_C) && !C_pressed)
 	{
 		if (w->shoot(position + sizeQuad / 2)) {
@@ -73,8 +69,10 @@ void Player::update(int deltaTime)
 
 	else if(Game::instance().getKey(GLFW_KEY_LEFT) && sprite->animation() != SHOOT)
 	{
-		if(sprite->animation() != MOVE_LEFT)
+		if (sprite->animation() != MOVE_LEFT) {
 			sprite->changeAnimation(MOVE_LEFT);
+		}
+
 		position.x -= speed.x;
 		if(map->collisionMoveLeft(position, glm::ivec2(32, 32)))
 		{
@@ -96,13 +94,18 @@ void Player::update(int deltaTime)
 
 	else if (Game::instance().getKey(GLFW_KEY_UP) && sprite->animation() != SHOOT)
 	{
-		if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, sizeQuad.y - 1)) == TileMap::TileType::Ladder) position.y -= 8;
-		else if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, 1)) == TileMap::TileType::Ladder) position.y -= 8;
+		if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, 0)) != TileMap::TileType::SolidBlock) {
+			if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, 0)) == TileMap::TileType::Ladder) position.y -= 6;
+			else if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, sizeQuad.y)) == TileMap::TileType::Ladder) position.y -= 6;
+		}
 	}
 	
 	else if (Game::instance().getKey(GLFW_KEY_DOWN) && sprite->animation() != SHOOT)
-	{
-		if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, sizeQuad.y + 1)) == TileMap::TileType::Ladder) position.y += 8;
+	{	
+		if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, sizeQuad.y)) != TileMap::TileType::SolidBlock) {
+			if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, 0)) == TileMap::TileType::Ladder) position.y += 2;
+			else if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, sizeQuad.y)) == TileMap::TileType::Ladder) position.y += 2;
+		}
 	}
 	
 
@@ -119,18 +122,6 @@ void Player::update(int deltaTime)
 	if (!Game::instance().getKey(GLFW_KEY_C)) {
 		C_pressed = false;
 	}
-
-	if (Game::instance().getKey(GLFW_KEY_G))
-	{
-		if (!G_pressed) {
-			god_mode = !god_mode;
-			G_pressed = true;
-		}
-	}
-	else {
-		G_pressed = false;
-	}
-	
 
 	if(bJumping)
 	{
@@ -149,7 +140,7 @@ void Player::update(int deltaTime)
 	}
 	else
 	{
-		position.y += FALL_STEP;
+		if (!map->getTileType(position + glm::ivec2(0, sizeQuad.y)) == TileMap::TileType::Ladder && !map->getTileType(position + sizeQuad) == TileMap::TileType::Ladder) position.y += FALL_STEP;
 		if(map->collisionMoveDown(position, glm::ivec2(64, 64), &position.y))
 		{
 			/*if (Game::instance().getKey(GLFW_KEY_UP))
@@ -162,6 +153,8 @@ void Player::update(int deltaTime)
 	}
 	
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + position.x), float(tileMapDispl.y + position.y)));
+
+	lastAnim = PlayerAnims(sprite->animation());
 }
 
 void Player::render()
@@ -178,7 +171,7 @@ void Player::hitWeapon()
 
 bool Player::substractLive()
 {
-	if (!god_mode) --lives;
+	--lives;
 
 	return lives == 0;
 }
@@ -207,8 +200,15 @@ void Player::changeWeapon(Effects eff)
 		w = new DoubleHook();
 		w->init(glm::ivec2(0, 0), texProgram);
 		break;
+	case Effects::HOOK:
+		delete w;
+		w = new Hook();
+		w->init(glm::ivec2(0, 0), texProgram);
+		break;
 
 	}
+
+	w->setTileMap(map);
 }
 
 pair<glm::ivec2, glm::ivec2> Player::getWeaponHitbox()
@@ -216,9 +216,49 @@ pair<glm::ivec2, glm::ivec2> Player::getWeaponHitbox()
 	return w->getHitbox();
 }
 
+pair<glm::ivec2, glm::ivec2> Player::getHitbox()
+{
+	glm::ivec2 hitbox;
+	glm::ivec2 offset;
+	switch (lastAnim) {
+	case PlayerAnims::STAND_LEFT:
+		hitbox = glm::ivec2(13,28);
+		offset = glm::ivec2(7,3);
+		break;
+	case PlayerAnims::MOVE_RIGHT:
+		hitbox = glm::ivec2(14,30);
+		offset = glm::ivec2(6,1);
+		break;
+	case PlayerAnims::STAND_RIGHT:
+		hitbox = glm::ivec2(16,29);
+		offset = glm::ivec2(10,2);
+		break;
+	case PlayerAnims::MOVE_LEFT:
+		hitbox = glm::ivec2(16,30);
+		offset = glm::ivec2(10,1);
+		break;
+	case PlayerAnims::SHOOT:
+		hitbox = glm::ivec2(16, 27);
+		offset = glm::ivec2(6, 4);
+		break;
+	default:
+		hitbox = sizeQuad;
+		offset = glm::ivec2(0, 0);
+		break;
+	}
+
+	return {hitbox * 2, position + offset };
+}
+
 bool Player::checkProjectileHitbox(const pair<glm::ivec2, glm::ivec2>& hitbox, Bubble* b)
 {
 	return w->checkCollisionProj(hitbox, b);
+}
+
+void Player::setTileMap(TileMap* tileMap)
+{
+	this->map = tileMap;
+	w->setTileMap(map);
 }
 
 

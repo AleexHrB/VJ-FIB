@@ -116,6 +116,7 @@ void Scene::init(unsigned int level)
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
+	player->changeWeapon(Effects::HOOK);
 
 	currentTime = 0.0f;
 	timeLimit = 100;
@@ -124,15 +125,16 @@ void Scene::init(unsigned int level)
 
 void Scene::update(int deltaTime)
 {
-	currentTime += deltaTime;
+	if (!freeze) currentTime += deltaTime;
 	player->update(deltaTime);
-
+	updatePowerUps(deltaTime);
 	for (auto itO = lO.begin(); itO != lO.end();) {
 		Object* o = *itO;
 		o->update(deltaTime);
 		if (o->checkCollision(player->getHitbox())) {
 			this->score += o->getBonus();
 			Effects eff = o->applyEffect();
+			powerUpTimers[eff] = 0.1;
 			delete o;
 			itO = lO.erase(itO);
 			this -> treatPowerUp(eff);
@@ -173,7 +175,12 @@ void Scene::update(int deltaTime)
 			Bubble::Size s = b->getSize();
 			Bubble::Color c = b->getColor();
 			player->hitWeapon();
-			this->score += b->getBonus();
+			if (s == this->lastSize || this -> lastSize == Bubble::Size::NONE) mult *= 2;
+			else mult = 1;
+			this->lastSize = s;
+
+			if (mult > 8) mult = 8;
+			this->score += mult * b->getBonus();
 			
 			if (s != Bubble::Size::TINY) {
 				Bubble::Size next;
@@ -196,14 +203,17 @@ void Scene::update(int deltaTime)
 				lB.back() -> init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), glm::vec2(-speed.x, -15));
 				lB.back()->setTileMap(map);
 
-				if (rand()% 1 == 0) {
+				if (rand() % 5 == 0) {
 					Enemy* next;
 					if (rand() % 2 == 0) next = new Bird();
 					else next = new Crab();
 					lE.push_back(next);
 					lE.back()->init(glm::ivec2(320, 320), texProgram);
+				}
+				if (rand()% 3 == 0) {
 					lO.push_back(new Object());
 					lO.back()->init(glm::ivec2(320, 320), texProgram, b -> getPosition());
+					lO.back()->setTileMap(map);
 				}
 			}
 
@@ -223,6 +233,7 @@ void Scene::update(int deltaTime)
 	if (!menu && lB.size() == 0) {
 		this->init((level + 1)%4);
 	}
+
 }
 
 void Scene::render()
@@ -316,6 +327,41 @@ inline bool Scene::hitted()
 	else return false;
 }
 
+void Scene::updatePowerUps(int deltaTime)
+{
+	for (unsigned int i = 0; i < Effects::SIZE_EFF; ++i) {
+
+		if (powerUpTimers[i] > 0) {
+			powerUpTimers[i] += deltaTime / 100.0;
+			if (powerUpTimers[i] > 100) {
+				powerUpTimers[i] = 0;
+				switch (Effects(i)) {
+				case Effects::GUN:
+					player->changeWeapon(Effects::HOOK);
+					break;
+				case Effects::STICK:
+					player->changeWeapon(Effects::HOOK);
+					break;
+				case Effects::DOUBLE:
+					player->changeWeapon(Effects::HOOK);
+					break;
+				case Effects::HOOK:
+					player->changeWeapon(Effects::HOOK);
+					break;
+				case Effects::FREEZE:
+					freeze = false;
+					break;
+				case Effects::SLOW:
+					for (Bubble* b : lB) b->changeGravity(1.8f);
+					break;
+				default:
+					break;
+				}
+			}
+		}
+	}
+}
+
 
 void Scene::treatPowerUp(Effects f)
 {
@@ -329,18 +375,26 @@ void Scene::treatPowerUp(Effects f)
 	case Effects::DOUBLE:
 		player->changeWeapon(f);
 		break;
+	case Effects::HOOK:
+		player->changeWeapon(f);
+		break;
 	case Effects::DYNAMITE:
 		this->explodeBubbles();
 		break;
 	case Effects::FREEZE:
 		freeze = true;
 		break;
-	case Effects::GET_BONUS:
-		break;
 	case Effects::SLOW:
+		for (Bubble* b : lB) b->changeGravity(1.0f);
 		break;
 	default:
+		this->score += 99999;
 		break;
 	}
+}
+
+void Scene::changeGodMode()
+{
+	godMode = !godMode;
 }
 

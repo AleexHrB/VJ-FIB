@@ -62,5 +62,5 @@ void Bird::update(int deltaTime)
 
 unsigned int Bird::getBonus()
 {
-	return 50;
+	return 500;
 }

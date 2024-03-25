@@ -23,6 +23,7 @@ void Gun::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 	sprite->changeAnimation(NOT_EXPAND);
 	v = vector<pair<glm::ivec2, Sprite*>>(4);
 	for (unsigned int i = 0; i < 4; ++i) v[i] = { glm::ivec2(-1,-1), nullptr };
+	this->sizeQuad = glm::ivec2(20, 20);
 }
 
 void Gun::update(int deltaTime)
@@ -31,7 +32,7 @@ void Gun::update(int deltaTime)
 	for (unsigned int i = 0; i < v.size(); ++i) {
 		if (!used[i]) continue;
 
-		if (v[i].first.y > 16) {
+		if (!map->collisionMoveUp(v[i].first, sizeQuad, &v[i].first.y)) {
 			v[i].first.y -= 8;
 			if (t > 1) {
 				t = 0;
@@ -43,6 +44,7 @@ void Gun::update(int deltaTime)
 		else {
 			used[i] = false;
 			--currentBullets;
+			map->hookColision(v[i].first, this -> sizeQuad);
 		}
 	}
 }

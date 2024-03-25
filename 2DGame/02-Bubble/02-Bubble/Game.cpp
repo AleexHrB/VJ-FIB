@@ -35,6 +35,25 @@ void Game::keyPressed(int key)
 		scene.init(2);
 	else if (key == GLFW_KEY_3)
 		scene.init(3);
+	else if (key == GLFW_KEY_T)
+		scene.treatPowerUp(Effects::GUN);
+	else if (key == GLFW_KEY_Y)
+		scene.treatPowerUp(Effects::STICK);
+	else if (key == GLFW_KEY_U)
+		scene.treatPowerUp(Effects::DOUBLE);
+	else if (key == GLFW_KEY_I)
+		scene.treatPowerUp(Effects::DYNAMITE);
+	else if (key == GLFW_KEY_O)
+		scene.treatPowerUp(Effects::FREEZE);
+	else if (key == GLFW_KEY_P)
+		scene.treatPowerUp(Effects::SLOW);
+	else if (key == GLFW_KEY_F)
+		scene.treatPowerUp(Effects::GET_BONUS);
+	else if (key == GLFW_KEY_H)
+		scene.treatPowerUp(Effects::HOOK);
+	else if (key == GLFW_KEY_G)
+		scene.changeGodMode();
+
 	keys[key] = true;
 }
 

@@ -83,9 +83,25 @@ bool Bubble::checkCollision(const pair<glm::ivec2, glm::ivec2>& hitbox)
 	return deltaX * deltaX + deltaY * deltaY <= c.first.x * c.first.x / 4;
 }
 
+void Bubble::changeGravity(float g)
+{
+	this->g = g;
+}
+
 unsigned int Bubble::getBonus()
 {
-	return 10;
+	switch (this->s) {
+	case Size::BIG:
+		return 50;
+	case Size::MID:
+		return 100;
+	case Size::SMALL:
+		return 150;
+	case Size::TINY:
+		return 200;
+	default:
+		return 0;
+	}
 }
 
 Bubble::Size Bubble::getSize()
