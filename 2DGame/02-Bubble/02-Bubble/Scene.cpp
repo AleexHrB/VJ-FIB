@@ -147,7 +147,7 @@ void Scene::update(int deltaTime)
 		if (!freeze) e->update(deltaTime);
 		if (!godMode && e->checkCollision(player->getHitbox()) && hitted()) {
 			bool dead = player->substractLive();
-			if (dead) exit(0);
+			if (dead) this ->init(0);
 			else init(this->level);
 			break;
 		}
@@ -163,15 +163,19 @@ void Scene::update(int deltaTime)
 
 	for (auto itB = lB.begin(); itB != lB.end();) {
 		Bubble* b = *itB;
-		if (!freeze) b->update(deltaTime);
-		if (!godMode && b->checkCollision(player->getHitbox()) && hitted()) {
+		if (b->isDestroying()  || !freeze) b->update(deltaTime);
+		if (b->isDestroyed()) {
+			delete b;
+			itB = lB.erase(itB);
+		}
+		else if (!godMode && b->checkCollision(player->getHitbox()) && hitted()) {
 			bool dead = player->substractLive();
-			if (dead) exit(0);
+			if (dead) this->init(0);
 			else init(this->level);
 			break;
 		}
 
-		else if (player->checkProjectileHitbox(b->getHitbox(), b)) {
+		else if (!b ->isDestroying() && player->checkProjectileHitbox(b->getHitbox(), b)) {
 			Bubble::Size s = b->getSize();
 			Bubble::Color c = b->getColor();
 			player->hitWeapon();
@@ -216,9 +220,8 @@ void Scene::update(int deltaTime)
 					lO.back()->setTileMap(map);
 				}
 			}
-
-			delete b;
-			itB = lB.erase(itB);
+			b -> destroy();
+			
 		}
 
 		else ++itB;
@@ -227,13 +230,13 @@ void Scene::update(int deltaTime)
 	
 	if (!menu && int(currentTime / 1000) == timeLimit) {
 		cout << "Game Over" << endl;
-		exit(0);
+		this->init(0);
 	}
 
 	if (!menu && lB.size() == 0) {
 		this->init((level + 1)%4);
 	}
-
+	map->update(deltaTime);
 }
 
 void Scene::render()
@@ -311,8 +314,9 @@ void Scene::explodeBubbles()
 		lB.back()->init(glm::ivec2(320, 320), texProgram, c, Bubble::Size::TINY, b->getPosition(), glm::vec2(-speed.x, -15));
 		lB.back()->setTileMap(map);
 		
-		delete b;
-		itB = lB.erase(itB);
+		b->destroy();
+		//delete b;
+		//itB = lB.erase(itB);
 		++i;
 	}
 }

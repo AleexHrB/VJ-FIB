@@ -56,6 +56,13 @@ void TileMap::free()
 	glDeleteBuffers(1, &vbo);
 }
 
+void TileMap::update(int deltatime)
+{
+	for (int i = 0; i < nBBlocks; ++i) {
+		breakableBlocks[i].update(deltatime);
+	}
+}
+
 bool TileMap::loadLevel(const string &levelFile)
 {
 	ifstream fin;

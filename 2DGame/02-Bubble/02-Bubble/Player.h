@@ -44,7 +44,7 @@ private:
 
 	enum PlayerAnims
 	{
-		STAND_LEFT, STAND_RIGHT, MOVE_LEFT, MOVE_RIGHT, SHOOT, SIZE
+		STAND_LEFT, STAND_RIGHT, MOVE_LEFT, MOVE_RIGHT, SHOOT, CLIMB, DIE, SIZE
 	};
 
 	PlayerAnims lastAnim;

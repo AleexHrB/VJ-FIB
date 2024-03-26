@@ -22,6 +22,9 @@ public:
 	bool checkCollision(const pair<glm::ivec2, glm::ivec2>& hitbox) override;
 	void changeGravity(float g);
 	unsigned int getBonus() override;
+	bool isDestroying();
+	bool isDestroyed();
+	void destroy();
 	Size getSize();
 	Color getColor();
 private:
@@ -29,6 +32,8 @@ private:
 	glm::vec2 initPosBubble;
 	Size s;
 	Color c;
+	bool destroying = false;
+	bool destroyed = false;
 	//Source: https://algo.monster/liteproblems/1401
 	inline unsigned int getMinimumDistance(int minEdge, int maxEdge, int centerCoord) {
 		if (centerCoord >= minEdge && centerCoord <= maxEdge) {

@@ -34,7 +34,8 @@ public:
 
 	void render() const;
 	void free();
-	
+	void update(int deltatime);
+
 	int getTileSize() const { return tileSize; }
 	TileType getTileType(const glm::ivec2 &pos);
 

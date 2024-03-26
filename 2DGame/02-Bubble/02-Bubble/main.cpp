@@ -2,7 +2,8 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include "Game.h"
-
+//Remove console (only works in Visual Studio)
+#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 
 #define TARGET_FRAMERATE 60.0f
 

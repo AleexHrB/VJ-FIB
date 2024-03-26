@@ -48,6 +48,13 @@ void BreakableBlock::prepareArrays(ShaderProgram& shaderProgram)
 
 		sprite->addKeyframe(0, glm::vec2( ((temp*(temp - 1))/2)/ 10.0, (color % 3) / 3.0));
 		sprite->changeAnimation(0);
+
+		sprite->loopAnimation(1, false);
+		sprite->setAnimationSpeed(1, 8);
+		sprite->addKeyframe(1, glm::vec2(((temp * (temp - 1)) / 2) / 10.0, (color % 3) / 3.0 + 1 /15.0));
+		sprite->addKeyframe(1, glm::vec2(((temp * (temp - 1)) / 2) / 10.0, (color % 3) / 3.0 + 2 / 15.0));
+		sprite->addKeyframe(1, glm::vec2(((temp * (temp - 1)) / 2) / 10.0, (color % 3) / 3.0 + 3 / 15.0));
+		sprite->addKeyframe(1, glm::vec2(((temp * (temp - 1)) / 2) / 10.0, (color % 3) / 3.0 + 4 / 15.0));
 	}
 	else {
 		sprite = Sprite::createSprite(size, glm::vec2(1.0 / 10.0, (size.x / 16) / 15.0), &spritesheet, &shaderProgram);
@@ -86,6 +93,14 @@ glm::ivec2* BreakableBlock::getBlocks()
 
 void BreakableBlock::destroy()
 {
-	broken = true;
+	breaking = true;
+	sprite->setNextAnimation(0);
+	sprite->changeAnimation(1);
+}
+
+void BreakableBlock::update(int deltatime)
+{
+	sprite->update(deltatime);
+	if (breaking && sprite->animation() == 0) broken = true;
 }
 

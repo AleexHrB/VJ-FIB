@@ -12,12 +12,14 @@ public:
 	int getSize();
 	glm::ivec2* getBlocks();
 	void destroy();
+	void update(int deltatime);
 
 protected:
 	glm::ivec2 position, size;
 	Texture spritesheet;
 	int color;
 	bool horizontal;
+	bool breaking = false;
 	bool broken = false;
 	ShaderProgram texProgram;
 	Sprite* sprite;

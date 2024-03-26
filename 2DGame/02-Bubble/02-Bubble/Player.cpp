@@ -38,7 +38,12 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 		sprite->setAnimationSpeed(SHOOT, 16);
 		sprite->addKeyframe(SHOOT, glm::vec2(0.f, 0.f));
 		sprite->addKeyframe(SHOOT, glm::vec2(0.f, 0.5f));
-		
+
+		sprite->setAnimationSpeed(CLIMB, 16);
+		sprite->addKeyframe(CLIMB, glm::vec2(unit*4,0.5f));
+		sprite->addKeyframe(CLIMB, glm::vec2(unit * 4, 0.f));
+		sprite->addKeyframe(CLIMB, glm::vec2(unit * 4, 0.5f));
+		sprite->addKeyframe(CLIMB, glm::vec2(unit * 5, 0.f));
 		
 	sprite->changeAnimation(0);
 	lastAnim = STAND_LEFT;
@@ -95,8 +100,16 @@ void Player::update(int deltaTime)
 	else if (Game::instance().getKey(GLFW_KEY_UP) && sprite->animation() != SHOOT)
 	{
 		if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, 0)) != TileMap::TileType::SolidBlock) {
-			if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, 0)) == TileMap::TileType::Ladder) position.y -= 6;
-			else if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, sizeQuad.y)) == TileMap::TileType::Ladder) position.y -= 6;
+			if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, 0)) == TileMap::TileType::Ladder) {
+				position.y -= 6;
+				if (sprite->animation() != CLIMB) 
+					sprite->changeAnimation(CLIMB);
+			}
+			else if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, sizeQuad.y)) == TileMap::TileType::Ladder) {
+				position.y -= 6;
+				if (sprite->animation() != CLIMB)
+					sprite->changeAnimation(CLIMB);
+			}
 		}
 	}
 	
@@ -123,7 +136,7 @@ void Player::update(int deltaTime)
 		C_pressed = false;
 	}
 
-	if(bJumping)
+	if (bJumping)
 	{
 		jumpAngle += JUMP_ANGLE_STEP;
 		if(jumpAngle == 180)
