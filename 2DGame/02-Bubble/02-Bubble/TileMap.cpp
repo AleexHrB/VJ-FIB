@@ -121,7 +121,7 @@ bool TileMap::loadLevel(const string &levelFile)
 		sstream.str(line);
 		sstream >> x >> y >> horizontal >> size >> color;
 		glm::ivec2 inPos(x, y);
-		breakableBlocks[i].init(inPos, horizontal, size, color);
+		breakableBlocks[i].init(inPos, horizontal, size, color, tileSize);
 		if (horizontal) {
 			size = (size - 1) % 4 + 1;
 			for (int j = 0; j < size; ++j) {
@@ -146,7 +146,8 @@ bool TileMap::loadLevel(const string &levelFile)
 			sstream >> tile;
 			map[j*mapSize.x+i] = tile;
 			if (tile == 0) tileType[j * mapSize.x + i] = TileMap::Air;
-			else if (tile > 0 && tile <= 12) tileType[j * mapSize.x + i] = TileMap::Ladder;
+			else if (tile == 1 || tile == 4 || tile == 7 || tile == 10) tileType[j * mapSize.x + i] = TileMap::Ladder;
+			else if (tile > 0 && tile <= 12) tileType[j * mapSize.x + i] = TileMap::Air;
 			else if (tileType[j * mapSize.x + i] != TileMap::Breakable) tileType[j * mapSize.x + i] = TileMap::SolidBlock;
 		}
 	}
@@ -303,7 +304,7 @@ bool TileMap::collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) c
 	y1 = (pos.y + size.y - 1) / tileSize;
 	for(int y=y0; y<=y1; y++)
 	{
-		if(tileType[y*mapSize.x+x - 1] == TileMap::SolidBlock || tileType[y * mapSize.x + x - 1] == TileMap::Breakable)
+		if(tileType[y*mapSize.x+x] == TileMap::SolidBlock || tileType[y * mapSize.x + x] == TileMap::Breakable)
 			return true;
 	}
 	
@@ -378,7 +379,27 @@ int TileMap::getBubNumber() {
 	return nBub;
 }
 
+int TileMap::stairColission(const glm::ivec2& pos, const glm::ivec2& size, int* posY)
+{
+	int x0, x1, y;
 
+	x0 = pos.x / tileSize;
+	x1 = (pos.x + size.x - 1) / tileSize;
+	y = pos.y / tileSize;
+	for (int x = x0; x <= x1; x++)
+	{
+		//cout << x << " " << y << endl;
+		if (tileType[y * mapSize.x + x] == TileMap::Ladder)
+		{
+
+			//*posY = tileSize * y + size.y;
+			return x*tileSize;
+
+		}
+	}
+
+	return -1;
+}
 
 
 

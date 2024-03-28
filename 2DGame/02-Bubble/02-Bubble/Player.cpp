@@ -44,12 +44,24 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 		sprite->addKeyframe(CLIMB, glm::vec2(unit * 4, 0.f));
 		sprite->addKeyframe(CLIMB, glm::vec2(unit * 4, 0.5f));
 		sprite->addKeyframe(CLIMB, glm::vec2(unit * 5, 0.f));
+
+		sprite->setAnimationSpeed(IDLE_CLIMB, 16);
+		sprite->addKeyframe(IDLE_CLIMB, glm::vec2(unit * 4, 0.5f));
+
+		sprite->setAnimationSpeed(DIE_RIGHT, 16);
+		sprite->addKeyframe(DIE_RIGHT, glm::vec2(unit * 6, 0.f));
+
+		sprite->setAnimationSpeed(DIE_LEFT, 16);
+		sprite->addKeyframe(DIE_LEFT, glm::vec2(unit * 6, 0.5f));
+
+		sprite->setAnimationSpeed(DIE_RIGHT, 16);
+		sprite->addKeyframe(DIE_RIGHT, glm::vec2(unit * 6, 0.f));
 		
 	sprite->changeAnimation(0);
 	lastAnim = STAND_LEFT;
 	tileMapDispl = tileMapPos;
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + position.x), float(tileMapDispl.y + position.y)));
-	speed = glm::ivec2(3, 3);
+	speed = glm::ivec2(5, 3);
 	w = new Hook();
 	w->init(tileMapPos, shaderProgram);
 	
@@ -57,6 +69,7 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 
 void Player::update(int deltaTime)
 {
+	if (sprite->animation() == DIE_LEFT || sprite->animation() == DIE_RIGHT) return;
 	sprite->update(deltaTime);
 	w->update(deltaTime);
 
@@ -72,20 +85,21 @@ void Player::update(int deltaTime)
 	}
 	
 
-	else if(Game::instance().getKey(GLFW_KEY_LEFT) && sprite->animation() != SHOOT)
+	else if(Game::instance().getKey(GLFW_KEY_LEFT) && sprite->animation() != SHOOT && sprite->animation() != CLIMB && sprite->animation() != IDLE_CLIMB)
 	{
 		if (sprite->animation() != MOVE_LEFT) {
 			sprite->changeAnimation(MOVE_LEFT);
 		}
 
 		position.x -= speed.x;
-		if(map->collisionMoveLeft(position, glm::ivec2(32, 32)))
+		if(map->collisionMoveLeft(position + glm::ivec2(16,0), glm::ivec2(32, 32)))
 		{
 			position.x += speed.x;
 			sprite->changeAnimation(STAND_LEFT);
 		}
 	}
-	else if(Game::instance().getKey(GLFW_KEY_RIGHT) && sprite->animation() != SHOOT)
+
+	else if(Game::instance().getKey(GLFW_KEY_RIGHT) && sprite->animation() != SHOOT && sprite->animation() != CLIMB && sprite->animation() != IDLE_CLIMB)
 	{
 		if(sprite->animation() != MOVE_RIGHT)
 			sprite->changeAnimation(MOVE_RIGHT);
@@ -99,26 +113,59 @@ void Player::update(int deltaTime)
 
 	else if (Game::instance().getKey(GLFW_KEY_UP) && sprite->animation() != SHOOT)
 	{
-		if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, 0)) != TileMap::TileType::SolidBlock) {
-			if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, 0)) == TileMap::TileType::Ladder) {
-				position.y -= 6;
-				if (sprite->animation() != CLIMB) 
-					sprite->changeAnimation(CLIMB);
+		
+		if (sprite->animation() != CLIMB && sprite->animation() != IDLE_CLIMB) {
+			
+			int stairPos = map->stairColission(position, glm::ivec2(32, 32), &position.y);
+			if (stairPos != -1 && !UP_pressed) {
+				position = glm::ivec2(stairPos - sizeQuad.x / 8, position.y - 8);
+				sprite->changeAnimation(CLIMB);
+			}	
+			
+		}
+
+		else {
+			
+			if (map->getTileType(position + glm::ivec2(sizeQuad.x / 8, sizeQuad.y / 2 + 2)) == TileMap::TileType::Air) {
+				position.y -= sizeQuad.y / 2 - 2;
+				sprite->changeAnimation(STAND_LEFT);
 			}
-			else if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, sizeQuad.y)) == TileMap::TileType::Ladder) {
-				position.y -= 6;
+
+			else {
 				if (sprite->animation() != CLIMB)
 					sprite->changeAnimation(CLIMB);
+				position.y -= 4;
 			}
 		}
+		UP_pressed = true;
 	}
 	
 	else if (Game::instance().getKey(GLFW_KEY_DOWN) && sprite->animation() != SHOOT)
 	{	
-		if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, sizeQuad.y)) != TileMap::TileType::SolidBlock) {
-			if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, 0)) == TileMap::TileType::Ladder) position.y += 2;
-			else if (map->getTileType(position + glm::ivec2(sizeQuad.x / 2, sizeQuad.y)) == TileMap::TileType::Ladder) position.y += 2;
+		if (sprite->animation() != CLIMB && sprite->animation() != IDLE_CLIMB) {
+			int stairPos = map->stairColission(position + glm::ivec2(0, sizeQuad.y), glm::ivec2(32, 32), &position.y);
+			if (stairPos != -1 && !DOWN_pressed) {
+				position = glm::ivec2(stairPos - sizeQuad.x / 8, position.y + 6);
+				sprite->changeAnimation(CLIMB);
+			}
 		}
+		else {
+			if (map->getTileType(position + glm::ivec2(sizeQuad.x / 8, sizeQuad.y  - 2)) == TileMap::TileType::Air) {
+				position.y += sizeQuad.y / 4;
+				sprite->changeAnimation(STAND_LEFT);
+			}
+			else if (map->getTileType(position + glm::ivec2(sizeQuad.x / 8, sizeQuad.y)) == TileMap::TileType::SolidBlock ||
+					map->getTileType(position + glm::ivec2(sizeQuad.x / 8, sizeQuad.y)) == TileMap::TileType::Breakable) {
+				sprite->changeAnimation(STAND_LEFT);
+			}
+
+			else {
+				if (sprite->animation() != CLIMB)
+					sprite->changeAnimation(CLIMB);
+				position.y += 6;
+			}
+		}
+		DOWN_pressed = true;
 	}
 	
 
@@ -129,12 +176,20 @@ void Player::update(int deltaTime)
 			sprite->changeAnimation(STAND_LEFT);
 		else if (sprite->animation() == MOVE_RIGHT)
 			sprite->changeAnimation(STAND_RIGHT);
-
+		else if (sprite->animation() == CLIMB) {
+			sprite->changeAnimation(IDLE_CLIMB);
+		}
 	}
 
 	if (!Game::instance().getKey(GLFW_KEY_C)) {
 		C_pressed = false;
 	}
+	
+	if (!Game::instance().getKey(GLFW_KEY_UP))
+		UP_pressed = false;
+
+	if (!Game::instance().getKey(GLFW_KEY_DOWN))
+		DOWN_pressed = false;
 
 	if (bJumping)
 	{
@@ -151,9 +206,10 @@ void Player::update(int deltaTime)
 				bJumping = !map->collisionMoveDown(position, glm::ivec2(64, 64), &position.y);
 		}
 	}
+	
 	else
 	{
-		if (!map->getTileType(position + glm::ivec2(0, sizeQuad.y)) == TileMap::TileType::Ladder && !map->getTileType(position + sizeQuad) == TileMap::TileType::Ladder) position.y += FALL_STEP;
+		if (map->getTileType(position + glm::ivec2(0, sizeQuad.y)) != TileMap::TileType::Ladder && sprite->animation() != CLIMB && sprite->animation() != IDLE_CLIMB) position.y += FALL_STEP;
 		if(map->collisionMoveDown(position, glm::ivec2(64, 64), &position.y))
 		{
 			/*if (Game::instance().getKey(GLFW_KEY_UP))
@@ -185,7 +241,8 @@ void Player::hitWeapon()
 bool Player::substractLive()
 {
 	--lives;
-
+	if (sprite->animation() == STAND_RIGHT || sprite->animation() == MOVE_RIGHT) sprite->changeAnimation(DIE_RIGHT);
+	else sprite->changeAnimation(DIE_LEFT);
 	return lives == 0;
 }
 
@@ -274,6 +331,10 @@ void Player::setTileMap(TileMap* tileMap)
 	w->setTileMap(map);
 }
 
+void Player::setLives(int liv)
+{
+	lives = liv;
+}
 
 
 

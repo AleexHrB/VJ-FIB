@@ -15,6 +15,8 @@
 #include "Object.h"
 #include "SoundManager.h"
 
+#define DEATH_FRAMES 15
+#define READY_FRAMES 15
 
 // Scene contains all the entities of our game.
 // It is responsible for updating and render them.
@@ -55,6 +57,10 @@ private:
 	unsigned int mult = 1;
 	Bubble::Size lastSize = Bubble::Size::NONE;
 	void updatePowerUps(int deltaTime);
+	Texture UI;
+	Sprite* liveSprite;
+	Sprite* powerUp;
+	int deathCountDown = -1;
 
 	list<Bubble*> lB;
 	list<Enemy*> lE;

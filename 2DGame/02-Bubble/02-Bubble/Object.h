@@ -19,5 +19,6 @@ private:
 	void loadFruit();
 	void loadPowerUp();
 	glm::ivec2 initPos;
+	bool ground = false;
 };
 

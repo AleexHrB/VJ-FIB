@@ -3,11 +3,14 @@
 void Object::update(int deltaTime)
 {
     sprite->update(deltaTime);
-    if (!map->collisionMoveDown(position, sizeQuad, &position.y)) {
+    if (!map->collisionMoveDown(position, sizeQuad, &position.y) && !ground) {
         t += deltaTime / 100.0;
         position.x = initPos.x + t * speed.x;
         position.y = initPos.y + t * speed.y;
         sprite->setPosition(position);
+    }
+    else {
+        ground = true;
     }
 }
 

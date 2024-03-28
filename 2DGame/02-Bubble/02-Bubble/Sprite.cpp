@@ -32,6 +32,8 @@ Sprite::Sprite(const glm::vec2 &quadSize, const glm::vec2 &sizeInSpritesheet, Te
 	texture = spritesheet;
 	shaderProgram = program;
 	currentAnimation = -1;
+	currentKeyframe = 0;
+	nextAnimation = 0;
 	position = glm::vec2(0.f);
 }
 

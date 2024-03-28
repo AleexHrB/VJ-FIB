@@ -5,7 +5,7 @@
 class BreakableBlock
 {
 public:
-	void init(const glm::ivec2& inPos, bool horizontal, unsigned int size, unsigned int color);
+	void init(const glm::ivec2& inPos, bool horizontal, unsigned int size, unsigned int color, int tileSize);
 	void render();
 	void prepareArrays(ShaderProgram &shaderProgram);
 	glm::ivec2 getPosition();
@@ -24,5 +24,6 @@ protected:
 	ShaderProgram texProgram;
 	Sprite* sprite;
 	float g = 1.8;
+	int tileSize;
 };
 

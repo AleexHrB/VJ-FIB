@@ -22,8 +22,12 @@ public:
 	ISound* changeBgMusic(const char* file, bool loop = false, bool pause = false);
 	void pauseBgMusic(bool pause);
 	void stopBgMusic();
+	void sound(const char* soundFile);
 
 private:
 	ISoundEngine* engine;
+	ISoundEngine* effects;
 	ISound* bgSound;
+	ISound* soundFX;
+
 };

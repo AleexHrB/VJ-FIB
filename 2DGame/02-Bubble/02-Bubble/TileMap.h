@@ -46,6 +46,7 @@ public:
 	bool collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size, int* posY) const;
 	int* getBubData();
 	int getBubNumber();
+	int stairColission(const glm::ivec2& pos, const glm::ivec2& size, int* posY);
 
 private:
 	bool loadLevel(const string &levelFile);

@@ -33,18 +33,20 @@ public:
 	pair<glm::ivec2, glm::ivec2> getHitbox() override;
 	bool checkProjectileHitbox(const pair<glm::ivec2, glm::ivec2>& hitbox, Bubble* b);
 	void setTileMap(TileMap* tileMap) override;
+	void setLives(int liv);
 private:
 	bool bJumping = false;
 	int jumpAngle, startY;
 	bool shoot = false;
 	unsigned int lives = 3;
-	bool C_pressed;
+	bool C_pressed,UP_pressed, DOWN_pressed;
 	Effects actual_weapon;
 	Weapon* w = nullptr;
 
+
 	enum PlayerAnims
 	{
-		STAND_LEFT, STAND_RIGHT, MOVE_LEFT, MOVE_RIGHT, SHOOT, CLIMB, DIE, SIZE
+		STAND_LEFT, STAND_RIGHT, MOVE_LEFT, MOVE_RIGHT, SHOOT, CLIMB, IDLE_CLIMB, DIE_RIGHT, DIE_LEFT, SIZE
 	};
 
 	PlayerAnims lastAnim;

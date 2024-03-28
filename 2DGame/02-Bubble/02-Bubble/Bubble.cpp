@@ -57,7 +57,7 @@ void Bubble::update(int deltaTime)
 			t = 0.1;
 		}
 
-		if (map->collisionMoveRight(position, sizeQuad))
+		if (map->collisionMoveRight(position - glm::ivec2(12, 0), sizeQuad))
 		{
 			t -= 2 * deltaTime / 100.0;
 			position.x = initPosBubble.x + speed.x * t;
@@ -67,8 +67,8 @@ void Bubble::update(int deltaTime)
 			speed.x *= -1;
 			t = 0.1;
 		}
-		else if (map->collisionMoveLeft(position, sizeQuad)) {
-			t -= 2 * deltaTime / 100.0;
+		else if (map->collisionMoveLeft(position - glm::ivec2(4,0), sizeQuad)) {
+			t -= deltaTime / 100.0;
 			position.x = initPosBubble.x + speed.x * t;
 			position.y = initPosBubble.y + speed.y * t + 0.5 * g * t * t;
 			initPosBubble = position;

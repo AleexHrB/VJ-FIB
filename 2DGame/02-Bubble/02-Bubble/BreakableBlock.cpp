@@ -1,18 +1,18 @@
 #include "BreakableBlock.h"
 #include<iostream>
 
-void BreakableBlock::init(const glm::ivec2& inPos, bool horizontal, unsigned int size, unsigned int color)
+void BreakableBlock::init(const glm::ivec2& inPos, bool horizontal, unsigned int size, unsigned int color, int tileSize)
 {
 	if (horizontal) {
 		spritesheet.loadFromFile("images/horizontal.png", TEXTURE_PIXEL_FORMAT_RGBA);
-		this->position = glm::ivec2(inPos.x*16, inPos.y*16);
-		this->size = glm::vec2(16*((size - 1) %4 + 1),16);
+		this->position = glm::ivec2(inPos.x*tileSize, inPos.y*tileSize);
+		this->size = glm::vec2(tileSize*((size - 1) %4 + 1),tileSize);
 		this->color = color % 3;
 	}
 		
 	else {
 		this->position = inPos;
-		this->size = glm::vec2(16, 16 * ((size - 1) % 4 + 1));
+		this->size = glm::vec2(tileSize, tileSize * ((size - 1) % 4 + 1));
 		this->color = color % 3;
 		spritesheet.loadFromFile("images/vertical.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	}	
@@ -29,6 +29,7 @@ void BreakableBlock::init(const glm::ivec2& inPos, bool horizontal, unsigned int
 	sprite->addKeyframe(RIGHT, glm::vec2(2.0 / 3.0, 0.f));
 
 	sprite->changeAnimation(LEFT);*/
+	this->tileSize = tileSize;
 }
 
 
@@ -40,11 +41,11 @@ void BreakableBlock::render()
 void BreakableBlock::prepareArrays(ShaderProgram& shaderProgram)
 {
 	if (horizontal) {
-		sprite = Sprite::createSprite(size, glm::vec2((size.x / 16) / 10.0, 1.0 / 15.0), &spritesheet, &shaderProgram);
+		sprite = Sprite::createSprite(size, glm::vec2((size.x / tileSize) / 10.0, 1.0 / 15.0), &spritesheet, &shaderProgram);
 		sprite->setNumberAnimations(2);
 		sprite->setAnimationSpeed(0, 1);
 		//0, 1, 3, 7  --> size - 1 + size - 2
-		int temp = size.x / 16;
+		int temp = size.x / tileSize;
 
 		sprite->addKeyframe(0, glm::vec2( ((temp*(temp - 1))/2)/ 10.0, (color % 3) / 3.0));
 		sprite->changeAnimation(0);
@@ -57,7 +58,7 @@ void BreakableBlock::prepareArrays(ShaderProgram& shaderProgram)
 		sprite->addKeyframe(1, glm::vec2(((temp * (temp - 1)) / 2) / 10.0, (color % 3) / 3.0 + 4 / 15.0));
 	}
 	else {
-		sprite = Sprite::createSprite(size, glm::vec2(1.0 / 10.0, (size.x / 16) / 15.0), &spritesheet, &shaderProgram);
+		sprite = Sprite::createSprite(size, glm::vec2(1.0 / 10.0, (size.x / tileSize) / 15.0), &spritesheet, &shaderProgram);
 	}
 	sprite->setPosition(position);
 }
@@ -70,18 +71,18 @@ glm::ivec2 BreakableBlock::getPosition()
 int BreakableBlock::getSize()
 {
 	if (horizontal)
-		return size.x / 16;
+		return size.x / tileSize;
 	else
-		return size.y / 16;
+		return size.y / tileSize;
 }
 
 glm::ivec2* BreakableBlock::getBlocks()
 {
 	if (horizontal) {
-		int siz = size.x / 16;
+		int siz = size.x / tileSize;
 		glm::ivec2* ret = new glm::ivec2 [siz];
 		for (int i = 0; i < siz; ++i) {
-			ret[i] = glm::ivec2(position.x / 16 + i, position.y / 16);
+			ret[i] = glm::ivec2(position.x / tileSize + i, position.y / tileSize);
 		}
 		return ret;
 	}

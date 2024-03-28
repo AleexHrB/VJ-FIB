@@ -11,6 +11,8 @@ SoundManager::~SoundManager() {
 void SoundManager::init() {
 	engine = createIrrKlangDevice();
 	engine->setSoundVolume(0.05f);
+	effects = createIrrKlangDevice();;
+	effects ->setSoundVolume(0.1f);
 }
 
 ISoundEngine* SoundManager::getSoundEngine() {
@@ -44,4 +46,14 @@ void SoundManager::stopBgMusic() {
 		bgSound->drop();
 		bgSound = nullptr;
 	}
+}
+
+void SoundManager::sound(const char* soundFile)
+{
+	if (soundFX != nullptr) {
+		soundFX->stop();
+		soundFX->drop();
+	}
+	soundFX = effects->play2D(soundFile, false, false, true);
+	//bgSound->setVolume(0.75);
 }

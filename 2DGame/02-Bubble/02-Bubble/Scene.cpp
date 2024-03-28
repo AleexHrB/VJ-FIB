@@ -91,7 +91,7 @@ void Scene::init(unsigned int level)
 		}
 
 		lB.push_back(new Bubble());
-		lB.back()->init(glm::ivec2(0, 0), texProgram, col, siz, glm::ivec2(bubs[i], bubs[i + 1]), glm::vec2(8, 2));
+		lB.back()->init(glm::ivec2(0, 0), texProgram, col, siz, glm::ivec2(bubs[i], bubs[i + 1]), glm::vec2(10, 2));
 		lB.back()->setTileMap(map);
 	}
 
@@ -121,11 +121,38 @@ void Scene::init(unsigned int level)
 	currentTime = 0.0f;
 	timeLimit = 100;
 	freeze = false;
+
+	UI.loadFromFile("images/PowerUpsMin.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	liveSprite = Sprite::createSprite(glm::vec2(32,32), glm::vec2(1.0/6.0f, 1.0/3.0f), &UI, &texProgram);
+	liveSprite->setNumberAnimations(1);
+	liveSprite->setAnimationSpeed(0, 1);
+	liveSprite->addKeyframe(0, glm::vec2(1.0f/3.0f, 2.0/3.0f));
+	liveSprite->changeAnimation(0);
+
+	liveSprite->setPosition(glm::vec2(20, 440));
+	
+	powerUp = Sprite::createSprite(glm::vec2(16, 16), glm::vec2(1 / 6.0f, 1 / 3.0f), &UI, &texProgram);
+	powerUp->setNumberAnimations(3);
+	powerUp->addKeyframe(0, glm::vec2(0.f, 0.f));
+	powerUp->addKeyframe(1, glm::vec2(0.f, 1.0 /3.0f));
+	powerUp->addKeyframe(2, glm::vec2(0.f, 2.0/3.0f));
+
+	powerUp->setPosition(glm::vec2(240, 440));
+	deathCountDown = -1;
 }
 
 void Scene::update(int deltaTime)
 {
-	if (!freeze) currentTime += deltaTime;
+	if (!freeze && deathCountDown == -1) currentTime += deltaTime;
+	if (deathCountDown == 0) {
+		if (player->getLives() == 0) {
+			player->setLives(3);
+			score = 0;
+			this->init(0);
+		}
+		else init(this->level);
+	}
+	else if (deathCountDown > 0) --deathCountDown;
 	player->update(deltaTime);
 	updatePowerUps(deltaTime);
 	for (auto itO = lO.begin(); itO != lO.end();) {
@@ -144,11 +171,10 @@ void Scene::update(int deltaTime)
 
 	for (auto itE = lE.begin(); itE != lE.end();) {
 		Enemy* e = *itE;
-		if (!freeze) e->update(deltaTime);
+		if (!freeze && deathCountDown == -1) e->update(deltaTime);
 		if (!godMode && e->checkCollision(player->getHitbox()) && hitted()) {
 			bool dead = player->substractLive();
-			if (dead) this ->init(0);
-			else init(this->level);
+			deathCountDown = DEATH_FRAMES;
 			break;
 		}
 
@@ -163,15 +189,15 @@ void Scene::update(int deltaTime)
 
 	for (auto itB = lB.begin(); itB != lB.end();) {
 		Bubble* b = *itB;
-		if (b->isDestroying()  || !freeze) b->update(deltaTime);
+		if (b->isDestroying() || (!freeze && deathCountDown == -1)) b->update(deltaTime);
 		if (b->isDestroyed()) {
 			delete b;
 			itB = lB.erase(itB);
 		}
+
 		else if (!godMode && b->checkCollision(player->getHitbox()) && hitted()) {
 			bool dead = player->substractLive();
-			if (dead) this->init(0);
-			else init(this->level);
+			deathCountDown = DEATH_FRAMES;
 			break;
 		}
 
@@ -220,6 +246,7 @@ void Scene::update(int deltaTime)
 					lO.back()->setTileMap(map);
 				}
 			}
+			SoundManager::instance().sound("sounds/Pop.mp3");
 			b -> destroy();
 			
 		}
@@ -254,12 +281,19 @@ void Scene::render()
 	for (Object* o : lO) o->render();
 	if (!menu) {
 		player->render();
+		int lives = player->getLives();
+		for (int i = 0; i < lives; ++i) {
+			liveSprite->setPosition(glm::vec2(20 + 32*i, 440));
+			liveSprite->render();
+		}
+		
+		
 		string time = to_string(int(timeLimit - currentTime / 1000));
 		if (int(timeLimit - currentTime / 1000) < 100 && int(timeLimit - currentTime / 1000) > 9) time = "0" + time;
 		else if (currentTime != 100) time = "00" + time;
 		text.render(("Time  " + time), glm::vec2(560, 48), 32, glm::vec4(1, 1, 1, 1));
-		text.render("Score  " + to_string(score), glm::vec2(20, 440), 16, glm::vec4(1, 1, 1, 1));
-		text.render("Lives  " + to_string(player -> getLives()), glm::vec2(20, 460), 16, glm::vec4(1, 1, 1, 1));
+		text.render("Score  " + to_string(score), glm::vec2(20, 430), 16, glm::vec4(1, 1, 1, 1));
+		
 	}
 }
 
@@ -314,6 +348,7 @@ void Scene::explodeBubbles()
 		lB.back()->init(glm::ivec2(320, 320), texProgram, c, Bubble::Size::TINY, b->getPosition(), glm::vec2(-speed.x, -15));
 		lB.back()->setTileMap(map);
 		
+		SoundManager::instance().sound("sounds/Pop.mp3");
 		b->destroy();
 		//delete b;
 		//itB = lB.erase(itB);
@@ -323,7 +358,7 @@ void Scene::explodeBubbles()
 
 inline bool Scene::hitted()
 {
-	if (currentTime - inmuneTime > 500) {
+	if (currentTime - inmuneTime > 50) {
 		inmuneTime = currentTime;
 		return true;
 	}
