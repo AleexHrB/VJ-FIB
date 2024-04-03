@@ -23,6 +23,7 @@
     <ClInclude Include="Gun.h" />
     <ClInclude Include="Effects.h" />
     <ClInclude Include="Hook.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
@@ -48,6 +49,7 @@
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Hook.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -103,7 +105,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\libs\freetype-2.3.5-1-bin\include\freetype2;..\..\..\libs\freetype-2.3.5-1-bin\include;..\..\..\libs\Simple OpenGL Image Library\src;..\..\..\libs\glew-1.13.0\include;..\..\..\libs\glm;..\..\..\libs\glfw-3.3.8\include;..\..\..\libs\irrKlang\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\libs\freetype-2.3.5-1-bin\include\freetype2;..\..\..\libs\freetype-2.3.5-1-bin\include;..\..\..\libs\Simple OpenGL Image Library\src;..\..\..\libs\glew-1.13.0\include;..\..\..\libs\glm;..\..\..\libs\glfw-3.3.8\include;..\..\..\libs\irrKlang\include;..\..\..\libs\freeglut\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -121,7 +123,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\libs\freetype-2.3.5-1-bin\include\freetype2;..\..\..\libs\freetype-2.3.5-1-bin\include;..\..\..\libs\Simple OpenGL Image Library\src;..\..\..\libs\glew-1.13.0\include;..\..\..\libs\glm;..\..\..\libs\glfw-3.3.8\include;..\..\..\libs\irrKlang\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\libs\freetype-2.3.5-1-bin\include\freetype2;..\..\..\libs\freetype-2.3.5-1-bin\include;..\..\..\libs\Simple OpenGL Image Library\src;..\..\..\libs\glew-1.13.0\include;..\..\..\libs\glm;..\..\..\libs\glfw-3.3.8\include;..\..\..\libs\irrKlang\include;..\..\..\libs\freeglut\include;%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
       <SupportJustMyCode>true</SupportJustMyCode>
     </ClCompile>
     <Link>

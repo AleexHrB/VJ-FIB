@@ -39,6 +39,7 @@ Sprite::Sprite(const glm::vec2 &quadSize, const glm::vec2 &sizeInSpritesheet, Te
 
 void Sprite::update(int deltaTime)
 {
+	globalTime += deltaTime;
 	if (currentAnimation >= 0)
 	{
 		timeAnimation += deltaTime;
@@ -69,6 +70,7 @@ void Sprite::render() const
 	glm::mat4 modelview = glm::translate(glm::mat4(1.0f), glm::vec3(position.x, position.y, 0.f));
 	shaderProgram->setUniformMatrix4f("modelview", modelview);
 	shaderProgram->setUniform2f("texCoordDispl", texCoordDispl.x, texCoordDispl.y);
+	shaderProgram->setUniform1i("time", 0);
 	glEnable(GL_TEXTURE_2D);
 	texture->use();
 	glBindVertexArray(vao);
@@ -77,6 +79,56 @@ void Sprite::render() const
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	glDisable(GL_TEXTURE_2D);
 }
+
+void Sprite::render(glm::vec4 color) const
+{
+	glm::mat4 modelview = glm::translate(glm::mat4(1.0f), glm::vec3(position.x, position.y, 0.f));
+	shaderProgram->setUniformMatrix4f("modelview", modelview);
+	shaderProgram->setUniform2f("texCoordDispl", texCoordDispl.x, texCoordDispl.y);
+	shaderProgram->setUniform1i("time", 0);
+	shaderProgram->setUniform4f("color", color.r, color.g, color.b, color.a);
+	glEnable(GL_TEXTURE_2D);
+	texture->use();
+	glBindVertexArray(vao);
+	glEnableVertexAttribArray(posLocation);
+	glEnableVertexAttribArray(texCoordLocation);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glDisable(GL_TEXTURE_2D);
+}
+
+void Sprite::render(bool flicker) const
+{
+	glm::mat4 modelview = glm::translate(glm::mat4(1.0f), glm::vec3(position.x, position.y, 0.f));
+	shaderProgram->setUniformMatrix4f("modelview", modelview);
+	shaderProgram->setUniform2f("texCoordDispl", texCoordDispl.x, texCoordDispl.y);
+	if (flicker) shaderProgram->setUniform1i("time", globalTime);
+	else shaderProgram->setUniform1i("time", 0);
+	glEnable(GL_TEXTURE_2D);
+	texture->use();
+	glBindVertexArray(vao);
+	glEnableVertexAttribArray(posLocation);
+	glEnableVertexAttribArray(texCoordLocation);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glDisable(GL_TEXTURE_2D);
+}
+
+void Sprite::render(bool flicker, glm::vec4 color) const
+{
+	glm::mat4 modelview = glm::translate(glm::mat4(1.0f), glm::vec3(position.x, position.y, 0.f));
+	shaderProgram->setUniformMatrix4f("modelview", modelview);
+	shaderProgram->setUniform2f("texCoordDispl", texCoordDispl.x, texCoordDispl.y);
+	if (flicker) shaderProgram->setUniform1i("time", globalTime);
+	else shaderProgram->setUniform1i("time", 0);
+	shaderProgram->setUniform4f("color", color.r, color.g, color.b, color.a);
+	glEnable(GL_TEXTURE_2D);
+	texture->use();
+	glBindVertexArray(vao);
+	glEnableVertexAttribArray(posLocation);
+	glEnableVertexAttribArray(texCoordLocation);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glDisable(GL_TEXTURE_2D);
+}
+
 
 void Sprite::free()
 {
@@ -110,6 +162,11 @@ void Sprite::setNextAnimation(int animId)
 {
 	if (animId < int(animations.size())) 
 		nextAnimation = animId;
+}
+
+glm::vec2 Sprite::getPosition()
+{
+	return position;
 }
 
 void Sprite::changeAnimation(int animId)

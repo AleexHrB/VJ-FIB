@@ -69,11 +69,14 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 
 void Player::update(int deltaTime)
 {
-	if (sprite->animation() == DIE_LEFT || sprite->animation() == DIE_RIGHT) return;
+	
 	sprite->update(deltaTime);
 	w->update(deltaTime);
+	if (sprite->animation() == DIE_LEFT || sprite->animation() == DIE_RIGHT) return;
+	if(disabled) disabledTime -= deltaTime;
+	if (disabledTime <= 0) disabled = false;
 
-	if (Game::instance().getKey(GLFW_KEY_C) && !C_pressed)
+	if (Game::instance().getKeyUp(GLFW_KEY_C) && !disabled && sprite->animation() != SHOOT)
 	{
 		if (w->shoot(position + sizeQuad / 2)) {
 			sprite->setNextAnimation(sprite->animation());
@@ -180,10 +183,6 @@ void Player::update(int deltaTime)
 			sprite->changeAnimation(IDLE_CLIMB);
 		}
 	}
-
-	if (!Game::instance().getKey(GLFW_KEY_C)) {
-		C_pressed = false;
-	}
 	
 	if (!Game::instance().getKey(GLFW_KEY_UP))
 		UP_pressed = false;
@@ -203,14 +202,14 @@ void Player::update(int deltaTime)
 		{
 			position.y = int(startY - 96 * sin(3.14159f * jumpAngle / 180.f));
 			if(jumpAngle > 90)
-				bJumping = !map->collisionMoveDown(position, glm::ivec2(64, 64), &position.y);
+				bJumping = !map->collisionMoveDown(position, glm::ivec2(32, 64), &position.y);
 		}
 	}
 	
 	else
 	{
 		if (map->getTileType(position + glm::ivec2(0, sizeQuad.y)) != TileMap::TileType::Ladder && sprite->animation() != CLIMB && sprite->animation() != IDLE_CLIMB) position.y += FALL_STEP;
-		if(map->collisionMoveDown(position, glm::ivec2(64, 64), &position.y))
+		if(map->collisionMoveDown(position, glm::ivec2(32, 64), &position.y))
 		{
 			/*if (Game::instance().getKey(GLFW_KEY_UP))
 			{
@@ -226,9 +225,9 @@ void Player::update(int deltaTime)
 	lastAnim = PlayerAnims(sprite->animation());
 }
 
-void Player::render()
+void Player::render(bool flicker, glm::vec4 color)
 {
-	sprite->render();
+	sprite->render(flicker, color);
 	w->render();
 }
 
@@ -334,6 +333,18 @@ void Player::setTileMap(TileMap* tileMap)
 void Player::setLives(int liv)
 {
 	lives = liv;
+}
+
+void Player::setDisabled(bool disable)
+{
+	disabled = disable;
+	if (disable)
+		disabledTime = DISABLED_TIME;
+}
+
+bool Player::isDisabled()
+{
+	return disabled;
 }
 
 

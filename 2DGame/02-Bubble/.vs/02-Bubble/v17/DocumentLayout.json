@@ -1,101 +1,152 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\",
+  "WorkspaceRootPath": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\BreakableBlock.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\BreakableBlock.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TexturedQuad.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\TexturedQuad.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Sprite.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Sprite.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TexturedQuad.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\TexturedQuad.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Object.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Object.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Object.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Bubble.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\SoundManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\SoundManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Object.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Object.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\SoundManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\SoundManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\BreakableBlock.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\BreakableBlock.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\DoubleHook.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\DoubleHook.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\DoubleHook.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Gun.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Gun.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\StickyHook.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\StickyHook.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Hook.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Hook.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Weapon.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Weapon.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Gun.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Gun.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\BreakableBlock.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\BreakableBlock.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\SoundManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\SoundManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\SoundManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\SoundManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\BreakableBlock.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\BreakableBlock.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Bird.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Bird.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Crab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Crab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Effects.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Effects.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Bubble.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Bubble.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Object.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Object.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\TexturedQuad.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\TexturedQuad.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\TexturedQuad.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\TexturedQuad.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Sprite.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Sprite.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Text.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Text.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Sprite.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Sprite.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\ShaderProgram.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\ShaderProgram.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\ShaderProgram.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\ShaderProgram.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Gun.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Gun.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Crab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Crab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\istream||{3B902123-F8A7-4915-9F01-361F908088D0}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -105,305 +156,459 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 13,
               "Title": "Game.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Game.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Game.cpp",
               "RelativeDocumentMoniker": "02-Bubble\\Game.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Game.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Game.cpp",
               "RelativeToolTip": "02-Bubble\\Game.cpp",
-              "ViewState": "AQIAABsAAAAAAAAAAAAAACUAAAAcAAAA",
+              "ViewState": "AQIAAHQAAAAAAAAAAAAiwJQAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-03-25T12:26:59.157Z",
               "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Scene.h",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Scene.h",
               "RelativeDocumentMoniker": "02-Bubble\\Scene.h",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Scene.h",
               "RelativeToolTip": "02-Bubble\\Scene.h",
-              "ViewState": "AQIAABoAAAAAAAAAAAArwC4AAAARAAAA",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAiwCEAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-03-25T11:03:41.276Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Player.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Player.h",
+              "RelativeDocumentMoniker": "02-Bubble\\Player.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Player.h",
+              "RelativeToolTip": "02-Bubble\\Player.h",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAABEAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-27T16:38:11.536Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Game.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Game.h",
+              "RelativeDocumentMoniker": "02-Bubble\\Game.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Game.h",
+              "RelativeToolTip": "02-Bubble\\Game.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-28T10:38:36.802Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\main.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\main.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\main.cpp",
+              "RelativeToolTip": "02-Bubble\\main.cpp",
+              "ViewState": "AQIAABsAAAAAAAAAAAAUwDMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-25T19:24:33.754Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Weapon.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Weapon.h",
+              "RelativeDocumentMoniker": "02-Bubble\\Weapon.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Weapon.h",
+              "RelativeToolTip": "02-Bubble\\Weapon.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-28T18:52:49.717Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Player.h",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Player.h",
-              "RelativeDocumentMoniker": "02-Bubble\\Player.h",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Player.h",
-              "RelativeToolTip": "02-Bubble\\Player.h",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAACsAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-27T16:38:11.536Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Player.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Player.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\Player.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Player.cpp",
-              "RelativeToolTip": "02-Bubble\\Player.cpp",
-              "ViewState": "AQIAADoAAAAAAAAAAAArwEcAAABRAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-26T21:01:49.47Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TexturedQuad.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TexturedQuad.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\TexturedQuad.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TexturedQuad.cpp",
-              "RelativeToolTip": "02-Bubble\\TexturedQuad.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-27T23:06:13.468Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "BreakableBlock.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\BreakableBlock.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\BreakableBlock.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\BreakableBlock.cpp",
-              "RelativeToolTip": "02-Bubble\\BreakableBlock.cpp",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAADgAAABkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-25T18:41:19.432Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Gun.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Gun.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\Gun.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Gun.cpp",
-              "RelativeToolTip": "02-Bubble\\Gun.cpp",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAjwBwAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-25T18:22:50.943Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
               "Title": "DoubleHook.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\DoubleHook.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\DoubleHook.cpp",
               "RelativeDocumentMoniker": "02-Bubble\\DoubleHook.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\DoubleHook.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\DoubleHook.cpp",
               "RelativeToolTip": "02-Bubble\\DoubleHook.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAWAAAA",
+              "ViewState": "AQIAAAQAAAAAAAAAAAArwBgAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-03-25T18:21:16.591Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 2,
               "Title": "TileMap.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TileMap.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\TileMap.cpp",
               "RelativeDocumentMoniker": "02-Bubble\\TileMap.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TileMap.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\TileMap.cpp",
               "RelativeToolTip": "02-Bubble\\TileMap.cpp",
-              "ViewState": "AQIAAEEBAAAAAAAAAAAiwF4BAAAdAAAA",
+              "ViewState": "AQIAAAUBAAAAAAAAAAArwBcBAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-03-25T18:20:51.94Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Texture.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Texture.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\Texture.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Texture.cpp",
-              "RelativeToolTip": "02-Bubble\\Texture.cpp",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABAAAAAaAAAA",
+              "DocumentIndex": 7,
+              "Title": "StickyHook.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\StickyHook.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\StickyHook.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\StickyHook.cpp",
+              "RelativeToolTip": "02-Bubble\\StickyHook.cpp",
+              "ViewState": "AQIAABAAAAAAAAAAAAArwC4AAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-25T19:18:22.009Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "TexturedQuad.h",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TexturedQuad.h",
-              "RelativeDocumentMoniker": "02-Bubble\\TexturedQuad.h",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TexturedQuad.h",
-              "RelativeToolTip": "02-Bubble\\TexturedQuad.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-27T23:06:17.546Z"
+              "WhenOpened": "2024-03-28T18:53:12.237Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Menu.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Menu.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Menu.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Menu.cpp",
+              "RelativeToolTip": "02-Bubble\\Menu.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGgAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-29T09:35:24.7Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Scene.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Scene.cpp",
               "RelativeDocumentMoniker": "02-Bubble\\Scene.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Scene.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Scene.cpp",
               "RelativeToolTip": "02-Bubble\\Scene.cpp",
-              "ViewState": "AQIAAFIBAAAAAAAAAAArwGEBAAAYAAAA",
+              "ViewState": "AQIAAMgAAAAAAAAAAAAAAN8AAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-27T20:28:13.914Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-27T20:28:13.914Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Game.h",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Game.h",
-              "RelativeDocumentMoniker": "02-Bubble\\Game.h",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Game.h",
-              "RelativeToolTip": "02-Bubble\\Game.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-28T10:38:36.802Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Sprite.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Sprite.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\Sprite.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Sprite.cpp",
-              "RelativeToolTip": "02-Bubble\\Sprite.cpp",
-              "ViewState": "AQIAADAAAAAAAAAAAAAAAAcAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-27T23:08:35.342Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Bubble.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\Bubble.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Bubble.cpp",
-              "RelativeToolTip": "02-Bubble\\Bubble.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEUAAABKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-26T21:09:55.392Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "SoundManager.h",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\SoundManager.h",
-              "RelativeDocumentMoniker": "02-Bubble\\SoundManager.h",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\SoundManager.h",
-              "RelativeToolTip": "02-Bubble\\SoundManager.h",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAB8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-27T19:18:01.545Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 0,
               "Title": "Object.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Object.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Object.cpp",
               "RelativeDocumentMoniker": "02-Bubble\\Object.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Object.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Object.cpp",
               "RelativeToolTip": "02-Bubble\\Object.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFEAAABWAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-25T13:13:55.956Z"
+              "WhenOpened": "2024-03-25T13:13:55.956Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "SoundManager.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\SoundManager.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\SoundManager.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\SoundManager.cpp",
-              "RelativeToolTip": "02-Bubble\\SoundManager.cpp",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAADQAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-27T19:18:27.346Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Object.h",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Object.h",
-              "RelativeDocumentMoniker": "02-Bubble\\Object.h",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Object.h",
-              "RelativeToolTip": "02-Bubble\\Object.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-27T20:41:11.567Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "BreakableBlock.h",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\BreakableBlock.h",
-              "RelativeDocumentMoniker": "02-Bubble\\BreakableBlock.h",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\BreakableBlock.h",
-              "RelativeToolTip": "02-Bubble\\BreakableBlock.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-25T18:41:34.898Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 16,
               "Title": "TileMap.h",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TileMap.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\TileMap.h",
               "RelativeDocumentMoniker": "02-Bubble\\TileMap.h",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\TileMap.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\TileMap.h",
               "RelativeToolTip": "02-Bubble\\TileMap.h",
-              "ViewState": "AQIAABoAAAAAAAAAAAArwDAAAAATAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-03-25T20:19:58.514Z"
             },
             {
               "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Hook.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Hook.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Hook.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Hook.cpp",
+              "RelativeToolTip": "02-Bubble\\Hook.cpp",
+              "ViewState": "AQIAAAUAAAAAAAAAAAArwCAAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-29T15:58:53.125Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Player.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Player.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Player.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Player.cpp",
+              "RelativeToolTip": "02-Bubble\\Player.cpp",
+              "ViewState": "AQIAADsAAAAAAAAAAAArwE8AAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-26T21:01:49.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Gun.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Gun.h",
+              "RelativeDocumentMoniker": "02-Bubble\\Gun.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Gun.h",
+              "RelativeToolTip": "02-Bubble\\Gun.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-28T18:59:31.725Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Gun.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Gun.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Gun.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Gun.cpp",
+              "RelativeToolTip": "02-Bubble\\Gun.cpp",
+              "ViewState": "AQIAAGcAAAAAAAAAAAAiwHoAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-25T18:22:50.943Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 21,
+              "Title": "BreakableBlock.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\BreakableBlock.h",
+              "RelativeDocumentMoniker": "02-Bubble\\BreakableBlock.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\BreakableBlock.h",
+              "RelativeToolTip": "02-Bubble\\BreakableBlock.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-25T18:41:34.898Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "BreakableBlock.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\BreakableBlock.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\BreakableBlock.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\BreakableBlock.cpp",
+              "RelativeToolTip": "02-Bubble\\BreakableBlock.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-25T18:41:19.432Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "SoundManager.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\SoundManager.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\SoundManager.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\SoundManager.cpp",
+              "RelativeToolTip": "02-Bubble\\SoundManager.cpp",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAAADgAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-27T19:18:27.346Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Menu.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Menu.h",
+              "RelativeDocumentMoniker": "02-Bubble\\Menu.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Menu.h",
+              "RelativeToolTip": "02-Bubble\\Menu.h",
+              "ViewState": "AQIAAAwAAAAAAAAAAAArwCcAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-29T09:27:20.839Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "SoundManager.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\SoundManager.h",
+              "RelativeDocumentMoniker": "02-Bubble\\SoundManager.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\SoundManager.h",
+              "RelativeToolTip": "02-Bubble\\SoundManager.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-27T19:18:01.545Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "istream",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\istream",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\istream",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\istream",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\istream",
+              "ViewState": "AQIAABEDAAAAAAAAAAAiwCQDAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-03-29T17:07:51.762Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "TexturedQuad.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\TexturedQuad.h",
+              "RelativeDocumentMoniker": "02-Bubble\\TexturedQuad.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\TexturedQuad.h",
+              "RelativeToolTip": "02-Bubble\\TexturedQuad.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAArwBEAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-27T23:06:17.546Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Effects.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Effects.h",
+              "RelativeDocumentMoniker": "02-Bubble\\Effects.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Effects.h",
+              "RelativeToolTip": "02-Bubble\\Effects.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABMAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-28T18:06:37.145Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ShaderProgram.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\ShaderProgram.h",
+              "RelativeDocumentMoniker": "02-Bubble\\ShaderProgram.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\ShaderProgram.h",
+              "RelativeToolTip": "02-Bubble\\ShaderProgram.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-28T14:04:12.864Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Text.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Text.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Text.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Text.cpp",
+              "RelativeToolTip": "02-Bubble\\Text.cpp",
+              "ViewState": "AQIAAGcAAAAAAAAAAAAiwIYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-28T23:48:17.492Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Object.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Object.h",
+              "RelativeDocumentMoniker": "02-Bubble\\Object.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Object.h",
+              "RelativeToolTip": "02-Bubble\\Object.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-27T20:41:11.567Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Bird.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Bird.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Bird.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Bird.cpp",
+              "RelativeToolTip": "02-Bubble\\Bird.cpp",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAQwEIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-29T12:04:25.155Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Crab.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Crab.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Crab.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Crab.cpp",
+              "RelativeToolTip": "02-Bubble\\Crab.cpp",
+              "ViewState": "AQIAACMAAAAAAAAAAAAQwDYAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-25T11:31:15.591Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "TexturedQuad.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\TexturedQuad.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\TexturedQuad.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\TexturedQuad.cpp",
+              "RelativeToolTip": "02-Bubble\\TexturedQuad.cpp",
+              "ViewState": "AQIAABEAAAAAAAAAAAAiwCQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-27T23:06:13.468Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Bubble.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Bubble.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Bubble.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Bubble.cpp",
+              "RelativeToolTip": "02-Bubble\\Bubble.cpp",
+              "ViewState": "AQIAAFIAAAAAAAAAAAAQwGcAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-26T21:09:55.392Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Sprite.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Sprite.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Sprite.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Sprite.cpp",
+              "RelativeToolTip": "02-Bubble\\Sprite.cpp",
+              "ViewState": "AQIAAJgAAAAAAAAAAAAiwKsAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-27T23:08:35.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
               "Title": "Microsoft.CppCommon.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets",
               "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets",
               "ViewState": "AQIAAN8CAAAAAAAAAAAewPICAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
               "WhenOpened": "2024-03-25T19:57:13.573Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "main.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\main.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\main.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\main.cpp",
-              "RelativeToolTip": "02-Bubble\\main.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-25T19:24:33.754Z"
+              "DocumentIndex": 31,
+              "Title": "Sprite.h",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Sprite.h",
+              "RelativeDocumentMoniker": "02-Bubble\\Sprite.h",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Sprite.h",
+              "RelativeToolTip": "02-Bubble\\Sprite.h",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAACoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-28T13:57:57.516Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Crab.cpp",
-              "DocumentMoniker": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Crab.cpp",
-              "RelativeDocumentMoniker": "02-Bubble\\Crab.cpp",
-              "ToolTip": "C:\\Users\\Lluc\\Documents\\Carpeta\\NuevaCarpeta\\Uni\\Q8\\Vj\\VJ-FIB\\2DGame\\02-Bubble\\02-Bubble\\Crab.cpp",
-              "RelativeToolTip": "02-Bubble\\Crab.cpp",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABcAAAAnAAAA",
+              "DocumentIndex": 34,
+              "Title": "Texture.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Texture.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Texture.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\Texture.cpp",
+              "RelativeToolTip": "02-Bubble\\Texture.cpp",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABAAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-25T11:31:15.591Z"
+              "WhenOpened": "2024-03-25T19:18:22.009Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ShaderProgram.cpp",
+              "DocumentMoniker": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\ShaderProgram.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\ShaderProgram.cpp",
+              "ToolTip": "C:\\Users\\Lluc\\Desktop\\LlucClavera\\Projecte\\Bubble\\02-Bubble\\ShaderProgram.cpp",
+              "RelativeToolTip": "02-Bubble\\ShaderProgram.cpp",
+              "ViewState": "AQIAADAAAAAAAAAAAAArwEYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-28T14:02:58.805Z"
             }
           ]
         }

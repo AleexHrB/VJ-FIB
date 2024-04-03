@@ -25,6 +25,9 @@ public:
 
 	void update(int deltaTime);
 	void render() const;
+	void render(glm::vec4 color) const;
+	void render(bool flicker) const;
+	void render(bool flicker, glm::vec4 color) const;
 	void free();
 
 	void setNumberAnimations(int nAnimations);
@@ -34,6 +37,7 @@ public:
 	int animation() const;
 	void loopAnimation(int animId, bool loop);
 	void setNextAnimation(int animId);
+	glm::vec2 getPosition();
 
 	void setPosition(const glm::vec2 &pos);
 
@@ -44,7 +48,7 @@ private:
 	GLuint vbo;
 	GLint posLocation, texCoordLocation;
 	glm::vec2 position;
-	int currentAnimation, currentKeyframe, nextAnimation;
+	int currentAnimation, currentKeyframe, nextAnimation, globalTime;
 	float timeAnimation;
 	glm::vec2 texCoordDispl;
 	vector<AnimKeyframes> animations;

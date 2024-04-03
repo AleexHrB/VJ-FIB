@@ -29,6 +29,9 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 		Game::instance().mouseRelease(button);
 }
 
+static void reshapeCallBack(GLFWwindow* window, int w, int h) {
+	Game::instance().resize(w, h);
+}
 
 int main(void)
 {
@@ -51,6 +54,7 @@ int main(void)
 	glfwSetWindowPos(window, 100, 100);
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
+	glfwSetWindowSizeCallback(window, reshapeCallBack);
 
 	/* Set callbacks */
 	glfwSetKeyCallback(window, key_callback);

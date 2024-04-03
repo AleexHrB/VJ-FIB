@@ -4,11 +4,13 @@ enum Effects {
 	GUN,
 	DOUBLE,
 	STICK,
-	HOOK,
 	DYNAMITE,
 	FREEZE,
 	SLOW,
-	SIZE_EFF
+	SIZE_EFF,
+	UNFREEZE,
+	UNSLOW,
+	HOOK
 };
 
 enum Fruit {

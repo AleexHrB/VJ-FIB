@@ -10,9 +10,9 @@ SoundManager::~SoundManager() {
 
 void SoundManager::init() {
 	engine = createIrrKlangDevice();
-	engine->setSoundVolume(0.05f);
+	engine->setSoundVolume(0.5f);
 	effects = createIrrKlangDevice();;
-	effects ->setSoundVolume(0.1f);
+	effects ->setSoundVolume(0.5f);
 }
 
 ISoundEngine* SoundManager::getSoundEngine() {

@@ -16,7 +16,9 @@
 #include "SoundManager.h"
 
 #define DEATH_FRAMES 15
-#define READY_FRAMES 15
+#define READY_TIME 2000
+#define STAGE_CLEAR_TIME 4800
+
 
 // Scene contains all the entities of our game.
 // It is responsible for updating and render them.
@@ -34,6 +36,7 @@ public:
 	void render();
 	void treatPowerUp(Effects f);
 	void changeGodMode();
+	void unload();
 
 private:
 	void initShaders();
@@ -48,9 +51,10 @@ private:
 	glm::mat4 projection;
 	inline bool hitted();
 	Text text;
-	bool menu;
+	bool menu, poweredUp;
 	bool freeze = false;
-	int score;
+	bool slowed = false;
+	int score, startTimer, stageCompletedTimer;
 	unsigned int level;
 	bool godMode = false;
 	unsigned int timeLimit;

@@ -13,6 +13,7 @@ public:
 	glm::ivec2* getBlocks();
 	void destroy();
 	void update(int deltatime);
+	int getBouns();
 
 protected:
 	glm::ivec2 position, size;
@@ -24,6 +25,7 @@ protected:
 	ShaderProgram texProgram;
 	Sprite* sprite;
 	float g = 1.8;
+	int bonus = 200;
 	int tileSize;
 };
 

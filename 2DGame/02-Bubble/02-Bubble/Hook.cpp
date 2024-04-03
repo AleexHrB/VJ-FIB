@@ -1,5 +1,6 @@
 #include "Hook.h"
 #include <iostream>
+#include "Game.h"
 
 void Hook::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 {
@@ -14,7 +15,8 @@ void Hook::update(int deltaTime)
 		if (!map -> collisionMoveUp(position, glm::ivec2(9, y0 - position.y), &position.y)) position.y -= 4;
 		else {
 			shooted = false;
-			map->weaponColision(position, glm::ivec2(9, y0 - position.y));
+			if(map->weaponColision(position, glm::ivec2(9, y0 - position.y)))
+				Game::instance().addScore(BLOCK_BONUS);
 		}
 		sprite = Sprite::createSprite(glm::ivec2(9, y0 - position.y), glm::vec2(1.0f, (y0 - position.y) / 188.0), &spritesheet, &texProgram);
 		sprite->setPosition(glm::vec2(float(position.x), float(position.y)));
@@ -28,6 +30,7 @@ bool Hook::shoot(const glm::ivec2& pos)
 		y0 = pos.y + 32;
 		sprite = Sprite::createSprite(glm::ivec2(9, y0 - position.y), glm::vec2(1.0f, (y0 - position.y) / 188.0), &spritesheet, &texProgram);
 		shooted = true;
+		SoundManager::instance().sound("sounds/shoot.wav");
 		return true;
 	}
 	return false;

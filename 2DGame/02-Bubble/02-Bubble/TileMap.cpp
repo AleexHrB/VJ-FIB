@@ -3,6 +3,7 @@
 #include <sstream>
 #include <vector>
 #include "TileMap.h"
+#include "SoundManager.h"
 
 
 using namespace std;
@@ -112,6 +113,10 @@ bool TileMap::loadLevel(const string &levelFile)
 
 	getline(fin, line);
 	sstream.str(line);
+	sstream >> bgMusic;
+
+	getline(fin, line);
+	sstream.str(line);
 	sstream >> nBBlocks;
 	breakableBlocks = new BreakableBlock[nBBlocks];
 	for (int i = 0; i < nBBlocks; ++i) {
@@ -147,7 +152,7 @@ bool TileMap::loadLevel(const string &levelFile)
 			map[j*mapSize.x+i] = tile;
 			if (tile == 0) tileType[j * mapSize.x + i] = TileMap::Air;
 			else if (tile == 1 || tile == 4 || tile == 7 || tile == 10) tileType[j * mapSize.x + i] = TileMap::Ladder;
-			else if (tile > 0 && tile <= 12) tileType[j * mapSize.x + i] = TileMap::Air;
+			else if (tile > 0 && tile <= 12) tileType[j * mapSize.x + i] = TileMap::SolidLadder;
 			else if (tileType[j * mapSize.x + i] != TileMap::Breakable) tileType[j * mapSize.x + i] = TileMap::SolidBlock;
 		}
 	}
@@ -164,7 +169,7 @@ bool TileMap::loadLevel(const string &levelFile)
 	}
 
 	fin.close();
-	
+	SoundManager::instance().changeBgMusic(bgMusic.c_str(), true, false);
 	return true;
 }
 
@@ -286,7 +291,10 @@ bool TileMap::weaponColision(const glm::ivec2 &pos, const glm::ivec2 &size)
 							tileType[yBlock * mapSize.x + xBlock] = TileMap::Air;
 						}
 						breakableBlocks[i].destroy();
+						SoundManager::instance().sound("sounds/break.wav");
+						return true;
 					}
+					
 				}		
 			}
 		}
@@ -335,7 +343,7 @@ bool TileMap::collisionMoveDown(const glm::ivec2 &pos, const glm::ivec2 &size, i
 	y = (pos.y + size.y - 1) / tileSize;
 	for(int x=x0; x<=x1; x++)
 	{
-		if (tileType[y * mapSize.x + x] == TileMap::SolidBlock || tileType[y * mapSize.x + x] == TileMap::Breakable)
+		if (tileType[y * mapSize.x + x] == TileMap::SolidBlock || tileType[y * mapSize.x + x] == TileMap::Breakable || tileType[y * mapSize.x + x] == TileMap::Ladder || tileType[y * mapSize.x + x] == TileMap::SolidLadder)
 		{
 			if(*posY - tileSize * y + size.y <= 4)
 			{

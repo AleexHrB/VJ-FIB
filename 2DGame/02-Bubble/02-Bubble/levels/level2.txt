@@ -2,8 +2,9 @@ TILEMAP
 48 26                           -- Size of tile map in tiles
 16  16                             -- Tile size & block size
 images/TileMap.png     -- Tilesheet
-images/MontanaMuerte.png -- Background
+images/SagradaFamiliaNight.png -- Background
 24 3                                 -- Number of tiles in tilesheet
+sounds/Spain.mp3 
 4 
 16 8 1 4 2 
 20 8 1 4 2 

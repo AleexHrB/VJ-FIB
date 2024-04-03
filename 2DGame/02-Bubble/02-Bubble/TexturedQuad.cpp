@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include "TexturedQuad.h"
+#include <iostream>
 
 
 TexturedQuad *TexturedQuad::createTexturedQuad(glm::vec2 geom[2], glm::vec2 texCoords[2], ShaderProgram &program)

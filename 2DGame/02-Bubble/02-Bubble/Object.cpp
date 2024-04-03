@@ -1,15 +1,19 @@
 #include "Object.h"
+#include <iostream>
+#include "SoundManager.h"
 
 void Object::update(int deltaTime)
 {
     sprite->update(deltaTime);
-    if (!map->collisionMoveDown(position, sizeQuad, &position.y) && !ground) {
+    if (!map->collisionMoveDown(position, sizeQuad, &position.y)) {
         t += deltaTime / 100.0;
         position.x = initPos.x + t * speed.x;
         position.y = initPos.y + t * speed.y;
         sprite->setPosition(position);
     }
     else {
+        initPos = position;
+        t = 0.1;
         ground = true;
     }
 }
@@ -22,7 +26,10 @@ Effects Object::applyEffect()
 unsigned int Object::getBonus()
 {
     if (this -> eff != Effects::GET_BONUS) return 0;
-    else return this -> f == Fruit::CHERRY ? 500 : this->f * 1000;
+    else  {
+        SoundManager::instance().sound("sounds/gem.wav");
+        return this->f == Fruit::CHERRY ? 500 : this->f * 1000;
+    }
 }
 
 void Object::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, const glm::vec2& pos)
@@ -76,8 +83,6 @@ void Object::loadPowerUp()
     case Effects::SLOW:
         fr = 8;
         break;
-    default:
-        fr = 0;
     }
     sprite = Sprite::createSprite(sizeQuad, glm::vec2(1.0 / 6.0, 1.0 / 3.0), &spritesheet, &texProgram);
     sprite->setNumberAnimations(1);

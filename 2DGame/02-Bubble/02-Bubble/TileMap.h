@@ -25,6 +25,7 @@ public:
 		Ladder,
 		Air,
 		SolidBlock,
+		SolidLadder,
 		Breakable
 	};
 	// Tile maps can only be created inside an OpenGL context
@@ -58,6 +59,7 @@ private:
 	GLint posLocation, texCoordLocation;
 	GLint backPosLocation, backTexCoordLocation;
 	int nTiles;
+	string bgMusic;
 	glm::ivec2 position, mapSize, tilesheetSize, backgroundSize;
 	int tileSize, blockSize;
 	Texture tilesheet, background;

@@ -1,10 +1,13 @@
 #include "Gun.h"
 #include <iostream>
+#include "Game.h"
+
 enum Anims {
 	EXPAND,
 	NOT_EXPAND,
-	SIZE
+	SIZE_ANIMS
 };
+
 void Gun::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 {
 	spritesheet.loadFromFile("images/Gun.png", TEXTURE_PIXEL_FORMAT_RGBA);
@@ -12,7 +15,7 @@ void Gun::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 	sprite = Sprite::createSprite(glm::ivec2(20, 20), glm::vec2(0.5f, 1.0f), &spritesheet, &shaderProgram);
 	//sprite->setPosition(this -> position);
 
-	sprite->setNumberAnimations(SIZE);
+	sprite->setNumberAnimations(SIZE_ANIMS);
 
 	sprite->setAnimationSpeed(EXPAND, 2);
 	sprite->addKeyframe(EXPAND, glm::vec2(0.0f, 0.0f));
@@ -44,7 +47,8 @@ void Gun::update(int deltaTime)
 		else {
 			used[i] = false;
 			--currentBullets;
-			map->weaponColision(v[i].first, this -> sizeQuad);
+			if(map->weaponColision(v[i].first, this -> sizeQuad))
+				Game::instance().addScore(BLOCK_BONUS);
 		}
 	}
 }
@@ -56,6 +60,7 @@ bool Gun::shoot(const glm::ivec2& pos)
 		used[nextPlace] = true;
 		++currentBullets;
 		nextPlace = (nextPlace+1) % 4;
+		SoundManager::instance().sound("sounds/laser.mp3");
 		return true;
 	}
 	return false;
@@ -75,9 +80,9 @@ void Gun::render()
 
 void Gun::hitted()
 {
-	shooted = false;
-	currentBullets = 0;
-	for (unsigned int i = 0; i < v.size(); ++i) used[i] = false;
+	//shooted = false;
+	//currentBullets = 0;
+	//for (unsigned int i = 0; i < v.size(); ++i) used[i] = false;
 }
 
 bool Gun::checkCollisionProj(const pair<glm::ivec2, glm::ivec2>& hitbox, Bubble* b)
@@ -104,6 +109,7 @@ bool Gun::checkCollisionProj(const pair<glm::ivec2, glm::ivec2>& hitbox, Bubble*
 
 			if (check) {
 				used[i] = false;
+				--currentBullets;
 				return true;
 			}
 		}
@@ -118,7 +124,7 @@ Sprite* Gun::newBullet()
 	s = Sprite::createSprite(glm::ivec2(20, 20), glm::vec2(0.5f, 1.0f), &spritesheet, &texProgram);
 	//sprite->setPosition(this -> position);
 
-	s->setNumberAnimations(SIZE);
+	s->setNumberAnimations(SIZE_ANIMS);
 
 	s->setAnimationSpeed(EXPAND, 2);
 	s->addKeyframe(EXPAND, glm::vec2(0.0f, 0.0f));

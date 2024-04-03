@@ -105,3 +105,8 @@ void BreakableBlock::update(int deltatime)
 	if (breaking && sprite->animation() == 0) broken = true;
 }
 
+int BreakableBlock::getBouns()
+{
+	return bonus;
+}
+

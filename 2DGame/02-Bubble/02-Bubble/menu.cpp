@@ -1,9 +1,7 @@
-﻿#include "menu.h"
-#include <iostream>
+#include "Menu.h"
 #include "Game.h"
-#include <GLFW/glfw3.h>
 #include <glm/gtc/matrix_transform.hpp>
-
+#include <iostream>
 
 Menu::Menu()
 {
@@ -13,227 +11,189 @@ Menu::Menu()
 
 Menu::~Menu()
 {
-	//menuNavSrc->drop();
 }
 
 void Menu::init()
 {
+	scene = 0;
+	selected = 0;
+	backgroundSize = glm::vec2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
-	textObj.init("fonts/PixelFont.ttf", glm::ivec2(0,0), projection);
-	titleObj.init("fonts/AncientModernTales.otf", glm::ivec2(0, 0), projection);
-	//Harcoded :+1:
+	textObj.init("fonts/PixelFont.ttf");
+	titleObj.init("fonts/AncientModernTales.otf");
 
 	initShaders();
 
-	//vector<pair<string, glm::ivec2>>
-	//EJEMPLO:
+	texts.resize(SIZE);
 
-	texts.resize(8);
-	images.resize(8);
+	texts[MAIN_MENU] = {
+		{"PLAY", glm::ivec2(SCREEN_WIDTH / 2 - 32, SCREEN_HEIGHT / 2 + 35), 16},
+		{"HOW TO PLAY", glm::ivec2(SCREEN_WIDTH / 2 - 88, SCREEN_HEIGHT / 2 + 85), 16},
+		{"CREDITS", glm::ivec2(SCREEN_WIDTH / 2 - 56, SCREEN_HEIGHT / 2 + 135), 16},
+		{"EXIT", glm::ivec2(SCREEN_WIDTH / 2 - 32, SCREEN_HEIGHT / 2 + 185), 16}
+	};
 
-	texts[MAIN_MENU] = { {"PLAY", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) + 1, 16, 1},
-		{"HOW TO PLAY", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 50), 16, 1},
-		{"CREDITS", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 100), 16, 1},
-		{"EXIT", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 150), 16, 1}
+
+	texts[HOW_TO_PLAY_OBJECTIVE] =
+	{
+		{"OBJECTIVE AND CONTROLS", glm::ivec2(SCREEN_WIDTH / 2 - 176, 50), 16},
+		{"The goal of the game is to destroy all the bubbles!", glm::ivec2(40, 140), 10},
+		{"Use the arrow keys to move arround, and press c to shoot your", glm::ivec2(40, 160), 10},
+		{"weapon!", glm::ivec2(40, 180), 10},
+		{"If you get hit by a bubble or the time runs out, you will", glm::ivec2(40, 200), 10},
+		{"Lose a live", glm::ivec2(40, 220), 10},
+		{"Try to complete the stage as quick as posible!", glm::ivec2(40, 240), 10},
+		{"To test, you can use the numbers (1,2,3,...) to switch ", glm::ivec2(40, 260), 10},
+		{"between levels, G to activate God mode and the keys T,Y,U,I,", glm::ivec2(40, 280), 10},
+		{"O and P To activate powerUps (Gun, Sticky, Double hook, ", glm::ivec2(40, 300), 10},
+		{"dynamite, freeze and slow). Keys K and L revert ", glm::ivec2(40, 320), 10},
+		{"the effects of freeze and slow", glm::ivec2(40, 340), 10},
+		{">", glm::ivec2(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 50), 64}
+	};
+
+	texts[HOW_TO_PLAY_POWER_UPS] =
+	{
+		{"POWER UPS", glm::ivec2(SCREEN_WIDTH / 2 - 72, 50), 16},
+		{"Bubbles will sometimes drop powerUps or fruits when destroyed", glm::ivec2(40, 120), 10},
+		{"There are multiple power ups that will aid you!", glm::ivec2(40, 140), 10},
+		{"Gun: The gun tranforms your weapon into a gun, with it you ", glm::ivec2(40, 160), 10},
+		{"can shoot up to 4 bullets!!", glm::ivec2(40, 180), 10},
+		{"Sticky Hook: Sticky hook sticks to the ceiling", glm::ivec2(40, 200), 10},
+		{"Double Hook: Double hook allows you to shoot two hooks", glm::ivec2(40, 220), 10},
+		{"Clock: This powerUP freezes, bubbles, enemies and even time!", glm::ivec2(40, 240), 10},
+		{"Sand Clock: This powerUP slows down every bubbles", glm::ivec2(40, 260), 10},
+		{"Dynamite: Dynamite pops every bubble until they reach the ", glm::ivec2(40, 280), 10},
+		{"minimum size", glm::ivec2(40, 300), 10},
+		{"Fruits: Pick up fruits to increase your score!", glm::ivec2(40, 320), 10},
+		{ "<", glm::ivec2(50, SCREEN_HEIGHT - 50), 64 },
+		{">", glm::ivec2(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 50), 64}
+	};
+
+	texts[HOW_TO_PLAY_ENEMIES] =
+	{
+		{"ENEMIES AND BONUSES", glm::ivec2(SCREEN_WIDTH / 2 - 152, 50), 16},
+		{"Somtimes, enemies may appear!", glm::ivec2(40, 120), 10},
+		{"If an enemy hits you, you will lose your active powerUP and", glm::ivec2(40, 140), 10},
+		{"you will alse be unable to shoot for a while", glm::ivec2(40, 160), 10},
+		{"If you hit the enemies with your weapon you will get ", glm::ivec2(40, 180), 10},
+		{"bonus score!", glm::ivec2(40, 200), 10},
+		{ "<", glm::ivec2(50, SCREEN_HEIGHT - 50), 64 },
+	};
+
+	texts[HOW_TO_PLAY_SORROUNDING] =
+	{
+		{"SORROUNDINGS", glm::ivec2(SCREEN_WIDTH / 2 - 96, 50), 16},
+		{"There are also breakable blocks and ladders!", glm::ivec2(40, 140), 10},
+		{"When your weapon hits a breakable block, it breaks!", glm::ivec2(40, 160), 10},
+		{"Breaking blocks also increases your score!", glm::ivec2(40, 160), 10},
+		{"Ladders are climbable with the arrows up and down!", glm::ivec2(40, 200), 10},
+		{"You can even shoot while you are climbing!", glm::ivec2(40, 220), 10},  
+		{">", glm::ivec2(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 50), 64}
 	};
 
 	texts[CREDITS] =
 	{
-		{"DEVELOPED BY", glm::ivec2(SCREEN_WIDTH / 2, 75), 16, 1},
-		{"Alex Herrero", glm::ivec2(SCREEN_WIDTH / 2, 100), 16, 1},
-		{"Lluc Clavera", glm::ivec2(SCREEN_WIDTH / 2, 125), 16, 1},
-		{"ORIGINAL BY", glm::ivec2(SCREEN_WIDTH / 2, 200), 16, 1},
-		{"Juan J. Martinez", glm::ivec2(SCREEN_WIDTH / 2, 225), 16, 1},
-		{"ART & MUSIC FROM", glm::ivec2(SCREEN_WIDTH / 2, 275), 16, 1},
-		{"Castlevania", glm::ivec2(SCREEN_WIDTH / 2, 300), 16, 1},
-		{"freesound.org", glm::ivec2(SCREEN_WIDTH / 2, 325), 16, 1},
-	};
-
-	texts[HOW_TO_PLAY1] =
-	{
-		{"OBJECTIVE", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 150), 16, 1},
-		{"------------", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 130), 16, 1},
-		{"To beat the game you must step on every platform!", glm::ivec2(SCREEN_WIDTH / 2 - 250, SCREEN_HEIGHT / 2 - 80), 8, 1},
-		{"When every platform has been marked, a key will spawn!", glm::ivec2(SCREEN_WIDTH / 2 - 250, SCREEN_HEIGHT / 2 - 60), 8, 0},
-		{"Grab the key and head out of the stage as fast as you can!", glm::ivec2(SCREEN_WIDTH / 2 - 250, SCREEN_HEIGHT / 2 - 40), 8, 0},
-		{"Marking platforms and completing the level gives you points", glm::ivec2(SCREEN_WIDTH / 2 - 250, SCREEN_HEIGHT / 2 - 20), 8, 0},
-		{"Collecting 5000 points will give you an extra life", glm::ivec2(SCREEN_WIDTH / 2 - 250, SCREEN_HEIGHT / 2 + 1), 8, 0},
-		{">", glm::ivec2(SCREEN_WIDTH - 40, SCREEN_HEIGHT - 20), 40, 1},
-	};
-	texts[HOW_TO_PLAY2] =
-	{
-		{"CONTROLS", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 150), 16, 1},
-		{"------------", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 130), 16, 1},
-		{"ESC: Return to the menu", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 80), 8, 1},
-		{"P: Pause the game", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 60), 8, 1},
-		{"USE THE KEYBOARD ARROWS TO JUMP, CROUCH AND MOVE", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 20), 8, 1},
-		{">", glm::ivec2((SCREEN_WIDTH / 2) + 40, SCREEN_HEIGHT / 2 + 60), 32, 1},
-		{"<", glm::ivec2((SCREEN_WIDTH / 2) - 40, SCREEN_HEIGHT / 2 + 60), 32, 1},
-		{"^", glm::ivec2((SCREEN_WIDTH / 2) + 0, SCREEN_HEIGHT / 2 - 20 + 60), 32, 1},
-		{"v", glm::ivec2((SCREEN_WIDTH / 2) + 0, SCREEN_HEIGHT / 2 - 0 + 60), 32, 1},
-		{"<", glm::ivec2(40, SCREEN_HEIGHT - 20), 40, 1},
-		{">", glm::ivec2(SCREEN_WIDTH - 40, SCREEN_HEIGHT - 20), 40, 1},
-
-	};
-
-	bghowtoplay = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(float(SCREEN_WIDTH), float(SCREEN_HEIGHT)), glm::vec2(1.f, 1.f), &bghowtoplaysheet, &texProgram);
-	images[HOW_TO_PLAY3] = { bghowtoplay };
-	spawnKey(HOW_TO_PLAY3, glm::vec2(SCREEN_WIDTH * 1.25 / 6, 140));
-	spawnItems(HOW_TO_PLAY3, glm::vec2(SCREEN_WIDTH * 1.25 / 6, 200), glm::vec2(SCREEN_WIDTH * 1.25 / 6, 260), glm::vec2(SCREEN_WIDTH * 1.25 / 6, 320));
-	int subTextSize = 8;
-
-	texts[HOW_TO_PLAY3] =
-	{
-		{"ITEMS", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 150), 16, Text::CENTERED},
-		{"------------", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 130), 16, Text::CENTERED},
-		{"THERE ARE SOME ITEMS THAT CAN HELP YOU OUT!", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 80), 10, Text::CENTERED},
-		{"Opens the door", glm::ivec2(SCREEN_WIDTH * 1.25 / 6 + 48,								images[HOW_TO_PLAY3][1]->getPosition().y + 16 + subTextSize / 2), subTextSize, Text::LEFT_ALIGNED},
-		{"Freezes the enemies for 5 seconds", glm::ivec2(SCREEN_WIDTH * 1.25 / 6 + 48,			images[HOW_TO_PLAY3][2]->getPosition().y + 16 + subTextSize / 2), subTextSize, Text::LEFT_ALIGNED},
-		{"Gives you extra time to complete the level", glm::ivec2(SCREEN_WIDTH * 1.25 / 6 + 48,	images[HOW_TO_PLAY3][3]->getPosition().y + 16 + subTextSize / 2), subTextSize, Text::LEFT_ALIGNED},
-		{"Gives you extra points", glm::ivec2(SCREEN_WIDTH * 1.25 / 6 + 48,						images[HOW_TO_PLAY3][4]->getPosition().y + 16 + subTextSize / 2), subTextSize, Text::LEFT_ALIGNED},
-		{"<", glm::ivec2(40, SCREEN_HEIGHT - 20), 40, Text::CENTERED},
-		{">", glm::ivec2(SCREEN_WIDTH - 40, SCREEN_HEIGHT - 20), 40, Text::CENTERED},
-	};
-
-	images[HOW_TO_PLAY4] = { bghowtoplay };
-	spawnEnemies(HOW_TO_PLAY4, glm::vec2(SCREEN_WIDTH * 0.75 / 6, 260), glm::vec2(SCREEN_WIDTH * 2.75 / 6, 260), glm::vec2(SCREEN_WIDTH * 4.25 / 6, 196));
-
-	texts[HOW_TO_PLAY4] =
-	{
-		{"ENEMIES", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 150), 16, Text::CENTERED},
-		{"------------", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 130), 16, Text::CENTERED},
-		{"WATCH OUT!", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 80), 10, Text::CENTERED},
-		{"THERE ARE SOME CREATURES THAT WANT TO HURT YOU", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 40), 10, Text::CENTERED},
-		{"Walks around the map", glm::ivec2(images[HOW_TO_PLAY4][1]->getPosition().x + 35,200), subTextSize, Text::CENTERED},
-		{"Can fly across the map", glm::ivec2(images[HOW_TO_PLAY4][3]->getPosition().x + 20,220), subTextSize, Text::CENTERED},
-		{"and go through walls", glm::ivec2(images[HOW_TO_PLAY4][3]->getPosition().x + 20,240), subTextSize, Text::CENTERED},
-		{"Can transform into a bat", glm::ivec2(images[HOW_TO_PLAY4][2]->getPosition().x + 64,200), subTextSize, Text::CENTERED},
-		{"<", glm::ivec2(40, SCREEN_HEIGHT - 20), 40, Text::CENTERED},
-		{">", glm::ivec2(SCREEN_WIDTH - 40, SCREEN_HEIGHT - 20), 40, Text::CENTERED},
-	};
-
-	texts[HOW_TO_PLAY5] =
-	{
-		{"DARK ROOMS", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 150), 16, Text::CENTERED},
-		{"------------", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 130), 16, Text::CENTERED},
-		{"THERE ARE ROOMS IN THE CASTLE WITH NO LIGHT!", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 80), 10, Text::CENTERED},
-		{"You will have to find the door", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 60), 10, Text::CENTERED},
-		{"Use the torches of the walls to see through darkness", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 40), 10, Text::CENTERED},
-		{"DON'T GET LOST!", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 1), 10, Text::CENTERED},
-		{"<", glm::ivec2(40, SCREEN_HEIGHT - 20), 40, Text::CENTERED},
+		{"DEVELOPED BY", glm::ivec2(SCREEN_WIDTH / 2 - 96, 55), 16},
+		{"Alex Herrero", glm::ivec2(SCREEN_WIDTH / 2 - 96, 80), 16},
+		{"Lluc Clavera", glm::ivec2(SCREEN_WIDTH / 2 - 96, 105), 16},
+		{"ORIGINAL BY", glm::ivec2(SCREEN_WIDTH / 2 - 88, 180), 16},
+		{"Mitchell Corporation", glm::ivec2(SCREEN_WIDTH / 2 - 160, 205), 16},
+		{"ART & MUSIC FROM", glm::ivec2(SCREEN_WIDTH / 2 - 128, 255), 16},
+		{"Pang/Buster Bros", glm::ivec2(SCREEN_WIDTH / 2 - 128, 280), 16},
+		{"freesound.org", glm::ivec2(SCREEN_WIDTH / 2 -104, 305), 16},
+		{"SPECIAL THANKS", glm::ivec2(SCREEN_WIDTH / 2 - 112, 355), 16},
+		{"Adria Lozano", glm::ivec2(SCREEN_WIDTH / 2 - 96, 380), 16},
+		{"Oscar Argudo", glm::ivec2(SCREEN_WIDTH / 2 - 96, 405), 16},
+		{"Bob (the dog in the picture)", glm::ivec2(SCREEN_WIDTH / 2 - 224, 430), 16},
 	};
 
 	texts[END] = {
-		{"THE END", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 1), 16, Text::CENTERED},
+		{"THE END", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 1), 16},
 	};
 
-	bgSpritesheet.loadFromFile("images/titlescreen.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	bg = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(float(SCREEN_WIDTH), float(SCREEN_HEIGHT)), glm::vec2(1.f, 1.f), &bgSpritesheet, &texProgram);
-	bgcreditsheet.loadFromFile("images/bgcredits.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	bgCredit = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(float(SCREEN_WIDTH), float(SCREEN_HEIGHT)), glm::vec2(1.f, 1.f), &bgcreditsheet, &texProgram);
-	bghowtoplaysheet.loadFromFile("images/bghowtoplay2.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	doorSpritesheet.loadFromFile("images/door2.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	itemsSpriteSheet.loadFromFile("images/items.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	platformsSpritesheet.loadFromFile("images/tileSet2.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	manSpriteSheet.loadFromFile("images/soma-animations.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	batSpritesheet.loadFromFile("images/bat.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	ghostspritesheet.loadFromFile("images/ghost.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	skeletonspritesheet.loadFromFile("images/esquelet.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	torchSpriteSheet.loadFromFile("images/torch.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	endspritesheet.loadFromFile("images/END.png", TEXTURE_PIXEL_FORMAT_RGBA);
-
-	Sprite* end = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(float(SCREEN_WIDTH), float(SCREEN_HEIGHT)), glm::vec2(1.f, 1.f), &endspritesheet, &texProgram);
-	images[END] = { end };
-	//kbarrowssheet.loadFromFile("images/kbarrows.png", TEXTURE_PIXEL_FORMAT_RGBA);
-
-	images[MAIN_MENU] = { bg };
-
-
-	images[CREDITS] = { bgCredit };
-
-
-	images[HOW_TO_PLAY1] = { bghowtoplay };
-	spawnDoor(HOW_TO_PLAY1);
-	spawnKey(HOW_TO_PLAY1, glm::vec2(SCREEN_WIDTH * 4 / 6, 260));
-	spawnPlatforms(HOW_TO_PLAY1);
-	spawnMan(HOW_TO_PLAY1, glm::vec2(SCREEN_WIDTH * 1 / 6, 260 - 64));
-
-	images[HOW_TO_PLAY2] = { bghowtoplay };
-	spawnManMoving(HOW_TO_PLAY2, glm::vec2((SCREEN_WIDTH * 3 / 6) - 40, 260 - 64));
-	//spawnArrows(HOW_TO_PLAY2);
-
-
-	images[HOW_TO_PLAY5] = { bghowtoplay };
-	spawnTorch(HOW_TO_PLAY5, glm::vec2(SCREEN_WIDTH / 2 - 16, SCREEN_HEIGHT / 2 + 50));
-
-
-
+	bgMenuSheet.loadFromFile("images/Pang.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	bgCreditsSheet.loadFromFile("images/Bob.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	bgHowToPlaySheet.loadFromFile("images/SagradaFamiliaNight.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	SoundManager::instance().changeBgMusic("sounds/Main.mp3", true, false);
 
 	engine = SoundManager::instance().getSoundEngine();
-	menuNavSrc = engine->addSoundSourceFromFile("sound/menu-nav.mp3");
-	menuNavSrc->setDefaultVolume(0.5);
+	if (menuNavSrc == nullptr) menuNavSrc = engine->addSoundSourceFromFile("sounds/menu-nav.mp3");
+	//menuNavSrc->setDefaultVolume(0.5);
 }
 
-//Hacemos que devuelva un int o un bool para indicar que quiere cambiar al primer nivel?
 void Menu::update(int deltaTime)
 {
 	if (scene == MAIN_MENU) {
-		if (Game::instance().getSpecialKeyUp(GLUT_KEY_UP)) {
+		if (Game::instance().getKeyUp(GLFW_KEY_UP)) {
 			if (--selected < 0) selected = 3;
 			engine->play2D(menuNavSrc);
 		}
-		else if (Game::instance().getSpecialKeyUp(GLUT_KEY_DOWN)) {
-			selected = ++selected % 4;
+		else if (Game::instance().getKeyUp(GLFW_KEY_DOWN)) {
+			selected = (selected + 1) % 4;
 			engine->play2D(menuNavSrc);
 		}
-
-		//seleccionar seleccion
-		if (Game::instance().getKeyUp('\r') || Game::instance().getKeyUp(10) || Game::instance().getKeyUp(' ')) {
+		
+		if (Game::instance().getKeyUp('\r') || Game::instance().getKeyUp(GLFW_KEY_SPACE) || Game::instance().getKeyUp(GLFW_KEY_ENTER)) {
 			switch (selected)
 			{
-			case 0: //Jugar
-				//return algo?
-				Game::instance().changeLevel(1);
+			case 0:
+				Game::instance().setLevel(1);
 				break;
-			case 1: //How to play?
-				scene = HOW_TO_PLAY1;
+			case 1:
+				scene = HOW_TO_PLAY_OBJECTIVE;
+				SoundManager::instance().changeBgMusic("sounds/tutorial.mp3",true,false);
 				break;
-			case 2: //Creditos
+			case 2:
 				scene = CREDITS;
+				SoundManager::instance().changeBgMusic("sounds/8_bit_ballroom_dance.mp3",true, false);
 				break;
-			case 3: //Salir
+			default:
 				exit(0);
 				break;
 			}
 		}
-
-		if (Game::instance().getKeyUp(27)) {
-			exit(0);
-		}
 	}
-	else { //Esc, o otra tecla, para volver
-		if (Game::instance().getKeyUp(27)) {
-			scene = MAIN_MENU;
-		}
-		moveBetweenHowToPlay();
-
+	else {
+		changeHowToPlay();
 	}
-	for (Sprite* s : images[scene])
-	{
-		s->update(deltaTime);
-	}
-
 }
 
 void Menu::render()
 {
-	texProgram.use();
-	texProgram.setUniformMatrix4f("projection", projection);
-	for (int i = 0; i < images[scene].size(); ++i)
+	glm::mat4 modelview;
+	program.use();
+	program.setUniformMatrix4f("projection", projection);
+	program.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
+	modelview = glm::mat4(1.0f);
+	program.setUniformMatrix4f("modelview", modelview);
+	program.setUniform2f("texCoordDispl", 0.f, 0.f);
+
+
+	glEnable(GL_TEXTURE_2D);
+	if (scene == MAIN_MENU) {
+		bgMenuSheet.use();
+	}
+
+	else if (scene == CREDITS) {
+		bgCreditsSheet.use();
+	}
+
+	else {
+		bgHowToPlaySheet.use();
+	}
+
+	glBindVertexArray(bVao);
+	glEnableVertexAttribArray(backPosLocation);
+	glEnableVertexAttribArray(backTexCoordLocation);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glDisable(GL_TEXTURE_2D);
+
+
+	/*for (int i = 0; i < images[scene].size(); ++i)
 	{
 		if (i == 0) images[scene][i]->render(glm::vec4(0.5f));
 		else images[scene][i]->render();
-	}
+	}*/
 
 	for (int i = 0; i < texts[scene].size(); ++i)
 	{
@@ -241,24 +201,16 @@ void Menu::render()
 		if (i == selected && scene == MAIN_MENU) {
 			color = glm::vec4(0.7f, 0.8f, 0.2f, 1.f);
 		}
-		textObj.render(texts[scene][i].text, texts[scene][i].pos + 1, texts[scene][i].textSize, glm::vec4(0, 0, 0, 1) * 0.8f, texts[scene][i].alignment);
-		textObj.render(texts[scene][i].text, texts[scene][i].pos, texts[scene][i].textSize, color, texts[scene][i].alignment);
+
+		textObj.render(texts[scene][i].text, texts[scene][i].pos + 1, texts[scene][i].textSize, glm::vec4(0, 0, 0, 1) * 0.8f);
+		textObj.render(texts[scene][i].text, texts[scene][i].pos, texts[scene][i].textSize, color);
 	}
-
-
-	if (scene == MAIN_MENU) {
-		titleObj.render("Night Knight", glm::ivec2(SCREEN_WIDTH / 2 + 2, SCREEN_HEIGHT / 2 - 65 + 2), 64, glm::vec4(0, 0, 0, 1) * 0.8f, Text::CENTERED);
-		titleObj.render("Night Knight", glm::ivec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 65), 64, glm::vec4(0.7, 0.2, 0.1, 1), Text::CENTERED);
-
-		//Renderizar "flecha". Su posicion depende de la variable "selected"
-
-	}
-
+	//textObj.render("Hola", glm::vec2(100, 100), 32, glm::vec4(1,1,1,1));
 }
-
+	
 void Menu::theEnd()
 {
-	scene = END;
+		scene = END;
 }
 
 void Menu::initShaders()
@@ -277,385 +229,64 @@ void Menu::initShaders()
 		cout << "Fragment Shader Error" << endl;
 		cout << "" << fShader.log() << endl << endl;
 	}
-	texProgram.init();
-	texProgram.addShader(vShader);
-	texProgram.addShader(fShader);
-	texProgram.link();
-	if (!texProgram.isLinked())
+	program.init();
+	program.addShader(vShader);
+	program.addShader(fShader);
+	program.link();
+	if (!program.isLinked())
 	{
 		cout << "Shader Linking Error" << endl;
-		cout << "" << texProgram.log() << endl << endl;
+		cout << "" << program.log() << endl << endl;
 	}
-	texProgram.bindFragmentOutput("outColor");
+	program.bindFragmentOutput("outColor");
 	vShader.free();
 	fShader.free();
+
+	vector<float> backgroundVertices;
+	//First triangle
+	backgroundVertices.push_back(0.f); backgroundVertices.push_back(0.f);
+	backgroundVertices.push_back(0.f); backgroundVertices.push_back(0.f);
+	backgroundVertices.push_back(backgroundSize.x); backgroundVertices.push_back(0.f);
+	backgroundVertices.push_back(1.f); backgroundVertices.push_back(0.f);
+	backgroundVertices.push_back(backgroundSize.x); backgroundVertices.push_back(backgroundSize.y);
+	backgroundVertices.push_back(1.f); backgroundVertices.push_back(1.f);
+	//Second triangle
+	backgroundVertices.push_back(0.f); backgroundVertices.push_back(0.f);
+	backgroundVertices.push_back(0.f); backgroundVertices.push_back(0.f);
+	backgroundVertices.push_back(backgroundSize.x); backgroundVertices.push_back(backgroundSize.y);
+	backgroundVertices.push_back(1.f); backgroundVertices.push_back(1.f);
+	backgroundVertices.push_back(0.f); backgroundVertices.push_back(backgroundSize.y);
+	backgroundVertices.push_back(0.f); backgroundVertices.push_back(1.f);
+
+	glGenVertexArrays(1, &bVao);
+	glBindVertexArray(bVao);
+	glGenBuffers(1, &bVbo);
+	glBindBuffer(GL_ARRAY_BUFFER, bVbo);
+	glBufferData(GL_ARRAY_BUFFER, 24 * sizeof(float), &backgroundVertices[0], GL_STATIC_DRAW);
+	backPosLocation = program.bindVertexAttribute("position", 2, 4 * sizeof(float), 0);
+	backTexCoordLocation = program.bindVertexAttribute("texCoord", 2, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 }
 
-void Menu::moveBetweenHowToPlay()
+void Menu::changeHowToPlay()
 {
 	switch (scene)
 	{
-	case HOW_TO_PLAY1:
-		if (Game::instance().getSpecialKeyUp(GLUT_KEY_RIGHT)) scene = HOW_TO_PLAY2;
+	case HOW_TO_PLAY_OBJECTIVE:
+		if (Game::instance().getKeyUp(GLFW_KEY_RIGHT)) scene = HOW_TO_PLAY_SORROUNDING;
 		break;
-	case HOW_TO_PLAY2:
-		if (Game::instance().getSpecialKeyUp(GLUT_KEY_RIGHT)) scene = HOW_TO_PLAY3;
-		if (Game::instance().getSpecialKeyUp(GLUT_KEY_LEFT)) scene = HOW_TO_PLAY1;
+	case HOW_TO_PLAY_POWER_UPS:
+		if (Game::instance().getKeyUp(GLFW_KEY_RIGHT)) scene = HOW_TO_PLAY_ENEMIES;
+		else if (Game::instance().getKeyUp(GLFW_KEY_LEFT)) scene = HOW_TO_PLAY_SORROUNDING;
 		break;
-	case HOW_TO_PLAY3:
-		if (Game::instance().getSpecialKeyUp(GLUT_KEY_RIGHT)) scene = HOW_TO_PLAY4;
-		if (Game::instance().getSpecialKeyUp(GLUT_KEY_LEFT)) scene = HOW_TO_PLAY2;
+	case HOW_TO_PLAY_ENEMIES:
+		if (Game::instance().getKeyUp(GLFW_KEY_LEFT)) scene = HOW_TO_PLAY_POWER_UPS;
 		break;
-	case HOW_TO_PLAY4:
-		if (Game::instance().getSpecialKeyUp(GLUT_KEY_LEFT)) scene = HOW_TO_PLAY3;
-		if (Game::instance().getSpecialKeyUp(GLUT_KEY_RIGHT)) scene = HOW_TO_PLAY5;
+	case HOW_TO_PLAY_SORROUNDING:
+		if (Game::instance().getKeyUp(GLFW_KEY_RIGHT)) scene = HOW_TO_PLAY_POWER_UPS;
+		else if (Game::instance().getKeyUp(GLFW_KEY_LEFT)) scene = HOW_TO_PLAY_OBJECTIVE;
 		break;
-	case HOW_TO_PLAY5:
-		if (Game::instance().getSpecialKeyUp(GLUT_KEY_LEFT)) scene = HOW_TO_PLAY4;
+	default:
+		
 		break;
 	}
-}
-
-void Menu::spawnEnemies(int scene, const glm::vec2& posE, const glm::vec2& posF, const glm::vec2& posV) {
-	Sprite* esquelet = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(64, 64), glm::vec2(1 / 6.f, 1 / 2.f), &skeletonspritesheet, &texProgram);
-	esquelet->setDisplacement(glm::vec2(0.0f, 0.0f));
-	esquelet->setPosition(posE);
-	esquelet->setNumberAnimations(1);
-	esquelet->setAnimationParams(0, 10, false);
-	esquelet->addKeyframe(0, glm::vec2(0.0f, 0.0f));
-	esquelet->addKeyframe(0, glm::vec2(1 / 6.f * 1, 0.0f));
-	esquelet->addKeyframe(0, glm::vec2(1 / 6.f * 2, 0.0f));
-	esquelet->addKeyframe(0, glm::vec2(1 / 6.f * 3, 0.0f));
-	esquelet->addKeyframe(0, glm::vec2(1 / 6.f * 4, 0.0f));
-	esquelet->addKeyframe(0, glm::vec2(1 / 6.f * 5, 0.0f));
-	esquelet->addKeyframe(0, glm::vec2(1 / 6.f * 0, 1 / 2.f * 1));
-	esquelet->addKeyframe(0, glm::vec2(1 / 6.f * 1, 1 / 2.f * 1));
-	esquelet->addKeyframe(0, glm::vec2(1 / 6.f * 2, 1 / 2.f * 1));
-	esquelet->addKeyframe(0, glm::vec2(1 / 6.f * 3, 1 / 2.f * 1));
-	esquelet->addKeyframe(0, glm::vec2(1 / 6.f * 4, 1 / 2.f * 1));
-	esquelet->addKeyframe(0, glm::vec2(1 / 6.f * 5, 1 / 2.f * 1));
-	esquelet->changeAnimation(0);
-	images[scene].push_back(esquelet);
-
-	Sprite* bat = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(128, 128), glm::vec2(1 / 8.f, 1 / 8.f), &batSpritesheet, &texProgram);
-	bat->setPosition(posV);
-	bat->setNumberAnimations(2);
-	bat->setAnimationParams(0, 10, false, 0, 1);
-	bat->addKeyframe(0, glm::vec2(0.0f, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	bat->addKeyframe(0, glm::vec2(0.0f, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	bat->addKeyframe(0, glm::vec2(0.0f, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	bat->addKeyframe(0, glm::vec2(0.0f, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	bat->addKeyframe(0, glm::vec2(0.0f, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	bat->addKeyframe(0, glm::vec2(0.0f, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	bat->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-
-	bat->setAnimationParams(1, 15, false, 3, 0);
-	bat->addKeyframe(1, glm::vec2(0.0f, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 1, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 2, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 3, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 4, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 5, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 6, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 7, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(0.0f, 1 / 8.f * 3));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 7, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 6, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 5, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 4, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 3, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 2, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 3, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 4, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 5, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 6, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 7, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(0.0f, 1 / 8.f * 3));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 7, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 6, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 5, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 4, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 3, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 2, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 3, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 4, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 5, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 6, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 7, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(0.0f, 1 / 8.f * 3));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 7, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 6, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 5, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 4, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 3, 1 / 8.f * 2));
-	bat->addKeyframe(1, glm::vec2(1 / 8.f * 2, 1 / 8.f * 2));
-
-	bat->changeAnimation(0);
-	images[scene].push_back(bat);
-
-	Sprite* ghost = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(64, 64), glm::vec2(1 / 8.f, 1 / 2.f), &ghostspritesheet, &texProgram);
-	ghost->setDisplacement(glm::vec2(0.0f, 0.0f));
-	ghost->setPosition(posF);
-	ghost->setNumberAnimations(1);
-	ghost->setAnimationParams(0, 10, false);
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 7, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 5, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 4, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 3, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 0, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 7, 1 / 2.f * 1));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 1 / 2.f * 1));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 7, 1 / 2.f * 1));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 1 / 2.f * 1));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 7, 1 / 2.f * 1));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 1 / 2.f * 1));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 7, 1 / 2.f * 1));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 1 / 2.f * 1));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 7, 1 / 2.f * 1));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 1 / 2.f * 1));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 7, 1 / 2.f * 1));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 0, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 1, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 2, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 3, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 4, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 5, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 0.0f));
-	ghost->addKeyframe(0, glm::vec2(1 / 8.f * 6, 0.0f));
-	ghost->changeAnimation(0);
-	ghost->addEffect(EFFECT_SIN_Y, 2000000);
-	images[scene].push_back(ghost);
-
-
-
-
-
-}
-
-void Menu::spawnItems(int scene, const glm::vec2& posH, const glm::vec2& posC, const glm::vec2& posG) {
-	Sprite* hourglass = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(32, 32), glm::vec2(1 / 8.f, 1 / 8.f), &itemsSpriteSheet, &texProgram);
-	hourglass->setDisplacement(glm::vec2(1 / 8.f * 5, 0.0f));
-	hourglass->setPosition(posH);
-	hourglass->addEffect(EFFECT_SIN_Y, 200000, 750);
-	images[scene].push_back(hourglass);
-
-	Sprite* clock = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(32, 32), glm::vec2(1 / 8.f, 1 / 8.f), &itemsSpriteSheet, &texProgram);
-	clock->setDisplacement(glm::vec2(1 / 8.f * 0, 1 / 8.f * 3));
-	clock->setPosition(posC);
-	clock->setNumberAnimations(1);
-	clock->setAnimationParams(0, 8, false);
-	clock->addKeyframe(0, glm::vec2(1 / 8.f * 0, 1 / 8.f * 3));
-	clock->addKeyframe(0, glm::vec2(1 / 8.f * 1, 1 / 8.f * 3));
-	clock->addKeyframe(0, glm::vec2(1 / 8.f * 2, 1 / 8.f * 3));
-	clock->addKeyframe(0, glm::vec2(1 / 8.f * 3, 1 / 8.f * 3));
-	clock->addKeyframe(0, glm::vec2(1 / 8.f * 4, 1 / 8.f * 3));
-	clock->addKeyframe(0, glm::vec2(1 / 8.f * 5, 1 / 8.f * 3));
-	clock->addKeyframe(0, glm::vec2(1 / 8.f * 6, 1 / 8.f * 3));
-	clock->addKeyframe(0, glm::vec2(1 / 8.f * 7, 1 / 8.f * 3));
-	clock->changeAnimation(0);
-	clock->addEffect(EFFECT_SIN_Y, 200000, 500);
-	images[scene].push_back(clock);
-
-	Sprite* gem = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(32, 32), glm::vec2(1 / 8.f, 1 / 8.f), &itemsSpriteSheet, &texProgram);
-	gem->setDisplacement(glm::vec2(1 / 8.f * 3, 1 / 8.f * 2));
-	gem->setPosition(posG);
-	gem->addEffect(EFFECT_SIN_Y, 200000, 250);
-	images[scene].push_back(gem);
-
-}
-
-
-
-void Menu::spawnDoor(int scene) {
-	Sprite* door = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(64, 64), glm::vec2(1 / 4.f, 1 / 4.f), &doorSpritesheet, &texProgram);
-	door->setPosition(glm::vec2((SCREEN_WIDTH * 5 / 6) - 32, 250));
-	images[scene].push_back(door);
-}
-
-void Menu::spawnKey(int scene, const glm::vec2& pos) {
-	Sprite* key = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(32, 32), glm::vec2(1 / 8.f, 1 / 8.f), &itemsSpriteSheet, &texProgram);
-	key->setDisplacement(glm::vec2(1 / 8.f * 2, 1 / 8.f * 1));
-	key->setPosition(pos);
-	key->addEffect(EFFECT_SIN_Y, 200000);
-	images[scene].push_back(key);
-}
-
-void Menu::spawnPlatforms(int scene) {
-	Sprite* plat1 = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(32, 32), glm::vec2(1 / 16.f, 1 / 16.f), &platformsSpritesheet, &texProgram);
-	plat1->setDisplacement(glm::vec2(1 / 16.f * 1, 1 / 16.f * 0));
-	plat1->setPosition(glm::vec2((SCREEN_WIDTH * 2 / 6), 260));
-	plat1->addEffect(EFFECT_SIN_Y, 200000);
-	images[scene].push_back(plat1);
-
-	Sprite* plat2 = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(32, 32), glm::vec2(1 / 16.f, 1 / 16.f), &platformsSpritesheet, &texProgram);
-	plat2->setDisplacement(glm::vec2(1 / 16.f * 2, 1 / 16.f * 0));
-	plat2->setPosition(glm::vec2((SCREEN_WIDTH * 2 / 6) + 32, 260));
-	plat2->addEffect(EFFECT_SIN_Y, 200000);
-	images[scene].push_back(plat2);
-
-	Sprite* plat3 = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(32, 32), glm::vec2(1 / 16.f, 1 / 16.f), &platformsSpritesheet, &texProgram);
-	plat3->setDisplacement(glm::vec2(1 / 16.f * 1, 1 / 16.f * 1));
-	plat3->setPosition(glm::vec2(SCREEN_WIDTH * 3 / 6, 260));
-	plat3->addEffect(EFFECT_SIN_Y, 200000);
-	images[scene].push_back(plat3);
-
-	Sprite* plat4 = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(32, 32), glm::vec2(1 / 16.f, 1 / 16.f), &platformsSpritesheet, &texProgram);
-	plat4->setDisplacement(glm::vec2(1 / 16.f * 2, 1 / 16.f * 1));
-	plat4->setPosition(glm::vec2((SCREEN_WIDTH * 3 / 6) + 32, 260));
-	plat4->addEffect(EFFECT_SIN_Y, 200000);
-	images[scene].push_back(plat4);
-}
-
-void Menu::spawnMan(int scene, const glm::vec2& pos) {
-	Sprite* man = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(64, 128), glm::vec2(1 / 16.f, 1 / 16.f), &manSpriteSheet, &texProgram);
-	man->setDisplacement(glm::vec2(1 / 16.f * 1, 1 / 16.f * 2));
-	man->setPosition(pos);
-
-	man->setNumberAnimations(1);
-	man->setAnimationParams(0, 4, false);
-	man->addKeyframe(0, glm::vec2(0.0f, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 1, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 2, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 3, 0.0f));
-	man->changeAnimation(0);
-	images[scene].push_back(man);
-}
-
-//void Menu::spawnArrows(int scene) {
-//	Sprite* arrows = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(64, 48), glm::vec2(1 / 1.f, 1 / 1.f), &kbarrowssheet, &texProgram);
-//	arrows->setPosition(glm::vec2((SCREEN_WIDTH * 3 / 6) - 20, 150));
-//	images[scene].push_back(arrows);
-//}
-
-
-void Menu::spawnManMoving(int scene, const glm::vec2& pos) {
-	Sprite* man = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(64, 128), glm::vec2(1 / 16.f, 1 / 16.f), &manSpriteSheet, &texProgram);
-	man->setDisplacement(glm::vec2(1 / 16.f * 1, 1 / 16.f * 2));
-	man->setPosition(pos);
-
-	man->setNumberAnimations(2);
-	man->setAnimationParams(1, 30, true, 3, 0);
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 4, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 5, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 6, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 7, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 8, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 9, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 10, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 11, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 12, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 13, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 14, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 15, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 0, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 1, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 2, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 3, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 4, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 5, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 6, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 7, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 8, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 9, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 10, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 11, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 12, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 13, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 14, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 15, 0.0f));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 0, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 1, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 2, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 3, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 4, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 5, 1 / 16.f * 1));
-	man->addKeyframe(1, glm::vec2(1 / 16.f * 6, 1 / 16.f * 1));
-
-	man->setAnimationParams(0, 30, false, 3, 1);
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 4, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 5, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 6, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 7, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 8, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 9, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 10, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 11, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 12, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 13, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 14, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 15, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 0, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 1, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 2, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 3, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 4, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 5, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 6, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 7, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 8, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 9, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 10, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 11, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 12, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 13, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 14, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 15, 0.0f));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 0, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 1, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 2, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 3, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 4, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 5, 1 / 16.f * 1));
-	man->addKeyframe(0, glm::vec2(1 / 16.f * 6, 1 / 16.f * 1));
-
-
-	man->changeAnimation(0);
-	images[scene].push_back(man);
-}
-
-void Menu::spawnTorch(int scene, const glm::vec2& posT) {
-	Sprite* light = Sprite::createSprite(glm::ivec2(0, 0), glm::vec2(32, 64), glm::vec2(1 / 4.f, 1 / 4.f), &torchSpriteSheet, &texProgram);
-	light->setPosition(posT);
-	light->setNumberAnimations(1);
-	light->setAnimationParams(0, 10, false);
-	light->addKeyframe(0, glm::vec2(1 / 4.f * 0, 1 / 4.f * 2));
-	light->addKeyframe(0, glm::vec2(1 / 4.f * 1, 1 / 4.f * 2));
-	light->addKeyframe(0, glm::vec2(1 / 4.f * 2, 1 / 4.f * 2));
-	light->addKeyframe(0, glm::vec2(1 / 4.f * 3, 1 / 4.f * 2));
-	light->changeAnimation(0);
-	light->addEffect(EFFECT_SIN_Y, 200000);
-	images[scene].push_back(light);
 }

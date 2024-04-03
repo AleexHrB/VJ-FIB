@@ -11,7 +11,7 @@
 #define SCREEN_Y 0
 
 #define INIT_PLAYER_X_TILES 4
-#define INIT_PLAYER_Y_TILES 20
+#define INIT_PLAYER_Y_TILES 21
 
 
 Scene::Scene()
@@ -41,8 +41,7 @@ void Scene::init(unsigned int level)
 	this->level = level;
 	string levelFile = "levels/level" + to_string(level) + ".txt";
 	map = TileMap::createTileMap(levelFile, glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
-	SoundManager::instance().init();
-	SoundManager::instance().changeBgMusic("sounds/8_bit_ballroom_dance.mp3", true, false);
+	//SoundManager::instance().changeBgMusic("sounds/8_bit_ballroom_dance.mp3", true, false);
 
 	Bubble::Color rn;
 	switch (rand()%3)
@@ -110,15 +109,16 @@ void Scene::init(unsigned int level)
 	
 	if (currentTime == 0.0f) {
 		player = new Player();
-		score = 0;
-	
 	}
+
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
 	player->changeWeapon(Effects::HOOK);
+	player->update(2);
 
 	currentTime = 0.0f;
+	inmuneTime = currentTime;
 	timeLimit = 100;
 	freeze = false;
 
@@ -131,24 +131,47 @@ void Scene::init(unsigned int level)
 
 	liveSprite->setPosition(glm::vec2(20, 440));
 	
-	powerUp = Sprite::createSprite(glm::vec2(16, 16), glm::vec2(1 / 6.0f, 1 / 3.0f), &UI, &texProgram);
+	powerUp = Sprite::createSprite(glm::vec2(32, 32), glm::vec2(1 / 6.0f, 1 / 3.0f), &UI, &texProgram);
 	powerUp->setNumberAnimations(3);
 	powerUp->addKeyframe(0, glm::vec2(0.f, 0.f));
 	powerUp->addKeyframe(1, glm::vec2(0.f, 1.0 /3.0f));
 	powerUp->addKeyframe(2, glm::vec2(0.f, 2.0/3.0f));
 
-	powerUp->setPosition(glm::vec2(240, 440));
+	powerUp->setPosition(glm::vec2(240, 430));
 	deathCountDown = -1;
+	poweredUp = false;
+	startTimer = READY_TIME;
+	stageCompletedTimer = 0;
+
 }
 
 void Scene::update(int deltaTime)
-{
+{ 
+	
+	if (startTimer > 0 || stageCompletedTimer > 0) {
+		startTimer -= deltaTime;
+		if (startTimer < 0) startTimer = 0;
+	
+		if (stageCompletedTimer > 0) {
+			stageCompletedTimer -= deltaTime;
+			if (stageCompletedTimer <= 0) {
+				stageCompletedTimer = 0;
+				if (level == 3) {
+					Game::instance().setMenu();
+					return;
+				}
+				else this->init(level + 1);
+			}
+		}
+		
+	}
+	if ((startTimer > 0 || stageCompletedTimer) && !menu) return;
+
 	if (!freeze && deathCountDown == -1) currentTime += deltaTime;
 	if (deathCountDown == 0) {
 		if (player->getLives() == 0) {
 			player->setLives(3);
-			score = 0;
-			this->init(0);
+			Game::instance().setMenu();
 		}
 		else init(this->level);
 	}
@@ -159,7 +182,7 @@ void Scene::update(int deltaTime)
 		Object* o = *itO;
 		o->update(deltaTime);
 		if (o->checkCollision(player->getHitbox())) {
-			this->score += o->getBonus();
+			Game::instance().addScore(o->getBonus());
 			Effects eff = o->applyEffect();
 			powerUpTimers[eff] = 0.1;
 			delete o;
@@ -172,14 +195,16 @@ void Scene::update(int deltaTime)
 	for (auto itE = lE.begin(); itE != lE.end();) {
 		Enemy* e = *itE;
 		if (!freeze && deathCountDown == -1) e->update(deltaTime);
-		if (!godMode && e->checkCollision(player->getHitbox()) && hitted()) {
-			bool dead = player->substractLive();
-			deathCountDown = DEATH_FRAMES;
+		if (!godMode && e->checkCollision(player->getHitbox()) && !player -> isDisabled()) {
+			player->setDisabled(true);
+			player->changeWeapon(Effects::HOOK);
+			poweredUp = false;
 			break;
 		}
 
 		else if (player -> checkProjectileHitbox(e -> getHitbox(), nullptr)) {
 			itE = lE.erase(itE);
+			Game::instance().addScore(e -> getBonus());
 			delete e;
 			player->hitWeapon();
 		}
@@ -189,15 +214,21 @@ void Scene::update(int deltaTime)
 
 	for (auto itB = lB.begin(); itB != lB.end();) {
 		Bubble* b = *itB;
-		if (b->isDestroying() || (!freeze && deathCountDown == -1)) b->update(deltaTime);
+		if (b->isDestroying() || (!freeze && deathCountDown == -1)) {
+			if (slowed) b->update(deltaTime/2);
+			else b->update(deltaTime);
+		} 
 		if (b->isDestroyed()) {
 			delete b;
 			itB = lB.erase(itB);
 		}
 
-		else if (!godMode && b->checkCollision(player->getHitbox()) && hitted()) {
+		else if (!freeze && !godMode && b->checkCollision(player->getHitbox()) && hitted()) {
 			bool dead = player->substractLive();
+			freeze = false;
+			slowed = false;
 			deathCountDown = DEATH_FRAMES;
+			SoundManager::instance().sound("sounds/damage.wav");
 			break;
 		}
 
@@ -205,12 +236,13 @@ void Scene::update(int deltaTime)
 			Bubble::Size s = b->getSize();
 			Bubble::Color c = b->getColor();
 			player->hitWeapon();
-			if (s == this->lastSize || this -> lastSize == Bubble::Size::NONE) mult *= 2;
+			if (s == this->lastSize) mult *= 2;
 			else mult = 1;
-			this->lastSize = s;
-
+			
 			if (mult > 8) mult = 8;
-			this->score += mult * b->getBonus();
+			this->lastSize = s;
+			Game::instance().addScore(mult * b->getBonus());
+			
 			
 			if (s != Bubble::Size::TINY) {
 				Bubble::Size next;
@@ -227,10 +259,10 @@ void Scene::update(int deltaTime)
 				}
 				glm::vec2 speed = b->getSpeed();
 				lB.push_back(new Bubble());
-				lB.back()->init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), glm::vec2(speed.x, -15));
+				lB.back()->init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition() - glm::ivec2(5 * (4-s), 0), glm::vec2(speed.x, -15));
 				lB.back()->setTileMap(map);
 				lB.push_back(new Bubble());
-				lB.back() -> init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition(), glm::vec2(-speed.x, -15));
+				lB.back()->init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition() + glm::ivec2(5 * (4-s), 0), glm::vec2(-speed.x, -15));
 				lB.back()->setTileMap(map);
 
 				if (rand() % 5 == 0) {
@@ -255,15 +287,41 @@ void Scene::update(int deltaTime)
 	}
 
 	
-	if (!menu && int(currentTime / 1000) == timeLimit) {
-		cout << "Game Over" << endl;
-		this->init(0);
+	if (!menu && int(currentTime / 1000) == timeLimit && deathCountDown == -1) {
+		bool dead = player->substractLive();
+		freeze = false;
+		slowed = false;
+		deathCountDown = DEATH_FRAMES;
+		SoundManager::instance().sound("sounds/damage.mp3");
 	}
 
 	if (!menu && lB.size() == 0) {
-		this->init((level + 1)%4);
+		stageCompletedTimer = STAGE_CLEAR_TIME;
+		Game::instance().addScore(int(timeLimit - currentTime / 1000)*20);
+		SoundManager::instance().changeBgMusic("sounds/victory.mp3", false, false);
 	}
 	map->update(deltaTime);
+
+	/*if (Game::instance().getKey(GLFW_KEY_T) && (powerUp->animation() != 0 || !poweredUp)) {
+		poweredUp = true;
+		powerUp->changeAnimation(0);
+		player->changeWeapon(Effects::STICK);
+	}
+	else if (Game::instance().getKey(GLFW_KEY_Y) && (powerUp->animation() != 1 || !poweredUp)) {
+		poweredUp = true;
+		powerUp->changeAnimation(1);
+		player->changeWeapon(Effects::DOUBLE);
+	}
+	else if (Game::instance().getKey(GLFW_KEY_U) && (powerUp->animation() != 2 || !poweredUp)) {
+		poweredUp = true;
+		powerUp->changeAnimation(2);
+		player->changeWeapon(Effects::GUN);
+	}
+	else if (Game::instance().getKey(GLFW_KEY_Q) && (poweredUp)) {
+		poweredUp = false;
+		powerUp->changeAnimation(0);
+		player->changeWeapon(Effects::HOOK);
+	}*/
 }
 
 void Scene::render()
@@ -280,7 +338,13 @@ void Scene::render()
 	for (Enemy* e : lE) e->render();
 	for (Object* o : lO) o->render();
 	if (!menu) {
-		player->render();
+		if (poweredUp) powerUp->render();
+		bool flicker = (currentTime - inmuneTime <= 1500 && startTimer <= 0);
+		glm::vec4 color;
+		if (godMode) color = glm::vec4(0.5,1,0.5,1);
+		else if(player->isDisabled()) color = glm::vec4(1, 0.5, 0.25, 1);
+		else color = glm::vec4(1, 1, 1, 1);
+		player->render(flicker, color);
 		int lives = player->getLives();
 		for (int i = 0; i < lives; ++i) {
 			liveSprite->setPosition(glm::vec2(20 + 32*i, 440));
@@ -289,11 +353,14 @@ void Scene::render()
 		
 		
 		string time = to_string(int(timeLimit - currentTime / 1000));
-		if (int(timeLimit - currentTime / 1000) < 100 && int(timeLimit - currentTime / 1000) > 9) time = "0" + time;
-		else if (currentTime != 100) time = "00" + time;
+		if (int(timeLimit - currentTime / 1000) >= 100) time = time;
+		else if (int(timeLimit - currentTime / 1000) < 100 && int(timeLimit - currentTime / 1000) > 9) time = "0" + time;
+		else time = "00" + time;
 		text.render(("Time  " + time), glm::vec2(560, 48), 32, glm::vec4(1, 1, 1, 1));
-		text.render("Score  " + to_string(score), glm::vec2(20, 430), 16, glm::vec4(1, 1, 1, 1));
-		
+		text.render("Score  " + to_string(Game::instance().getScore()), glm::vec2(20, 430), 16, glm::vec4(1, 1, 1, 1));
+		text.render("Level " + to_string(level), glm::vec2(320, 450), 32, glm::vec4(1, 1, 1, 1));
+		if (startTimer > 0) text.render("READY", glm::vec2(256, 240), 64, glm::vec4(1,1,1,1));
+		if (stageCompletedTimer > 0) text.render("STAGE CLEAR", glm::vec2(160, 240), 64, glm::vec4(1, 1, 1, 1));
 	}
 }
 
@@ -337,28 +404,46 @@ void Scene::explodeBubbles()
 	unsigned int i = 0;
 	list<Bubble*>::iterator itB = lB.begin();
 
-	while (i < size) {
+	while (itB != lB.end()) {
 		Bubble* b = *itB;
-		Bubble::Color c = b->getColor();
-		auto speed = b->getSpeed();
-		lB.push_back(new Bubble());
-		lB.back()->init(glm::ivec2(320, 320), texProgram, c, Bubble::Size::TINY, b->getPosition(), glm::vec2(speed.x, -15));
-		lB.back()->setTileMap(map);
-		lB.push_back(new Bubble());
-		lB.back()->init(glm::ivec2(320, 320), texProgram, c, Bubble::Size::TINY, b->getPosition(), glm::vec2(-speed.x, -15));
-		lB.back()->setTileMap(map);
+		int s = b->getSize();
+		if (!b->isDestroying() && !b->isDestroyed() && s != Bubble::Size::TINY) {
+			Bubble::Color c = b->getColor();
+			auto speed = b->getSpeed();
+			
+			Bubble::Size next;
+
+			switch (s) {
+			case Bubble::BIG:
+				next = Bubble::MID;
+				break;
+			case Bubble::MID:
+				next = Bubble::SMALL;
+				break;
+			default:
+				next = Bubble::TINY;
+			}
+
+			lB.push_back(new Bubble());
+			lB.back()->init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition() - glm::ivec2(5 * (4 - s), 0), glm::vec2(speed.x, -15));
+			lB.back()->setTileMap(map);
+			lB.push_back(new Bubble());
+			lB.back()->init(glm::ivec2(320, 320), texProgram, c, next, b->getPosition() + glm::ivec2(5 * (4 - s), 0), glm::vec2(-speed.x, -15));
+			lB.back()->setTileMap(map);
+
+			SoundManager::instance().sound("sounds/Pop.mp3");
+			b->destroy();
+			//delete b;
+			//itB = lB.erase(itB);
+		}
 		
-		SoundManager::instance().sound("sounds/Pop.mp3");
-		b->destroy();
-		//delete b;
-		//itB = lB.erase(itB);
-		++i;
+		++itB;
 	}
 }
 
 inline bool Scene::hitted()
 {
-	if (currentTime - inmuneTime > 50) {
+	if (currentTime - inmuneTime > 1500) {
 		inmuneTime = currentTime;
 		return true;
 	}
@@ -377,21 +462,26 @@ void Scene::updatePowerUps(int deltaTime)
 				switch (Effects(i)) {
 				case Effects::GUN:
 					player->changeWeapon(Effects::HOOK);
+					poweredUp = false;
 					break;
 				case Effects::STICK:
 					player->changeWeapon(Effects::HOOK);
+					poweredUp = false;
 					break;
 				case Effects::DOUBLE:
 					player->changeWeapon(Effects::HOOK);
+					poweredUp = false;
 					break;
 				case Effects::HOOK:
 					player->changeWeapon(Effects::HOOK);
+					poweredUp = false;
 					break;
 				case Effects::FREEZE:
 					freeze = false;
 					break;
 				case Effects::SLOW:
-					for (Bubble* b : lB) b->changeGravity(1.8f);
+					slowed = false;
+					//for (Bubble* b : lB) b->changeGravity(1.8f);
 					break;
 				default:
 					break;
@@ -407,27 +497,48 @@ void Scene::treatPowerUp(Effects f)
 	switch (f) {
 	case Effects::GUN:
 		player->changeWeapon(f);
+		poweredUp = true;
+		powerUp->changeAnimation(2);
+		SoundManager::instance().sound("sounds/pickupWeapon.wav");
 		break;
 	case Effects::STICK:
 		player->changeWeapon(f);
+		poweredUp = true;
+		powerUp->changeAnimation(0);
+		SoundManager::instance().sound("sounds/pickupWeapon.wav");
 		break;
 	case Effects::DOUBLE:
 		player->changeWeapon(f);
+		powerUp->changeAnimation(1);
+		SoundManager::instance().sound("sounds/pickupWeapon.wav");
+		poweredUp = true;
 		break;
 	case Effects::HOOK:
+		poweredUp = false;
 		player->changeWeapon(f);
 		break;
 	case Effects::DYNAMITE:
 		this->explodeBubbles();
+		SoundManager::instance().sound("sounds/dinamita.mp3");
 		break;
 	case Effects::FREEZE:
 		freeze = true;
+		SoundManager::instance().sound("sounds/clock.mp3");
 		break;
 	case Effects::SLOW:
-		for (Bubble* b : lB) b->changeGravity(1.0f);
+		slowed = true;
+		SoundManager::instance().sound("sounds/clock.mp3");
+		//for (Bubble* b : lB) b->changeGravity(1.0f);
+		break;
+	case Effects::UNFREEZE:
+		freeze = false;
+		break;
+
+	case Effects::UNSLOW:
+		slowed = false;
 		break;
 	default:
-		this->score += 99999;
+		Game::instance().addScore(0);
 		break;
 	}
 }
@@ -435,5 +546,11 @@ void Scene::treatPowerUp(Effects f)
 void Scene::changeGodMode()
 {
 	godMode = !godMode;
+}
+
+void Scene::unload()
+{
+	this->menu = 0;
+	//SoundManager::instance().changeBgMusic(nullptr, false, false);
 }
 

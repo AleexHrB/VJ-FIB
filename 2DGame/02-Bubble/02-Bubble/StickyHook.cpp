@@ -1,5 +1,6 @@
 #include "StickyHook.h"
 #include <iostream>
+#include "Game.h"
 
 void StickyHook::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 {
@@ -17,10 +18,14 @@ void StickyHook::update(int deltaTime)
 	if (shooted) {
 		if (!map->collisionMoveUp(position, glm::ivec2(9, y0 - position.y), &position.y)) position.y -= 4;
 		else {
-			bool destroy = map->weaponColision(position, glm::ivec2(9, y0 - position.y));
-			if (destroy) shooted = false;
-			else if (!stick) {
+			if (map->weaponColision(position, glm::ivec2(9, y0 - position.y))) {
+				Game::instance().addScore(BLOCK_BONUS);
+				shooted = false;
+			}
+				
+			if (!stick && shooted) {
 				stick = true;
+				
 				spritesheet.loadFromFile("images/StickHook.png", TEXTURE_PIXEL_FORMAT_RGBA);
 			}
 		}
@@ -39,6 +44,7 @@ bool StickyHook::shoot(const glm::ivec2& pos)
 		shooted = true;
 		spritesheet.loadFromFile("images/hook.png", TEXTURE_PIXEL_FORMAT_RGBA);
 		sprite = Sprite::createSprite(glm::ivec2(9, y0 - position.y), glm::vec2(1.0f, (y0 - position.y) / 188.0), &spritesheet, &texProgram);
+		SoundManager::instance().sound("sounds/shoot.wav");
 		return true;
 	}
 	return false;

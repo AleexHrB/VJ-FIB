@@ -1,5 +1,6 @@
 #include "DoubleHook.h"
 #include <iostream>
+#include "Game.h"
 
 void DoubleHook::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 {
@@ -21,7 +22,8 @@ void DoubleHook::update(int deltaTime)
 		else {
 			used[i] = false;
 			--currentHooks;
-			map->weaponColision(v[i].first, glm::ivec2(9, y0[i] - v[i].first.y));
+			if (map->weaponColision(v[i].first, glm::ivec2(9, y0[i] - v[i].first.y)))
+				Game::instance().addScore(BLOCK_BONUS);
 		}
 	}
 }
@@ -34,6 +36,7 @@ bool DoubleHook::shoot(const glm::ivec2& pos)
 		used[nextPlace] = true;
 		++currentHooks;
 		nextPlace = (nextPlace+1)%2;
+		SoundManager::instance().sound("sounds/shoot.wav");
 		return true;
 	}
 	return false;
@@ -48,9 +51,9 @@ pair<glm::ivec2, glm::ivec2> DoubleHook::getHitbox()
 
 void DoubleHook::hitted()
 {
-	shooted = false;
-	currentHooks = 0;
-	for (unsigned int i = 0; i < v.size(); ++i) used[i] = false;
+	//shooted = false;
+	//currentHooks -= 1;
+	//for (unsigned int i = 0; i < v.size(); ++i) used[i] = false;
 }
 
 void DoubleHook::render()
@@ -82,6 +85,7 @@ bool DoubleHook::checkCollisionProj(const pair<glm::ivec2, glm::ivec2>& hitbox, 
 
 			if (check) {
 				used[i] = false;
+				--currentHooks;
 				return true;
 			}
 		}

@@ -1,21 +1,75 @@
-﻿  Player.cpp
-C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\BreakableBlock.h(26,12): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file 'Player.cpp')
+﻿  Bird.cpp
+  BreakableBlock.cpp
+  Bubble.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Sprite.h(6,10): error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  (compiling source file 'Bird.cpp')
   
-C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\Entity.h(25,12): warning C4305: 'initializing': truncation from 'double' to 'float'
-  (compiling source file 'Player.cpp')
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\BreakableBlock.h(2,10): error C1083: Cannot open include file: 'glm/detail/type_vec.hpp': No such file or directory
+  (compiling source file 'BreakableBlock.cpp')
   
-C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\02-Bubble\Player.cpp(15,13): warning C4305: 'initializing': truncation from 'double' to 'float'
-LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
-SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
-LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
-  Generating code
-  2 of 1025 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-SOIL.lib(image_DXT.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(image_DXT.obj)' or at ''; linking object as if no debug info
-SOIL.lib(image_helper.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(image_helper.obj)' or at ''; linking object as if no debug info
-SOIL.lib(SOIL.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(SOIL.obj)' or at ''; linking object as if no debug info
-SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB '' was not found with 'SOIL.lib(stb_image_aug.obj)' or at ''; linking object as if no debug info
-  02-Bubble.vcxproj -> C:\Users\Lluc\Documents\Carpeta\NuevaCarpeta\Uni\Q8\Vj\VJ-FIB\2DGame\02-Bubble\Release\02-Bubble.exe
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Sprite.h(6,10): error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  (compiling source file 'Bubble.cpp')
+  
+  Crab.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Sprite.h(6,10): error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  (compiling source file 'Crab.cpp')
+  
+  DoubleHook.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Sprite.h(6,10): error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  (compiling source file 'DoubleHook.cpp')
+  
+  Entity.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Sprite.h(6,10): error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  (compiling source file 'Entity.cpp')
+  
+  Game.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Game.cpp(1,10): error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  Gun.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Sprite.h(6,10): error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  (compiling source file 'Gun.cpp')
+  
+  Hook.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Sprite.h(6,10): error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  (compiling source file 'Hook.cpp')
+  
+  main.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\main.cpp(1,10): error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  Menu.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\ShaderProgram.h(5,10): error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  (compiling source file 'Menu.cpp')
+  
+  Object.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Sprite.h(6,10): error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  (compiling source file 'Object.cpp')
+  
+  Player.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Player.cpp(3,10): error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  Scene.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Scene.cpp(3,10): error C1083: Cannot open include file: 'glm/gtc/matrix_transform.hpp': No such file or directory
+  Shader.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Shader.h(6,10): error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  (compiling source file 'Shader.cpp')
+  
+  ShaderProgram.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\ShaderProgram.cpp(1,10): error C1083: Cannot open include file: 'glm/gtc/type_ptr.hpp': No such file or directory
+  SoundManager.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\SoundManager.h(4,10): error C1083: Cannot open include file: 'irrKlang.h': No such file or directory
+  (compiling source file 'SoundManager.cpp')
+  
+  Sprite.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Sprite.cpp(1,10): error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  StickyHook.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Sprite.h(6,10): error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  (compiling source file 'StickyHook.cpp')
+  
+  Text.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Text.cpp(3,10): error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  Compiling...
+  Texture.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\Texture.cpp(1,10): error C1083: Cannot open include file: 'SOIL.h': No such file or directory
+  TexturedQuad.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\TexturedQuad.cpp(1,10): error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  TileMap.cpp
+C:\Users\Lluc\Desktop\LlucClavera\Projecte\Bubble\02-Bubble\TileMap.h(5,10): error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  (compiling source file 'TileMap.cpp')
+  

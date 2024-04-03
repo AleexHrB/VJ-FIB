@@ -2,6 +2,7 @@
 
 uniform vec4 color;
 uniform sampler2D tex;
+uniform int time;
 
 in vec2 texCoordFrag;
 out vec4 outColor;
@@ -12,6 +13,8 @@ void main()
 	// otherwise compose the texture sample with the fragment's interpolated color
 	vec4 texColor = texture(tex, texCoordFrag);
 	if(texColor.a < 0.5f)
+		discard;
+	if((time/100)%3== 1)
 		discard;
 	outColor = color * texColor;
 }

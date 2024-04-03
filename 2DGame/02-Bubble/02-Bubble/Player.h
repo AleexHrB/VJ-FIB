@@ -15,7 +15,7 @@
 
 // Player is basically a Sprite that represents the player. As such it has
 // all properties it needs to track its movement, jumping, and collisions.
-
+#define DISABLED_TIME 3000
 
 class Player : public Entity
 {
@@ -24,7 +24,7 @@ public:
 
 	void init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram) override;
 	void update(int deltaTime) override; 
-	void render() override;
+	void render(bool flicker, glm::vec4 color);
 	void hitWeapon();
 	bool substractLive();
 	int getLives();
@@ -34,10 +34,14 @@ public:
 	bool checkProjectileHitbox(const pair<glm::ivec2, glm::ivec2>& hitbox, Bubble* b);
 	void setTileMap(TileMap* tileMap) override;
 	void setLives(int liv);
+	void setDisabled(bool disable);
+	bool isDisabled();
 private:
 	bool bJumping = false;
 	int jumpAngle, startY;
+	int disabledTime = 0;
 	bool shoot = false;
+	bool disabled = false;
 	unsigned int lives = 3;
 	bool C_pressed,UP_pressed, DOWN_pressed;
 	Effects actual_weapon;
