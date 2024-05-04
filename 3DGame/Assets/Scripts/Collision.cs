@@ -21,14 +21,30 @@ public class Collision : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.name.Equals("rock")) {
+        if (other.tag == "Rock") {
             anim.Play("mixamo_muerte");
-            GetComponentInParent<Move>().speed = new Vector3(0, 0, 10);
+            GetComponentInParent<Move>().speed = 10.0f;
             impact = true;
         }
-        else
+        else if (other.tag == "Coin")
         {
             GetComponent<AudioSource>().PlayOneShot(coin);
+        }
+        else if (other.tag == "Turn")
+        {
+
+            GetComponentInParent<Move>().canRotate = true;
+        }
+        //SceneManager.LoadScene("TempleRun");
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.tag == "Turn")
+        {
+
+            GetComponentInParent<Move>().canRotate = false;
         }
         //SceneManager.LoadScene("TempleRun");
     }
@@ -43,13 +59,13 @@ public class Collision : MonoBehaviour
         else if (dying && !anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_muerte")) {
             impact = false;
             dying = false;
-            GetComponentInParent<Move>().speed = new Vector3(0, 0, 0);
+            GetComponentInParent<Move>().speed = 0.0f;
             //SceneManager.LoadScene("TempleRun");
         }
 
         if (dying)
         {
-            GetComponentInParent<Move>().speed = GetComponentInParent<Move>().speed - new Vector3(0, 0, 0.02f);
+            GetComponentInParent<Move>().speed -= 0.02f;
         }
     }
 }
