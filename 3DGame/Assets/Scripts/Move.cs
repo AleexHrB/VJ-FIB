@@ -56,9 +56,9 @@ public class Move : MonoBehaviour
 
         if (smoothRotate) {
             Quaternion before = transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 7.0f);
-
-            if (before == transform.rotation) smoothRotate = false;
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 8.5f);
         }
+
+        if (!canRotate) { smoothRotate = false; }
     }
 }
