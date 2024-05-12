@@ -28,12 +28,16 @@ public class Move : MonoBehaviour
         transform.Translate(speed * direction * Time.deltaTime);
         Vector3 move = direction;
         move.x = direction.z;
-        move.z = direction.x; 
+        move.z = direction.x;
+        float y = transform.rotation.eulerAngles.y;
+        
         if (Input.GetKeyDown(KeyCode.LeftArrow) && lane > 0)
         {
+            print(y);
             if (canRotate) {
                 smoothRotate = true;
-                target = Quaternion.Euler(0, -90.0f, 0);
+                
+                target = Quaternion.Euler(0, y - 90.0f, 0);
             }
 
             else {
@@ -43,9 +47,10 @@ public class Move : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) && lane < 2)
         {
+            print(y);
             if (canRotate) {
                 smoothRotate = true;
-                target = Quaternion.Euler(0, 90.0f, 0);
+                target = Quaternion.Euler(0, y + 90.0f, 0);
             }
 
             else {
@@ -57,8 +62,8 @@ public class Move : MonoBehaviour
         if (smoothRotate) {
             Quaternion before = transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 8.5f);
+            if (transform.rotation.Equals(before)) smoothRotate = false;
         }
 
-        if (!canRotate) { smoothRotate = false; }
     }
 }
