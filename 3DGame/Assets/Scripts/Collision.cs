@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Collision : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class Collision : MonoBehaviour
         else if (other.tag == "Coin")
         {
             GetComponent<AudioSource>().PlayOneShot(coin);
+            GameObject.Find("ScoreText").GetComponent<Score>().score += 1000;
         }
         else if (other.tag == "Turn")
         {
