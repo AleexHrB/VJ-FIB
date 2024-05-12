@@ -15,111 +15,109 @@ public class RoadGen : MonoBehaviour
     public float lengthLong;
     public float lengthTea;
     public float lengthEle;
+    public int L_Wait;
 
 
     public void generateRoad(Vector3 direction) {
 
         bool stopGenerate = false;
         Random rand = new Random();
+        int L_cooldown = 0;
+
 
         while (!stopGenerate) {
             int numRand = rand.Next(1, 101);
+
+
 
             if (numRand <= 10) {
 
                 if (direction.x != 0)
                 {
-                    if (direction.x != 0)
-                    {
-                        if (direction.x < 0)
-                        {
-                            Instantiate(Tea, new Vector3(x + 20, 0.0f, z), Quaternion.Euler(0.0f, 90.0f * direction.x, 0.0f));
-                        }
-                        else {
-                            Instantiate(Tea, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 90.0f * direction.x, 0.0f));
-                        }
-                        
-                        x += lengthTea * direction.x;
-                        z += lengthTea;
-                        direction = new Vector3(0, 0, direction.z);
-                    }
-                    else
-                    {
-                        if (direction.z < 0)
-                        {
-                            Instantiate(Tea, new Vector3(x, 0.0f, z + 20), Quaternion.identity);
-                        }
-                        else
-                        {
-                            Instantiate(Tea, new Vector3(x, 0.0f, z), Quaternion.identity);
-                        }
-                        
-                        x += lengthTea * direction.x;
-                        z += lengthTea;
-                        direction = new Vector3(direction.x,0,0);
-                    }
 
+                    Instantiate(Tea, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 90.0f * direction.x, 0.0f));
+
+                    x += lengthTea * direction.x;
+                    direction = new Vector3(0, 0, direction.z);
+                    Instantiate(LongLine, new Vector3(x, 0, z + lengthLong / 2 + lengthTea), Quaternion.identity);
+                    Instantiate(LongLine, new Vector3(x, 0, z - lengthLong / 2 - lengthTea), Quaternion.identity);
+                    z += lengthTea;
                 }
+                
                 else
                 {
-
-                }
-                stopGenerate = true;
-            }
-
-            //Acabar
-            else if (numRand <= 30) {
-                if (direction.x != 0)
-                {
-                    if (direction.x != 0)
+                    if (direction.z < 0)
                     {
-                        if (direction.x < 0)
-                        {
-                            Instantiate(Ele, new Vector3(x + 20, 0.0f, z), Quaternion.Euler(0.0f, 90.0f * direction.x, 0.0f));
-                        }
-                        else
-                        {
-                            Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 90.0f * direction.x, 0.0f));
-                        }
-
-                        x += lengthEle * direction.x;
-                        z += lengthEle;
-                        direction = new Vector3(0, 0, -direction.z);
+                        Instantiate(Tea, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 180.0f, 0.0f));
                     }
                     else
                     {
-                        if (direction.z < 0)
-                        {
-                            Instantiate(Ele, new Vector3(x, 0.0f, z + 20), Quaternion.identity);
-                        }
-                        else
-                        {
-                            Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.identity);
-                        }
-
-                        x += lengthEle * direction.x;
-                        z += lengthEle * (-direction.x);
-                        direction = new Vector3(-direction.x, 0, 0);
+                        Instantiate(Tea, new Vector3(x, 0.0f, z), Quaternion.identity);
                     }
 
+                    
+                    z += lengthTea * direction.z;
+                    Instantiate(LongLine, new Vector3(x + lengthLong/2 + lengthTea, 0, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                    Instantiate(LongLine, new Vector3(x - lengthLong / 2 - lengthTea, 0, z), Quaternion.Euler(0.0f, -90.0f, 0.0f));
+                    direction = new Vector3(direction.x, 0, 0);
+                    x += lengthTea;
                 }
+
+                    stopGenerate = true;
+                }
+                
+            //Acabar
+                
+            else if (numRand <= 30 && L_cooldown == 0) {
+                    
+                if (direction.x != 0)
+                    
+                { 
+                    Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 90.0f * direction.x, 0.0f));
+                    x += lengthEle * direction.x;
+                    z += lengthEle * (-direction.x);
+                    direction = new Vector3(0, 0, -direction.x);
+
+                }
+
+                else
+                {
+                    if (direction.z < 0)
+                    {
+                        Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 180.0f, 0.0f));
+                    }
+                    else
+                    {
+                        Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.identity);
+                    }
+
+                    x += lengthEle * (direction.z);
+                    z += lengthEle * (direction.z);
+                    direction = new Vector3(direction.z, 0, 0);
+
+                }
+                L_cooldown = L_Wait;
             }
 
             else if (numRand <= 80) {
-                
+
                 if (direction.x != 0)
                 {
-                    Instantiate(StraightLine, new Vector3(x + (lengthLine/2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                        
+                    Instantiate(StraightLine, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
                     x += lengthLine * direction.x;
                 }
+                
                 else {
-                    Instantiate(StraightLine, new Vector3(x, 0.0f, z + (lengthLine/ 2 * direction.z)), Quaternion.identity);
+                    Instantiate(StraightLine, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.identity);
+                        
                     z += lengthLine * direction.z;
                 }
 
             }
 
             else if (numRand <= 100) {
+                    
                 if (direction.x != 0)
                 {
                     Instantiate(LongLine, new Vector3(x + (lengthLong / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
@@ -134,6 +132,7 @@ public class RoadGen : MonoBehaviour
 
             }
 
+            if (L_cooldown >  0) --L_cooldown; 
         }
     }
 
@@ -151,8 +150,8 @@ public class RoadGen : MonoBehaviour
         Instantiate(LongLine, new Vector3(x + lengthLong/2,0.0f, z), Quaternion.Euler(0.0f, -90.0f, 0.0f));
         Instantiate(LongLine, new Vector3(xNeg - lengthLong/2,0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
         //canGenerate = false;
-        x = xNeg - lengthLong;
-        generateRoad(new Vector3(-1,0,0));
+        x = x + lengthLong;
+        generateRoad(new Vector3(1,0,0));
     }
 
     // Update is called once per frame
