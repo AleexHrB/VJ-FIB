@@ -60,7 +60,10 @@ public class RoadGen : MonoBehaviour
                     }
 
                 }
-                
+                else
+                {
+
+                }
                 stopGenerate = true;
             }
 
@@ -106,11 +109,11 @@ public class RoadGen : MonoBehaviour
                 
                 if (direction.x != 0)
                 {
-                    Instantiate(StraightLine, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                    Instantiate(StraightLine, new Vector3(x + (lengthLine/2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
                     x += lengthLine * direction.x;
                 }
                 else {
-                    Instantiate(StraightLine, new Vector3(x, 0.0f, z), Quaternion.identity);
+                    Instantiate(StraightLine, new Vector3(x, 0.0f, z + (lengthLine/ 2 * direction.z)), Quaternion.identity);
                     z += lengthLine * direction.z;
                 }
 
@@ -119,28 +122,13 @@ public class RoadGen : MonoBehaviour
             else if (numRand <= 100) {
                 if (direction.x != 0)
                 {
-                    if (direction.x < 0)
-                    {
-                        Instantiate(LongLine, new Vector3(x - lengthLong / 2, 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
-                    }
-                    else
-                    {
-                        Instantiate(LongLine, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
-                    }
-
+                    Instantiate(LongLine, new Vector3(x + (lengthLong / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
                     x += lengthLong * direction.x;
 
                 }
                 else
                 {
-                    if (direction.z < 0)
-                    {
-                        Instantiate(LongLine, new Vector3(x, 0.0f, z - lengthLong / 2), Quaternion.identity);
-                    }
-                    else
-                    {
-                        Instantiate(LongLine, new Vector3(x, 0.0f, z), Quaternion.identity);
-                    }
+                    Instantiate(LongLine, new Vector3(x, 0.0f, z + (lengthLong / 2 * direction.z)), Quaternion.identity);
                     z += lengthLong * direction.z;
                 }
 
@@ -155,16 +143,16 @@ public class RoadGen : MonoBehaviour
         x = 0;
         z = 0;
         Instantiate(LongLine, new Vector3(0.0f,0.0f, 0.0f),Quaternion.identity);
-        z = z + lengthLong;
+        z = z + lengthLong/2;
         Instantiate(Tea, new Vector3(0.0f,0.0f, z), Quaternion.identity);
         x += lengthTea;
         z += lengthTea;
         float xNeg = -x;
-        Instantiate(LongLine, new Vector3(x + lengthLong,0.0f, z), Quaternion.Euler(0.0f, -90.0f, 0.0f));
-        Instantiate(LongLine, new Vector3(xNeg - lengthLong,0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+        Instantiate(LongLine, new Vector3(x + lengthLong/2,0.0f, z), Quaternion.Euler(0.0f, -90.0f, 0.0f));
+        Instantiate(LongLine, new Vector3(xNeg - lengthLong/2,0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
         //canGenerate = false;
-        x = x + lengthLong;
-        generateRoad(new Vector3(1,0,0));
+        x = xNeg - lengthLong;
+        generateRoad(new Vector3(-1,0,0));
     }
 
     // Update is called once per frame
