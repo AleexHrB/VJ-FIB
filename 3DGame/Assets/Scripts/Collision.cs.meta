@@ -3,7 +3,11 @@ guid: 838ab5678a467cf4aa219a22fcfe4229
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - anim: {instanceID: 0}
+  - coin: {instanceID: 0}
+  - woah: {fileID: 8300000, guid: c15d450d456e8754992289e94fd47b6e, type: 3}
+  - falling: {fileID: 8300000, guid: 72f7c49500368354abd9883e621a2a82, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

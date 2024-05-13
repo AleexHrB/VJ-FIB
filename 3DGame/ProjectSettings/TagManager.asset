@@ -7,6 +7,7 @@ TagManager:
   - Rock
   - Coin
   - Turn
+  - Fall
   layers:
   - Default
   - TransparentFX

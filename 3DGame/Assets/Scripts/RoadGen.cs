@@ -15,6 +15,7 @@ public class RoadGen : MonoBehaviour
     public float lengthLong;
     public float lengthTea;
     public float lengthEle;
+    int turns = 0;
     public int L_Wait;
 
 

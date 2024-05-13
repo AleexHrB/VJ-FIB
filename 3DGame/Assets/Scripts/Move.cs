@@ -10,6 +10,7 @@ public class Move : MonoBehaviour
     private int lane;
     private Quaternion target;
     private bool smoothRotate;
+    public bool falling;
     private const double PI = 3.1415926535897931;
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class Move : MonoBehaviour
         direction = new Vector3(0,0,1.0f);
         canRotate = false;
         smoothRotate = false;
+        falling = false;
         speed = 10.0f;
     }
 
@@ -63,6 +65,11 @@ public class Move : MonoBehaviour
             Quaternion before = transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 8.5f);
             if (transform.rotation.Equals(before)) smoothRotate = false;
+        }
+
+        if (falling)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(90.0f, 0, 0), Time.deltaTime * 2.5f);
         }
 
     }

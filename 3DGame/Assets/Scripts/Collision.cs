@@ -9,6 +9,8 @@ public class Collision : MonoBehaviour
 {
     public Animator anim;
     public AudioClip coin;
+    public AudioClip woah;
+    public AudioClip falling;
     private bool impact;
     private bool dying;
 
@@ -47,6 +49,14 @@ public class Collision : MonoBehaviour
         {
 
             GetComponentInParent<Move>().canRotate = false;
+        }
+
+        else if (other.tag == "Fall")
+        {
+            anim.Play("mixamo_caer");
+            GetComponentInParent<Move>().falling = true;
+            GetComponent<AudioSource>().PlayOneShot(woah);
+            GetComponent<AudioSource>().PlayOneShot(falling);
         }
         //SceneManager.LoadScene("TempleRun");
     }
