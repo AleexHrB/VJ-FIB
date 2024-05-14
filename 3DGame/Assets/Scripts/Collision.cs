@@ -14,7 +14,6 @@ public class Collision : MonoBehaviour
     private bool impact;
     private bool dying;
 
-
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
@@ -34,10 +33,22 @@ public class Collision : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(coin);
             GameObject.Find("ScoreText").GetComponent<Score>().score += 1000;
         }
-        else if (other.tag == "Turn")
+        else if (other.tag == "Turn" || other.tag == "Tea")
         {
-
+            GetComponentInParent<Move>().rotationCenter = other.bounds.center;
             GetComponentInParent<Move>().canRotate = true;
+            
+            if (other.tag == "Tea")
+            {
+                GetComponentInParent<Move>().Tea = true;
+            }
+        }
+        else if (other.tag == "Fall")
+        {
+            anim.Play("mixamo_caer");
+            GetComponentInParent<Move>().falling = true;
+            GetComponent<AudioSource>().PlayOneShot(woah);
+            GetComponent<AudioSource>().PlayOneShot(falling);
         }
         //SceneManager.LoadScene("TempleRun");
     }
@@ -51,12 +62,9 @@ public class Collision : MonoBehaviour
             GetComponentInParent<Move>().canRotate = false;
         }
 
-        else if (other.tag == "Fall")
+        if (other.tag == "delete")
         {
-            anim.Play("mixamo_caer");
-            GetComponentInParent<Move>().falling = true;
-            GetComponent<AudioSource>().PlayOneShot(woah);
-            GetComponent<AudioSource>().PlayOneShot(falling);
+            Destroy(other.gameObject.transform.parent.gameObject, 3);
         }
         //SceneManager.LoadScene("TempleRun");
     }

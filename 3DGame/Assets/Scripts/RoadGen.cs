@@ -9,6 +9,7 @@ public class RoadGen : MonoBehaviour
     public GameObject LongLine;
     public GameObject Tea;
     public GameObject Ele;
+    //public GameObject[] generated;
     private float x;
     private float z;
     public float lengthLine;
@@ -16,6 +17,7 @@ public class RoadGen : MonoBehaviour
     public float lengthTea;
     public float lengthEle;
     int turns = 0;
+    
     public int L_Wait;
 
 
@@ -32,7 +34,7 @@ public class RoadGen : MonoBehaviour
 
 
 
-            if (numRand <= 1)
+            if (numRand <= 10)
             {
 
                 if (direction.x != 0)
@@ -190,7 +192,7 @@ public class RoadGen : MonoBehaviour
         Instantiate(LongLine, new Vector3(xNeg - lengthLong/2,0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
         //canGenerate = false;
         x = x + lengthLong;
-        generateRoad(new Vector3(1,0,0));
+        //generateRoad(new Vector3(1,0,0));
     }
 
     // Update is called once per frame
