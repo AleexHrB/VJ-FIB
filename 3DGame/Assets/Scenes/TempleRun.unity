@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6227838, g: 0.71719164, b: 0.8727505, a: 1}
+  m_IndirectSpecularColor: {r: 0.6227916, g: 0.71720016, b: 0.8727553, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -175,6 +175,7 @@ MonoBehaviour:
   lengthLong: 40
   lengthTea: 12.5
   lengthEle: 12.5
+  L_Wait: 0
 --- !u!1 &28648055
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   coin: {fileID: 8300000, guid: f8f7b1a4667bddb4098b9dc8901253aa, type: 3}
+  woah: {fileID: 0}
+  falling: {fileID: 0}
 --- !u!82 &97032672
 AudioSource:
   m_ObjectHideFlags: 0
@@ -502,6 +505,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   speed: 0
   canRotate: 0
+  falling: 0
 --- !u!1001 &587259808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -893,6 +897,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   speed: 0
   canRotate: 0
+  falling: 0
 --- !u!1 &1188461401 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4efcf63a134e06c40bd743485f93ce02, type: 3}
@@ -1134,6 +1139,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   txtScore: {fileID: 1433716563}
+--- !u!1 &1720575291 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5131292073822552898, guid: 6e22d72ff588a39238c01df7e5ac26e7, type: 3}
+  m_PrefabInstance: {fileID: 1213755070119348335}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1720575294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720575291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50480d56960b51c40bd141cab9056584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1765437910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1361,6 +1383,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   speed: 0
   canRotate: 0
+  falling: 0
 --- !u!1001 &1213755070119348335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1416,7 +1439,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5131292073822552898, guid: 6e22d72ff588a39238c01df7e5ac26e7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1720575294}
   m_SourcePrefab: {fileID: 100100000, guid: 6e22d72ff588a39238c01df7e5ac26e7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

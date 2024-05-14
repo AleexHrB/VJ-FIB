@@ -137,17 +137,17 @@ public class RoadGen : MonoBehaviour
 
             else if (numRand <= 80)
             {
-
+                GameObject lin;
                 if (direction.x != 0)
                 {
 
-                    Instantiate(StraightLine, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                    lin = Instantiate(StraightLine, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
                     x += lengthLine * direction.x;
                 }
 
                 else
                 {
-                    Instantiate(StraightLine, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.identity);
+                    lin = Instantiate(StraightLine, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.identity);
 
                     z += lengthLine * direction.z;
                 }
