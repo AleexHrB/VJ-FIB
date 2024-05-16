@@ -8,6 +8,11 @@ TagManager:
   - Coin
   - Turn
   - Fall
+  - delete
+  - Tea
+  - Road
+  - Right
+  - Left
   layers:
   - Default
   - TransparentFX

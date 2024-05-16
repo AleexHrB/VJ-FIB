@@ -14,7 +14,6 @@ public class Move : MonoBehaviour
     private bool smoothRotate;
     public bool falling;
     private bool fell;
-    private bool posRotate;
     public Vector3 rotationCenter;
     private const double PI = 3.1415926535897931;
     public GameObject road;
@@ -30,8 +29,6 @@ public class Move : MonoBehaviour
         falling = false;
         speed = 10.0f;
         fell = false;
-        Tea = false;
-        posRotate = false;
     }
 
     // Update is called once per frame
@@ -50,12 +47,7 @@ public class Move : MonoBehaviour
                 target = Quaternion.Euler(0, y - 90.0f, 0);
                 posTarget = new Vector3(rotationCenter.x, 0, rotationCenter.z);
                 direction = direction.x != 0 ? new Vector3(0, 0, 1) : new Vector3(-1, 0, 0);
-                posRotate = true;
-                if (Tea)
-                {
-                    road.GetComponent<RoadGen>().generateRoad(direction);
-                    Tea = false;
-                }
+             
             }
 
             else if (lane > 0) {
@@ -70,11 +62,7 @@ public class Move : MonoBehaviour
                 target = Quaternion.Euler(0, y + 90.0f, 0);
                 direction = direction.x != 0 ? new Vector3(0, 0, -1) : new Vector3(1, 0, 0);
                 posTarget = new Vector3(rotationCenter.x, 0, rotationCenter.z);
-                posRotate = true;
-                if (Tea) {
-                    road.GetComponent<RoadGen>().generateRoad(direction);
-                    Tea = false;
-                }
+          
             }
 
             else if (lane < 2){
@@ -86,7 +74,6 @@ public class Move : MonoBehaviour
         if (smoothRotate) {
             Quaternion before = transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 8.5f);
-            if (transform.position.Equals(posTarget)) { posRotate = false; }
             if (transform.rotation.eulerAngles.y >= (target.eulerAngles.y - 1) && transform.rotation.eulerAngles.y <= (target.eulerAngles.y + 1)) {
                 transform.rotation = target;
                 smoothRotate = false;

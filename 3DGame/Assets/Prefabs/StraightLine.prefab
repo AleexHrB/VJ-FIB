@@ -118,8 +118,8 @@ GameObject:
   - component: {fileID: 7221119659522981481}
   - component: {fileID: 8753884242339739701}
   m_Layer: 0
-  m_Name: delete
-  m_TagString: delete
+  m_Name: Road
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

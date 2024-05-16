@@ -62,10 +62,6 @@ public class Collision : MonoBehaviour
             GetComponentInParent<Move>().canRotate = false;
         }
 
-        if (other.tag == "delete")
-        {
-            Destroy(other.gameObject.transform.parent.gameObject, 3);
-        }
         //SceneManager.LoadScene("TempleRun");
     }
 
