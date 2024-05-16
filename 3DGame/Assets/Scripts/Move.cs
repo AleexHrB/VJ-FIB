@@ -81,6 +81,7 @@ public class Move : MonoBehaviour
         }
 
         if (smoothRotate) {
+            canRotate = false;
             Quaternion before = transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 8.5f);
             if (transform.rotation.eulerAngles.y >= (target.eulerAngles.y - 1) && transform.rotation.eulerAngles.y <= (target.eulerAngles.y + 1)) {
