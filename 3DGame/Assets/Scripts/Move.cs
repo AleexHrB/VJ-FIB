@@ -39,10 +39,17 @@ public class Move : MonoBehaviour
         // Box = 1 -> Mid
         // Box = 2 -> Right
         int dir = (int)(direction.x != 0 ? direction.x : direction.z);
+        print("dir");
+        print(dir);
         if (box == 0)
         {
-            
-            lane = 1 - 1*dir;
+            if (direction.x != 0) {
+                lane = 1 - 1*dir;
+            }
+            else
+            {
+                lane = 1 - 1*dir;
+            }
         }
         else if (box == 1)
         {
@@ -50,7 +57,14 @@ public class Move : MonoBehaviour
         }
 
         else if (box == 2) {
-            lane = 1 + 1 * dir;
+            if (direction.x != 0)
+            {
+                lane = 1 + 1 * dir;
+            }
+            else
+            {
+                lane = 1 + 1*dir;
+            }
         }
     
         RTurn = false;
@@ -79,7 +93,7 @@ public class Move : MonoBehaviour
                 smoothRotate = true;
                 target = Quaternion.Euler(0, y - 90.0f, 0);
                 posTarget = new Vector3(rotationCenter.x, 0, rotationCenter.z);
-                direction = direction.x != 0 ? new Vector3(0, 0, 1) : new Vector3(-1, 0, 0);
+                direction = direction.x != 0 ? new Vector3(0, 0, direction.x) : new Vector3(-direction.z, 0, 0);
              
             }
 
@@ -95,7 +109,7 @@ public class Move : MonoBehaviour
             if (canRotate) {
                 smoothRotate = true;
                 target = Quaternion.Euler(0, y + 90.0f, 0);
-                direction = direction.x != 0 ? new Vector3(0, 0, -1) : new Vector3(1, 0, 0);
+                direction = direction.x != 0 ? new Vector3(0, 0, -direction.x) : new Vector3(direction.z, 0, 0);
                 posTarget = new Vector3(rotationCenter.x, 0, rotationCenter.z);
           
             }
