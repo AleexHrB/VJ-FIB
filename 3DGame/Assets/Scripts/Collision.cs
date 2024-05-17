@@ -51,9 +51,17 @@ public class Collision : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(falling);
         }
 
-        else if (other.tag == "Lane") {
-            GetComponentInParent<Move>().RTurn = false;
-            GetComponentInParent<Move>().LTurn = false;
+        else if (other.tag == "MidLane") {
+            GetComponentInParent<Move>().stopTurn(1);
+        }
+
+        else if ( other.tag == "LeftLane")
+        {
+            GetComponentInParent<Move>().stopTurn(0);
+        }
+        else if (other.tag == "RightLane")
+        {
+            GetComponentInParent<Move>().stopTurn(2);
         }
         //SceneManager.LoadScene("TempleRun");
     }

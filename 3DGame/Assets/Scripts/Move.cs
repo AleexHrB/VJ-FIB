@@ -34,6 +34,31 @@ public class Move : MonoBehaviour
         LTurn = RTurn = false;
     }
 
+    public void stopTurn(int box) {
+        // Box = 0 -> Left
+        // Box = 1 -> Mid
+        // Box = 2 -> Right
+        int dir = (int)(direction.x != 0 ? direction.x : direction.z);
+        if (box == 0)
+        {
+            
+            lane = 1 - 1*dir;
+        }
+        else if (box == 1)
+        {
+            lane = 1;
+        }
+
+        else if (box == 2) {
+            lane = 1 + 1 * dir;
+        }
+    
+        RTurn = false;
+        LTurn = false;
+
+        print(lane);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -49,6 +74,7 @@ public class Move : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            
             if (canRotate) {
                 smoothRotate = true;
                 target = Quaternion.Euler(0, y - 90.0f, 0);
@@ -59,13 +85,13 @@ public class Move : MonoBehaviour
 
             else if (lane > 0) {
                 //transform.Translate(new Vector3(-2.5f, 0.0f, 0.0f));
-                --lane;
                 LTurn = true;
                 RTurn = false;
             }
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            
             if (canRotate) {
                 smoothRotate = true;
                 target = Quaternion.Euler(0, y + 90.0f, 0);
@@ -76,7 +102,6 @@ public class Move : MonoBehaviour
 
             else if (lane < 2){
                 //transform.Translate(new Vector3(2.5f,0.0f,0.0f));
-                ++lane;
                 RTurn = true;
                 LTurn = false;
             }
