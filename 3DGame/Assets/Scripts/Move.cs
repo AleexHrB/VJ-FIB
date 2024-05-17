@@ -17,9 +17,9 @@ public class Move : MonoBehaviour
     public Vector3 rotationCenter;
     private const double PI = 3.1415926535897931;
     public GameObject road;
+    public bool LTurn = false;
+    public bool RTurn = false;
     public bool Tea;
-    private float xLane;
-    private float xMove;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,7 @@ public class Move : MonoBehaviour
         falling = false;
         speed = 10.0f;
         fell = false;
-        xMove = 0.0f;
+        LTurn = RTurn = false;
     }
 
     // Update is called once per frame
@@ -42,9 +42,9 @@ public class Move : MonoBehaviour
         move.x = direction.z;
         move.z = direction.x;
         float y = transform.rotation.eulerAngles.y;
-        Vector3 aux = transform.position;
-        aux.x = xMove;
-        transform.position = Vector3.Lerp(transform.position, aux, 5*Time.deltaTime);
+
+        if (RTurn) transform.Translate(new Vector3(speed,0,0) * Time.deltaTime);
+        if (LTurn) transform.Translate(new Vector3(-speed,0,0) * Time.deltaTime);
 
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -59,8 +59,9 @@ public class Move : MonoBehaviour
 
             else if (lane > 0) {
                 //transform.Translate(new Vector3(-2.5f, 0.0f, 0.0f));
-                xMove -= 2.5f;
                 --lane;
+                LTurn = true;
+                RTurn = false;
             }
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -75,8 +76,9 @@ public class Move : MonoBehaviour
 
             else if (lane < 2){
                 //transform.Translate(new Vector3(2.5f,0.0f,0.0f));
-                xMove += 2.5f;
                 ++lane;
+                RTurn = true;
+                LTurn = false;
             }
         }
 

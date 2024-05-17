@@ -50,6 +50,11 @@ public class Collision : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(woah);
             GetComponent<AudioSource>().PlayOneShot(falling);
         }
+
+        else if (other.tag == "Lane") {
+            GetComponentInParent<Move>().RTurn = false;
+            GetComponentInParent<Move>().LTurn = false;
+        }
         //SceneManager.LoadScene("TempleRun");
     }
 
