@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6227916, g: 0.71720016, b: 0.8727553, a: 1}
+  m_IndirectSpecularColor: {r: 0.6227838, g: 0.71719164, b: 0.8727505, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -564,6 +564,8 @@ MonoBehaviour:
   falling: 0
   rotationCenter: {x: 0, y: 0, z: 0}
   road: {fileID: 0}
+  LTurn: 0
+  RTurn: 0
   Tea: 0
 --- !u!1001 &587259808
 PrefabInstance:
@@ -1073,6 +1075,8 @@ MonoBehaviour:
   falling: 0
   rotationCenter: {x: 0, y: 0, z: 0}
   road: {fileID: 0}
+  LTurn: 0
+  RTurn: 0
   Tea: 0
 --- !u!1001 &1034905571
 PrefabInstance:
@@ -1619,6 +1623,8 @@ MonoBehaviour:
   falling: 0
   rotationCenter: {x: 0, y: 0, z: 0}
   road: {fileID: 743584}
+  LTurn: 0
+  RTurn: 0
   Tea: 0
 --- !u!1001 &1213755070119348335
 PrefabInstance:
@@ -1740,7 +1746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StraightLine
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5569714723170315956, guid: 2198ece24f5a000b28853aeeeb133c64, type: 3}
+    - {fileID: 7691751017368349831, guid: 2198ece24f5a000b28853aeeeb133c64, type: 3}
+    - {fileID: 7710876584486293843, guid: 2198ece24f5a000b28853aeeeb133c64, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
