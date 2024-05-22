@@ -167,18 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0809127736dc6204a8a8d2042739bd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StraightLine: {fileID: 7400093059482114011, guid: 2198ece24f5a000b28853aeeeb133c64, type: 3}
-  LongLine: {fileID: 6552876118714153672, guid: 04674350147222f2890a0aa34b03fe93, type: 3}
-  Tea: {fileID: 7504534869576980247, guid: fe09df2ba8ea94125b7a2e6460b13da6, type: 3}
-  Ele: {fileID: 3884293380747892128, guid: 0b5ad3c377f6b847ebb7f44a792b1dcc, type: 3}
-  x: 0
-  z: 0
-  lengthLine: 20
-  lengthLong: 40
-  lengthTea: 12.5
-  lengthEle: 12.5
-  turns: 0
-  L_Wait: 0
 --- !u!1 &28648055
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +529,8 @@ MonoBehaviour:
   longLine: {fileID: 6552876118714153672, guid: 04674350147222f2890a0aa34b03fe93, type: 3}
   Ele: {fileID: 3884293380747892128, guid: 0b5ad3c377f6b847ebb7f44a792b1dcc, type: 3}
   Tea: {fileID: 7504534869576980247, guid: fe09df2ba8ea94125b7a2e6460b13da6, type: 3}
+  Coin: {fileID: 5131292073822552898, guid: 6e22d72ff588a39238c01df7e5ac26e7, type: 3}
+  Rock: {fileID: 648519932324380017, guid: 59401be030db2f846bf06d04fd3e2495, type: 3}
   lengthLine: 20
   lengthLong: 40
   lengthEle: 12.5
