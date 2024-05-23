@@ -13,6 +13,7 @@ TagManager:
   - Road
   - Right
   - Left
+  - Lane
   layers:
   - Default
   - TransparentFX

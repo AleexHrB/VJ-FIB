@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6227916, g: 0.71720016, b: 0.8727553, a: 1}
+  m_IndirectSpecularColor: {r: 0.6227838, g: 0.71719164, b: 0.8727505, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 743585}
-  - component: {fileID: 743586}
   m_Layer: 0
   m_Name: Road
   m_TagString: Untagged
@@ -155,30 +154,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &743586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 743584}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0809127736dc6204a8a8d2042739bd6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StraightLine: {fileID: 7400093059482114011, guid: 2198ece24f5a000b28853aeeeb133c64, type: 3}
-  LongLine: {fileID: 6552876118714153672, guid: 04674350147222f2890a0aa34b03fe93, type: 3}
-  Tea: {fileID: 7504534869576980247, guid: fe09df2ba8ea94125b7a2e6460b13da6, type: 3}
-  Ele: {fileID: 3884293380747892128, guid: 0b5ad3c377f6b847ebb7f44a792b1dcc, type: 3}
-  x: 0
-  z: 0
-  lengthLine: 20
-  lengthLong: 40
-  lengthTea: 12.5
-  lengthEle: 12.5
-  turns: 0
-  L_Wait: 0
 --- !u!1 &28648055
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +564,8 @@ MonoBehaviour:
   falling: 0
   rotationCenter: {x: 0, y: 0, z: 0}
   road: {fileID: 0}
+  LTurn: 0
+  RTurn: 0
   Tea: 0
 --- !u!1001 &587259808
 PrefabInstance:
@@ -1098,6 +1075,8 @@ MonoBehaviour:
   falling: 0
   rotationCenter: {x: 0, y: 0, z: 0}
   road: {fileID: 0}
+  LTurn: 0
+  RTurn: 0
   Tea: 0
 --- !u!1001 &1034905571
 PrefabInstance:
@@ -1644,6 +1623,8 @@ MonoBehaviour:
   falling: 0
   rotationCenter: {x: 0, y: 0, z: 0}
   road: {fileID: 743584}
+  LTurn: 0
+  RTurn: 0
   Tea: 0
 --- !u!1001 &1213755070119348335
 PrefabInstance:
@@ -1765,7 +1746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StraightLine
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5569714723170315956, guid: 2198ece24f5a000b28853aeeeb133c64, type: 3}
+    - {fileID: 7691751017368349831, guid: 2198ece24f5a000b28853aeeeb133c64, type: 3}
+    - {fileID: 7710876584486293843, guid: 2198ece24f5a000b28853aeeeb133c64, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

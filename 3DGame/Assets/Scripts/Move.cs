@@ -17,6 +17,8 @@ public class Move : MonoBehaviour
     public Vector3 rotationCenter;
     private const double PI = 3.1415926535897931;
     public GameObject road;
+    public bool LTurn = false;
+    public bool RTurn = false;
     public bool Tea;
 
     // Start is called before the first frame update
@@ -29,6 +31,46 @@ public class Move : MonoBehaviour
         falling = false;
         speed = 10.0f;
         fell = false;
+        LTurn = RTurn = false;
+    }
+
+    public void stopTurn(int box) {
+        // Box = 0 -> Left
+        // Box = 1 -> Mid
+        // Box = 2 -> Right
+        int dir = (int)(direction.x != 0 ? direction.x : direction.z);
+        print("dir");
+        print(dir);
+        if (box == 0)
+        {
+            if (direction.x != 0) {
+                lane = 1 - 1*dir;
+            }
+            else
+            {
+                lane = 1 - 1*dir;
+            }
+        }
+        else if (box == 1)
+        {
+            lane = 1;
+        }
+
+        else if (box == 2) {
+            if (direction.x != 0)
+            {
+                lane = 1 + 1 * dir;
+            }
+            else
+            {
+                lane = 1 + 1*dir;
+            }
+        }
+    
+        RTurn = false;
+        LTurn = false;
+
+        print(lane);
     }
 
     // Update is called once per frame
@@ -39,39 +81,48 @@ public class Move : MonoBehaviour
         move.x = direction.z;
         move.z = direction.x;
         float y = transform.rotation.eulerAngles.y;
-        
+
+        if (RTurn) transform.Translate(new Vector3(speed,0,0) * Time.deltaTime);
+        if (LTurn) transform.Translate(new Vector3(-speed,0,0) * Time.deltaTime);
+
+
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            
             if (canRotate) {
                 smoothRotate = true;
                 target = Quaternion.Euler(0, y - 90.0f, 0);
                 posTarget = new Vector3(rotationCenter.x, 0, rotationCenter.z);
-                direction = direction.x != 0 ? new Vector3(0, 0, 1) : new Vector3(-1, 0, 0);
+                direction = direction.x != 0 ? new Vector3(0, 0, direction.x) : new Vector3(-direction.z, 0, 0);
              
             }
 
             else if (lane > 0) {
-                transform.Translate(new Vector3(-2.5f, 0.0f, 0.0f));
-                --lane;
+                //transform.Translate(new Vector3(-2.5f, 0.0f, 0.0f));
+                LTurn = true;
+                RTurn = false;
             }
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            
             if (canRotate) {
                 smoothRotate = true;
                 target = Quaternion.Euler(0, y + 90.0f, 0);
-                direction = direction.x != 0 ? new Vector3(0, 0, -1) : new Vector3(1, 0, 0);
+                direction = direction.x != 0 ? new Vector3(0, 0, -direction.x) : new Vector3(direction.z, 0, 0);
                 posTarget = new Vector3(rotationCenter.x, 0, rotationCenter.z);
           
             }
 
             else if (lane < 2){
-                transform.Translate(new Vector3(2.5f,0.0f,0.0f));
-                ++lane;
+                //transform.Translate(new Vector3(2.5f,0.0f,0.0f));
+                RTurn = true;
+                LTurn = false;
             }
         }
 
         if (smoothRotate) {
+            canRotate = false;
             Quaternion before = transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 8.5f);
             if (transform.rotation.eulerAngles.y >= (target.eulerAngles.y - 1) && transform.rotation.eulerAngles.y <= (target.eulerAngles.y + 1)) {
