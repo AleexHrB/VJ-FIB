@@ -22,15 +22,21 @@ public class AnimationControllerScript : MonoBehaviour
             GetComponentInParent<AudioSource>().PlayOneShot(jump);
             GetComponentInParent<BoxCollider>().center = new Vector3(0, 2.5f, 0);
         }
-        
+
         else if (Input.GetKeyDown(KeyCode.DownArrow) && anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_correr"))
         {
             anim.Play("mixamo_slide");
+            GetComponentInParent<BoxCollider>().center = new Vector3(0, 0.2f, 0);
         }
 
         else if (Input.GetKeyDown(KeyCode.K))
         {
             anim.Play("mixamo_muerte");
+        }
+
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_correr"))
+        {
+            GetComponentInParent<BoxCollider>().center = new Vector3(0, 1.29f, 0);
         }
     }
 }
