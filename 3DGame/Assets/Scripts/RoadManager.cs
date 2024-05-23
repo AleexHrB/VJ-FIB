@@ -10,8 +10,12 @@ public class RoadManager : MonoBehaviour
     public GameObject longLine;
     public GameObject Ele;
     public GameObject Tea;
+    
     public GameObject Coin;
     public GameObject Rock;
+    public GameObject Bob;
+    public GameObject Shrimp;
+    public GameObject furnace;
 
     public float lengthLine;
     public float lengthLong;
@@ -75,7 +79,7 @@ public class RoadManager : MonoBehaviour
         {
             if (direction.x != 0)
             {
-
+                if (numRand <= 10) x += 3;
                 populate(new Vector3(x, 0, z), direction, (int) lengthLine);
                 Instantiate(line, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
                 x += lengthLine * direction.x;
@@ -83,6 +87,7 @@ public class RoadManager : MonoBehaviour
 
             else
             {
+                if (numRand <= 10) z += 3;
                 populate(new Vector3(x, 0, z), direction, (int)lengthLine);
                 Instantiate(line, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.identity);
 
@@ -95,6 +100,7 @@ public class RoadManager : MonoBehaviour
         {
             if (direction.x != 0)
             {
+                if (numRand <= 47) x += 3;
                 populate(new Vector3(x, 0, z), direction, (int)lengthLong);
                 Instantiate(longLine, new Vector3(x + (lengthLong / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
                 x += lengthLong * direction.x;
@@ -102,6 +108,7 @@ public class RoadManager : MonoBehaviour
             }
             else
             {
+                if (numRand <= 47) x += 3;
                 populate(new Vector3(x, 0, z), direction, (int)lengthLong);
                 Instantiate(longLine, new Vector3(x, 0.0f, z + (lengthLong / 2 * direction.z)), Quaternion.identity);
                 z += lengthLong * direction.z;
