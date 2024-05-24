@@ -16,7 +16,7 @@ public class Collision : MonoBehaviour
     public GameObject pollo;
     private bool impact;
     private bool dying;
-
+    public GameOverScreen gameOverScreen;
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
@@ -31,6 +31,7 @@ public class Collision : MonoBehaviour
             anim.Play("mixamo_chocar");
             GetComponentInParent<Move>().speed = 0.0f;
             impact = true;
+            gameOverScreen.gameOver();
         }
         else if (other.tag == "Rock")
         {
@@ -45,7 +46,7 @@ public class Collision : MonoBehaviour
             Instantiate(pollo, transform.position, transform.rotation);
             this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             GetComponent<AudioSource>().PlayOneShot(ding);
-
+            gameOverScreen.gameOver();
 
         }
 
@@ -72,6 +73,7 @@ public class Collision : MonoBehaviour
             GetComponentInParent<Move>().falling = true;
             GetComponent<AudioSource>().PlayOneShot(woah);
             GetComponent<AudioSource>().PlayOneShot(falling);
+            gameOverScreen.gameOver();
         }
 
         else if (other.tag == "MidLane") {
