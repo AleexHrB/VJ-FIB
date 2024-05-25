@@ -18,4 +18,14 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+
+    public void loadMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void loadHowTo()
+    {
+        SceneManager.LoadScene(3);
+    }
 }

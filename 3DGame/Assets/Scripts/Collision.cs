@@ -47,6 +47,15 @@ public class Collision : MonoBehaviour
             //GetComponentInParent<Move>().speed = 1.0f;
             
         }
+
+        else if (other.tag == "Poli")
+        {
+            anim.Play("mixamo_pillado");
+            GetComponentInParent<Move>().speed = 0.0f;
+
+        }
+
+
         else if (other.tag == "Gamba")
         {
             GetComponentInParent<Move>().speed = 0.0f;

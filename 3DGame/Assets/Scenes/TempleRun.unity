@@ -307,7 +307,6 @@ GameObject:
   - component: {fileID: 97032671}
   - component: {fileID: 97032672}
   - component: {fileID: 97032673}
-  - component: {fileID: 97032674}
   m_Layer: 0
   m_Name: Cube
   m_TagString: poio
@@ -330,7 +329,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -544,33 +543,7 @@ MonoBehaviour:
   lengthLong: 40
   lengthEle: 12.5
   lengthTea: 12.5
---- !u!54 &97032674
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97032666}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  Rift: {fileID: 0}
 --- !u!1 &155902597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,6 +1375,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   speed: 0
   canRotate: 0
+  lane: 0
   falling: 0
   rotationCenter: {x: 0, y: 0, z: 0}
   road: {fileID: 0}
@@ -2209,8 +2183,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce113dd290093c4409b5d8bc0bc0a939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onPlayer: 0
   speed: 0
   direction: {x: 0, y: 0, z: 0}
+--- !u!54 &1632830041
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632830033}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1720575291 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5131292073822552898, guid: 6e22d72ff588a39238c01df7e5ac26e7, type: 3}
@@ -2459,6 +2461,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   speed: 0
   canRotate: 0
+  lane: 0
   falling: 0
   rotationCenter: {x: 0, y: 0, z: 0}
   road: {fileID: 743584}
@@ -2533,9 +2536,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1733761658997085078, guid: fe8276f5a643e55479fb4492ac79b72f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2787648708035056200, guid: fe8276f5a643e55479fb4492ac79b72f, type: 3}
       propertyPath: m_Name
       value: Enemigos
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787648708035056200, guid: fe8276f5a643e55479fb4492ac79b72f, type: 3}
+      propertyPath: m_TagString
+      value: Poli
       objectReference: {fileID: 0}
     - target: {fileID: 4839919726834550684, guid: fe8276f5a643e55479fb4492ac79b72f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2587,6 +2598,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2787648708035056200, guid: fe8276f5a643e55479fb4492ac79b72f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1632830038}
+    - targetCorrespondingSourceObject: {fileID: 2787648708035056200, guid: fe8276f5a643e55479fb4492ac79b72f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1632830041}
   m_SourcePrefab: {fileID: 100100000, guid: fe8276f5a643e55479fb4492ac79b72f, type: 3}
 --- !u!1001 &8764068655150913491
 PrefabInstance:
