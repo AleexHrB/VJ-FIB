@@ -11,12 +11,15 @@ public class RoadManager : MonoBehaviour
     public GameObject longLine;
     public GameObject Ele;
     public GameObject Tea;
-    
+    public GameObject lineForat;
+    public GameObject longLineForat;
+
     public GameObject Coin;
     public GameObject Rock;
     public GameObject Bob;
     public GameObject Shrimp;
     public GameObject furnace;
+     
 
     public float lengthLine;
     public float lengthLong;
@@ -122,7 +125,7 @@ public class RoadManager : MonoBehaviour
             {
                 if (numRand <= 10)
                 {
-                    forat = Instantiate(Rift, new Vector3(x, 0.0f, z), Quaternion.identity);
+                    //forat = Instantiate(Rift, new Vector3(x, 0.0f, z), Quaternion.identity);
                     x += 3;
                 }
                 
@@ -137,7 +140,7 @@ public class RoadManager : MonoBehaviour
                 if (numRand <= 10)
                 {
 
-                    forat = Instantiate(Rift, new Vector3(x, 0.0f, z), Quaternion.identity);
+                    //forat = Instantiate(Rift, new Vector3(x, 0.0f, z), Quaternion.identity);
                     z += 3;
                 }
 
@@ -158,7 +161,7 @@ public class RoadManager : MonoBehaviour
                 
                 if (numRand <= 47){
 
-                    forat = Instantiate(Rift, new Vector3(x , 0.0f, z), Quaternion.identity);
+                    //forat = Instantiate(Rift, new Vector3(x , 0.0f, z), Quaternion.identity);
                     x += 3;
                 }
                 GameObject RoadAux = Instantiate(longLine, new Vector3(x + (lengthLong / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
@@ -172,7 +175,7 @@ public class RoadManager : MonoBehaviour
                 if (numRand <= 47)
                 {
 
-                    forat = Instantiate(Rift, new Vector3(x, 0.0f, z), Quaternion.identity);
+                    //forat = Instantiate(Rift, new Vector3(x, 0.0f, z), Quaternion.identity);
                     z += 3;
                 }
 
