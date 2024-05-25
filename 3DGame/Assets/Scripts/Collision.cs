@@ -56,6 +56,7 @@ public class Collision : MonoBehaviour
         {
             GetComponent<AudioSource>().PlayOneShot(coin);
             GameObject.Find("ScoreText").GetComponent<Score>().score += 1000;
+            Destroy(other.gameObject, 0);
         }
         else if (other.tag == "Turn" || other.tag == "Tea")
         {

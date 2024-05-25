@@ -39,8 +39,6 @@ public class Move : MonoBehaviour
         // Box = 1 -> Mid
         // Box = 2 -> Right
         int dir = (int)(direction.x != 0 ? direction.x : direction.z);
-        print("dir");
-        print(dir);
         if (box == 0)
         {
             if (direction.x != 0) {
@@ -70,7 +68,6 @@ public class Move : MonoBehaviour
         RTurn = false;
         LTurn = false;
 
-        print(lane);
     }
 
     // Update is called once per frame
@@ -85,7 +82,7 @@ public class Move : MonoBehaviour
         if (RTurn) transform.Translate(new Vector3(speed,0,0) * Time.deltaTime);
         if (LTurn) transform.Translate(new Vector3(-speed,0,0) * Time.deltaTime);
 
-
+        print(lane);
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             
@@ -128,8 +125,8 @@ public class Move : MonoBehaviour
             if (transform.rotation.eulerAngles.y >= (target.eulerAngles.y - 1) && transform.rotation.eulerAngles.y <= (target.eulerAngles.y + 1)) {
                 transform.rotation = target;
                 smoothRotate = false;
-                lane = 1;
-                transform.position = direction.x != 0 ? new Vector3(transform.position.x, 0.0f, rotationCenter.z) : new Vector3(rotationCenter.x, 0.0f, transform.position.z);
+                //lane = 1;
+                //transform.position = direction.x != 0 ? new Vector3(transform.position.x, 0.0f, rotationCenter.z) : new Vector3(rotationCenter.x, 0.0f, transform.position.z);
             }
         }
 

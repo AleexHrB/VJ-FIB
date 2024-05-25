@@ -34,35 +34,54 @@ public class RoadManager : MonoBehaviour
     private float zRight;
 
     private bool stop;
+    private bool eleLast;
 
 
-    private void populate(Vector3 start, Vector3 dir, int len)
+    private void populate(Vector3 start, Vector3 dir, int len, GameObject parent)
     {
         Random rand = new Random();
         
         int act = 0;
+        
 
         while (act < len) {
-            int numRand = rand.Next(1, 5);
+            int lane = rand.Next(1, 4) - 2;
+            Vector3 shift;
+            if (dir.x != 0) { shift = new Vector3(0, 0, 2.5f * lane); }
+            else { shift = new Vector3(2.5f * lane, 0, 0); }
+            GameObject obstacle;
+            int numRand = rand.Next(1, 7);
             if (numRand == 1)
             {
-                print("caca");
                 int sizeBatch = rand.Next(1, len - act);
-                int lane = rand.Next(1, 4) - 2;
-                Vector3 shift;
-                if (dir.x != 0) { shift = new Vector3(0, 0, 2.5f * lane); }
-                else { shift = new Vector3(2.5f * lane, 0,0); }
-                Instantiate(Coin, start + dir * act + shift, Quaternion.identity);
+                obstacle = Instantiate(Coin, new Vector3(0,0,1) * act + shift, Quaternion.identity);
+                obstacle.transform.SetParent(parent.transform, false);
                 //act += sizeBatch;
+                act += 5;
             }
             else if (numRand == 2)
             {
-                Instantiate(Rock, start + dir * act, Quaternion.identity);
+                obstacle = Instantiate(Rock, new Vector3(0, 0, 1)  * act + shift, Quaternion.identity);
+                obstacle.transform.SetParent(parent.transform, false);
+                act += 5;
+            }
+
+            else if (numRand == 3)
+            {
+                obstacle = Instantiate(Bob, new Vector3(0, 0, 1) * act + new Vector3(0,5,0) + shift, Quaternion.identity);
+                obstacle.transform.SetParent(parent.transform, false);
+                act += 5;
+            }
+
+            else if (numRand == 4 && act > 2)
+            {
+                obstacle = Instantiate(Shrimp, new Vector3(0, 0, 1) * act + shift, Quaternion.identity);
+                obstacle.transform.SetParent(parent.transform, false);
                 act += 5;
             }
             else
             {
-               
+                
                 act += 1;
             }
         }
@@ -74,26 +93,29 @@ public class RoadManager : MonoBehaviour
     {
         Random rand = new Random();
         int numRand = rand.Next(1, 101);
+        
 
-        if (numRand <= 40)
+        if (numRand <= 40 || eleLast)
         {
             if (direction.x != 0)
             {
                 if (numRand <= 10) x += 3;
-                populate(new Vector3(x, 0, z), direction, (int) lengthLine);
-                Instantiate(line, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                
+                GameObject RoadAux = Instantiate(line, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
                 x += lengthLine * direction.x;
             }
 
             else
             {
                 if (numRand <= 10) z += 3;
-                populate(new Vector3(x, 0, z), direction, (int)lengthLine);
-                Instantiate(line, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.identity);
-
+                
+                GameObject RoadAux = Instantiate(line, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.identity);
+                populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
                 z += lengthLine * direction.z;
-            }
 
+            }
+            eleLast = false;
         }
 
         else if (numRand <= 65)
@@ -101,21 +123,23 @@ public class RoadManager : MonoBehaviour
             if (direction.x != 0)
             {
                 if (numRand <= 47) x += 3;
-                populate(new Vector3(x, 0, z), direction, (int)lengthLong);
-                Instantiate(longLine, new Vector3(x + (lengthLong / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                GameObject RoadAux = Instantiate(longLine, new Vector3(x + (lengthLong / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
                 x += lengthLong * direction.x;
 
             }
             else
             {
-                if (numRand <= 47) x += 3;
-                populate(new Vector3(x, 0, z), direction, (int)lengthLong);
-                Instantiate(longLine, new Vector3(x, 0.0f, z + (lengthLong / 2 * direction.z)), Quaternion.identity);
+                if (numRand <= 47) z += 3;
+
+                GameObject RoadAux = Instantiate(longLine, new Vector3(x, 0.0f, z + (lengthLong / 2 * direction.z)), Quaternion.identity);
+                populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
                 z += lengthLong * direction.z;
             }
+            eleLast = false;
         }
 
-        else if (numRand <= 73)
+        else if (numRand <= 73 && !eleLast)
         {
             if (direction.x != 0)
 
@@ -144,9 +168,10 @@ public class RoadManager : MonoBehaviour
 
             }
             //L_cooldown = L_Wait;
+            eleLast = true;
         }
 
-        else if (numRand <= 90)
+        else if (numRand <= 90 && !eleLast)
         {
             if (direction.x != 0)
 
@@ -163,10 +188,12 @@ public class RoadManager : MonoBehaviour
                 if (direction.z < 0)
                 {
                     Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 180.0f, 180.0f));
+
                 }
                 else
                 {
                     Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 0f, 180.0f));
+
                 }
 
                 x += lengthEle * (-direction.z);
@@ -174,6 +201,7 @@ public class RoadManager : MonoBehaviour
                 direction = new Vector3(-direction.z, 0, 0);
 
             }
+            eleLast = true;
             //L_cooldown = L_Wait;
         }
 
@@ -183,6 +211,7 @@ public class RoadManager : MonoBehaviour
             {
 
                 Instantiate(Tea, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 90.0f * direction.x, 0.0f));
+
 
 
                 x += lengthTea * direction.x;
@@ -199,6 +228,7 @@ public class RoadManager : MonoBehaviour
                 if (direction.z < 0)
                 {
                     Instantiate(Tea, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 180.0f, 0.0f));
+
                 }
                 else
                 {
@@ -215,22 +245,25 @@ public class RoadManager : MonoBehaviour
 
             }
             stop = true;
+            eleLast = false;
         }
         else {
             if (direction.x != 0)
             {
 
-                Instantiate(line, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                GameObject RoadAux = Instantiate(line, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
                 x += lengthLine * direction.x;
             }
 
             else
             {
-                Instantiate(line, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.identity);
+                GameObject RoadAux = Instantiate(line, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.identity);
+                populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
 
                 z += lengthLine * direction.z;
             }
-
+            eleLast = false;
         }
     }
     // Start is called before the first frame update
@@ -287,5 +320,6 @@ public class RoadManager : MonoBehaviour
         z = 125;
         direction = new Vector3(0, 0, 1);
         stop = false;
+        eleLast = false;
     }
 }
