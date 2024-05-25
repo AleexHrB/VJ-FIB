@@ -82,7 +82,6 @@ public class Move : MonoBehaviour
         if (RTurn) transform.Translate(new Vector3(speed,0,0) * Time.deltaTime);
         if (LTurn) transform.Translate(new Vector3(-speed,0,0) * Time.deltaTime);
 
-        print(lane);
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             

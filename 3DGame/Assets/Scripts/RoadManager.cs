@@ -42,48 +42,69 @@ public class RoadManager : MonoBehaviour
         Random rand = new Random();
         
         int act = 0;
-        
+        int pastLane = -2;
+        int lane = -2;
 
         while (act < len) {
-            int lane = rand.Next(1, 4) - 2;
+            lane = rand.Next(1, 4) - 2;
+            print(lane);
+            if (lane == pastLane) lane = rand.Next(1, 4) - 2;
+            print(lane);
+            pastLane = lane;
+
             Vector3 shift;
             if (dir.x != 0) { shift = new Vector3(0, 0, 2.5f * lane); }
             else { shift = new Vector3(2.5f * lane, 0, 0); }
             GameObject obstacle;
-            int numRand = rand.Next(1, 7);
-            if (numRand == 1)
+            int numRand = rand.Next(1, 101);
+            if (numRand <= 50)
             {
                 int sizeBatch = rand.Next(1, len - act);
-                obstacle = Instantiate(Coin, new Vector3(0,0,1) * act + shift, Quaternion.identity);
+                obstacle = Instantiate(Coin, new Vector3(0, 0, 1) * act + shift, Quaternion.identity);
                 obstacle.transform.SetParent(parent.transform, false);
                 //act += sizeBatch;
-                act += 5;
-            }
-            else if (numRand == 2)
-            {
-                obstacle = Instantiate(Rock, new Vector3(0, 0, 1)  * act + shift, Quaternion.identity);
-                obstacle.transform.SetParent(parent.transform, false);
-                act += 5;
-            }
-
-            else if (numRand == 3)
-            {
-                obstacle = Instantiate(Bob, new Vector3(0, 0, 1) * act + new Vector3(0,5,0) + shift, Quaternion.identity);
-                obstacle.transform.SetParent(parent.transform, false);
-                act += 5;
-            }
-
-            else if (numRand == 4 && act > 2)
-            {
-                obstacle = Instantiate(Shrimp, new Vector3(0, 0, 1) * act + shift, Quaternion.identity);
-                obstacle.transform.SetParent(parent.transform, false);
-                act += 5;
-            }
-            else
-            {
-                
                 act += 1;
             }
+            else if (numRand <= 75)
+            {
+                act += 1;
+            }
+
+            else if (numRand <= 90)
+            {
+                obstacle = Instantiate(Rock, new Vector3(0, 0, 1) * act  + shift, Quaternion.identity);
+                obstacle.transform.SetParent(parent.transform, false);
+                act += 2;
+            }
+
+            else if (numRand <= 95)
+            {
+                obstacle = Instantiate(Bob, new Vector3(0, 0, 1) * act + shift + new Vector3(0, 5, 0), Quaternion.identity);
+                obstacle.transform.SetParent(parent.transform, false);
+
+
+                act += 2;
+            }
+            else if (numRand <= 99 && act > 2) {
+                obstacle = Instantiate(Shrimp, new Vector3(0, 0, 1) * act + shift, Quaternion.identity);
+                obstacle.transform.SetParent(parent.transform, false);
+                act += 2;
+            }
+
+            else 
+            {
+                Vector3 moveLane = direction.x != 0 ? new Vector3(0, 0, 1) : new Vector3(1, 0, 0);
+                obstacle = Instantiate(Shrimp, new Vector3(0, 0, 1) * act, Quaternion.identity);
+                obstacle.transform.SetParent(parent.transform, false);
+
+                GameObject obstacle2 = Instantiate(Shrimp, new Vector3(0, 0, 1) * act - moveLane * 2.5f, Quaternion.identity);
+                obstacle2.transform.SetParent(parent.transform, false);
+
+                GameObject obstacle3 = Instantiate(Shrimp, new Vector3(0, 0, 1) * act + moveLane * 2.5f, Quaternion.identity);
+                obstacle3.transform.SetParent(parent.transform, false);
+                act += 2;
+            }
+   
         }
         
         
