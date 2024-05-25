@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Random = System.Random;
 
@@ -35,7 +36,7 @@ public class RoadManager : MonoBehaviour
 
     private bool stop;
     private bool eleLast;
-
+    public GameObject Rift;
 
     private void populate(Vector3 start, Vector3 dir, int len, GameObject parent)
     {
@@ -47,14 +48,12 @@ public class RoadManager : MonoBehaviour
 
         while (act < len) {
             lane = rand.Next(1, 4) - 2;
-            print(lane);
             if (lane == pastLane) lane = rand.Next(1, 4) - 2;
-            print(lane);
             pastLane = lane;
 
             Vector3 shift;
-            if (dir.x != 0) { shift = new Vector3(0, 0, 2.5f * lane); }
-            else { shift = new Vector3(2.5f * lane, 0, 0); }
+            shift = new Vector3(2.5f * lane, 0, 0); 
+           
             GameObject obstacle;
             int numRand = rand.Next(1, 101);
             if (numRand <= 50)
@@ -118,20 +117,32 @@ public class RoadManager : MonoBehaviour
 
         if (numRand <= 40 || eleLast)
         {
-            if (direction.x != 0)
+            GameObject forat = null;
+            if (direction.x != 0) 
             {
-                if (numRand <= 10) x += 3;
+                if (numRand <= 10)
+                {
+                    forat = Instantiate(Rift, new Vector3(x, 0.0f, z), Quaternion.identity);
+                    x += 3;
+                }
                 
                 GameObject RoadAux = Instantiate(line, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                if (forat != null) forat.transform.SetParent(RoadAux.transform, true);
                 populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
                 x += lengthLine * direction.x;
             }
 
             else
             {
-                if (numRand <= 10) z += 3;
-                
+                if (numRand <= 10)
+                {
+
+                    forat = Instantiate(Rift, new Vector3(x, 0.0f, z), Quaternion.identity);
+                    z += 3;
+                }
+
                 GameObject RoadAux = Instantiate(line, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.identity);
+                if (forat != null) forat.transform.SetParent(RoadAux.transform, true);
                 populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
                 z += lengthLine * direction.z;
 
@@ -141,19 +152,32 @@ public class RoadManager : MonoBehaviour
 
         else if (numRand <= 65)
         {
+            GameObject forat = null;
             if (direction.x != 0)
             {
-                if (numRand <= 47) x += 3;
+                
+                if (numRand <= 47){
+
+                    forat = Instantiate(Rift, new Vector3(x , 0.0f, z), Quaternion.identity);
+                    x += 3;
+                }
                 GameObject RoadAux = Instantiate(longLine, new Vector3(x + (lengthLong / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                if (forat != null) forat.transform.SetParent(RoadAux.transform, true);
                 populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
                 x += lengthLong * direction.x;
 
             }
             else
             {
-                if (numRand <= 47) z += 3;
+                if (numRand <= 47)
+                {
+
+                    forat = Instantiate(Rift, new Vector3(x, 0.0f, z), Quaternion.identity);
+                    z += 3;
+                }
 
                 GameObject RoadAux = Instantiate(longLine, new Vector3(x, 0.0f, z + (lengthLong / 2 * direction.z)), Quaternion.identity);
+                if (forat != null) forat.transform.SetParent(RoadAux.transform, true);
                 populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
                 z += lengthLong * direction.z;
             }

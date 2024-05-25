@@ -8,7 +8,7 @@ public class Move : MonoBehaviour
     public Vector3 direction; 
     public float speed;
     public bool canRotate;
-    private int lane;
+    public int lane;
     private Quaternion target;
     private Vector3 posTarget;
     private bool smoothRotate;

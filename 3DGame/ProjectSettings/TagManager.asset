@@ -19,6 +19,7 @@ TagManager:
   - RightLane
   - Bob
   - Gamba
+  - poio
   layers:
   - Default
   - TransparentFX
