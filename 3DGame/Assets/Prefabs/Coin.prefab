@@ -50,6 +50,11 @@ MonoBehaviour:
   coin: {fileID: 0}
   woah: {fileID: 0}
   falling: {fileID: 0}
+  crash: {fileID: 0}
+  ding: {fileID: 0}
+  pollo: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  enemies: {fileID: 0}
 --- !u!114 &7543143500049665623
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -45,11 +45,11 @@ public class RoadManager : MonoBehaviour
     {
         Random rand = new Random();
         
-        int act = 0;
+        int act = 0 - len/2;
         int pastLane = -2;
         int lane = -2;
 
-        while (act < len) {
+        while (act < len/2) {
             lane = rand.Next(1, 4) - 2;
             if (lane == pastLane) lane = rand.Next(1, 4) - 2;
             pastLane = lane;
@@ -95,7 +95,7 @@ public class RoadManager : MonoBehaviour
 
             else 
             {
-                Vector3 moveLane = direction.x != 0 ? new Vector3(0, 0, 1) : new Vector3(1, 0, 0);
+                Vector3 moveLane = new Vector3(1, 0, 0);
                 obstacle = Instantiate(Shrimp, new Vector3(0, 0, 1) * act, Quaternion.identity);
                 obstacle.transform.SetParent(parent.transform, false);
 

@@ -7,14 +7,16 @@ public class AnimationControllerScript : MonoBehaviour
     // Start is called before the first frame update
     public Animator anim;
     public AudioClip jump;
+    public AudioClip slide;
 
     void Start()
     {
         anim = GetComponent<Animator>();
     }
 
-    public void slide() {
+    public void Slide() {
         anim.Play("mixamo_slide");
+        GetComponentInParent<AudioSource>().PlayOneShot(slide);
         GetComponentInParent<BoxCollider>().center = new Vector3(0, 0.2f, 0);
     }
 
@@ -35,7 +37,7 @@ public class AnimationControllerScript : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.DownArrow) && anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_correr"))
         {
-            slide();
+            Slide();
         }
 
         else if (Input.GetKeyDown(KeyCode.K))
