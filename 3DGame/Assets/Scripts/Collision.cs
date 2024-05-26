@@ -39,9 +39,8 @@ public class Collision : MonoBehaviour
         else if (other.tag == "Rock")
         {
             print("Roca");
-            Vector3 moveLane = GetComponentInParent<Move>().direction.x != 0 ? new Vector3 (0, 0, 1) : new Vector3 (1, 0, 0);
             anim.Play("mixamo_tropezar");
-            enemies.GetComponent<Policia>().toPlayer(transform.parent.position - 2.5f*moveLane * (GetComponentInParent<Move>().lane - 1), GetComponentInParent<Move>().direction);
+            enemies.GetComponent<Policia>().toPlayer(transform.parent.position, GetComponentInParent<Move>().direction, GetComponentInParent<Move>().lane);
             
            
             //GetComponentInParent<Move>().speed = 1.0f;

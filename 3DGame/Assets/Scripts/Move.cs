@@ -41,13 +41,7 @@ public class Move : MonoBehaviour
         int dir = (int)(direction.x != 0 ? direction.x : direction.z);
         if (box == 0)
         {
-            if (direction.x != 0) {
-                lane = 1 - 1*dir;
-            }
-            else
-            {
-                lane = 1 - 1*dir;
-            }
+            lane = 0;
         }
         else if (box == 1)
         {
@@ -55,14 +49,7 @@ public class Move : MonoBehaviour
         }
 
         else if (box == 2) {
-            if (direction.x != 0)
-            {
-                lane = 1 + 1 * dir;
-            }
-            else
-            {
-                lane = 1 + 1*dir;
-            }
+            lane = 2;
         }
     
         RTurn = false;
@@ -73,6 +60,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        speed += 0.01f * Time.deltaTime;
         transform.Translate(new Vector3(0,0,speed) * Time.deltaTime);
         Vector3 move = direction;
         move.x = direction.z;

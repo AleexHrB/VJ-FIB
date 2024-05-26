@@ -65,32 +65,32 @@ public class RoadManager : MonoBehaviour
                 obstacle = Instantiate(Coin, new Vector3(0, 0, 1) * act + shift, Quaternion.identity);
                 obstacle.transform.SetParent(parent.transform, false);
                 //act += sizeBatch;
-                act += 1;
+                act += 2;
             }
             else if (numRand <= 75)
             {
-                act += 1;
+                act += 2;
             }
 
             else if (numRand <= 90)
             {
                 obstacle = Instantiate(Rock, new Vector3(0, 0, 1) * act  + shift, Quaternion.identity);
                 obstacle.transform.SetParent(parent.transform, false);
-                act += 2;
+                act += 5;
             }
 
             else if (numRand <= 95)
             {
-                obstacle = Instantiate(Bob, new Vector3(0, 0, 1) * act + shift + new Vector3(0, 5, 0), Quaternion.identity);
+                obstacle = Instantiate(Bob, new Vector3(0, 0, 1) * act + shift + new Vector3(0, 5, 0), Quaternion.Euler(0.0f, -90.0f, 0.0f));
                 obstacle.transform.SetParent(parent.transform, false);
 
 
-                act += 2;
+                act += 5;
             }
             else if (numRand <= 99 && act > 2) {
                 obstacle = Instantiate(Shrimp, new Vector3(0, 0, 1) * act + shift, Quaternion.identity);
                 obstacle.transform.SetParent(parent.transform, false);
-                act += 2;
+                act += 5;
             }
 
             else 
@@ -104,7 +104,7 @@ public class RoadManager : MonoBehaviour
 
                 GameObject obstacle3 = Instantiate(Shrimp, new Vector3(0, 0, 1) * act + moveLane * 2.5f, Quaternion.identity);
                 obstacle3.transform.SetParent(parent.transform, false);
-                act += 2;
+                act += 5;
             }
    
         }
@@ -120,19 +120,22 @@ public class RoadManager : MonoBehaviour
 
         if (numRand <= 40 || eleLast)
         {
-            GameObject forat = null;
             if (direction.x != 0) 
             {
                 if (numRand <= 10)
                 {
-                    //forat = Instantiate(Rift, new Vector3(x, 0.0f, z), Quaternion.identity);
-                    x += 3;
+                    GameObject RoadAux = Instantiate(lineForat, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f*direction.x, 0.0f));
+                    populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
+                    x += (lengthLine + 4) * direction.x;
+                }
+
+                else
+                {
+                    GameObject RoadAux = Instantiate(line, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f * direction.x, 0.0f));
+                    populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
+                    x += lengthLine * direction.x;
                 }
                 
-                GameObject RoadAux = Instantiate(line, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
-                if (forat != null) forat.transform.SetParent(RoadAux.transform, true);
-                populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
-                x += lengthLine * direction.x;
             }
 
             else
@@ -140,14 +143,18 @@ public class RoadManager : MonoBehaviour
                 if (numRand <= 10)
                 {
 
-                    //forat = Instantiate(Rift, new Vector3(x, 0.0f, z), Quaternion.identity);
-                    z += 3;
+                    GameObject RoadAux = Instantiate(lineForat, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.Euler(0.0f, 90.0f - 90.0f*direction.z, 0.0f));
+                    populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
+                    z += (lengthLine + 4) * direction.z;
                 }
 
-                GameObject RoadAux = Instantiate(line, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.identity);
-                if (forat != null) forat.transform.SetParent(RoadAux.transform, true);
-                populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
-                z += lengthLine * direction.z;
+                else
+                {
+                    GameObject RoadAux = Instantiate(line, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.Euler(0.0f, 90.0f - 90.0f * direction.z, 0.0f));
+                    populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
+                    z += lengthLine * direction.z;
+                }
+                
 
             }
             eleLast = false;
@@ -155,19 +162,22 @@ public class RoadManager : MonoBehaviour
 
         else if (numRand <= 65)
         {
-            GameObject forat = null;
             if (direction.x != 0)
             {
                 
-                if (numRand <= 47){
+                if (numRand <= 48){
 
-                    //forat = Instantiate(Rift, new Vector3(x , 0.0f, z), Quaternion.identity);
-                    x += 3;
+                    GameObject RoadAux = Instantiate(longLineForat, new Vector3(x + (lengthLong / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f*direction.x, 0.0f));
+                    populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
+                    x += (lengthLong + 4) * direction.x;
                 }
-                GameObject RoadAux = Instantiate(longLine, new Vector3(x + (lengthLong / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
-                if (forat != null) forat.transform.SetParent(RoadAux.transform, true);
-                populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
-                x += lengthLong * direction.x;
+                else
+                {
+                    GameObject RoadAux = Instantiate(longLine, new Vector3(x + (lengthLong / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f * direction.x, 0.0f));
+                    populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
+                    x += lengthLong * direction.x;
+                }
+                
 
             }
             else
@@ -175,14 +185,17 @@ public class RoadManager : MonoBehaviour
                 if (numRand <= 47)
                 {
 
-                    //forat = Instantiate(Rift, new Vector3(x, 0.0f, z), Quaternion.identity);
-                    z += 3;
+                    GameObject RoadAux = Instantiate(longLineForat, new Vector3(x, 0.0f, z + (lengthLong / 2 * direction.z)), Quaternion.Euler(0.0f, 90.0f - 90.0f * direction.z, 0.0f));
+                    populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
+                    z += (lengthLong + 4) * direction.z;
                 }
 
-                GameObject RoadAux = Instantiate(longLine, new Vector3(x, 0.0f, z + (lengthLong / 2 * direction.z)), Quaternion.identity);
-                if (forat != null) forat.transform.SetParent(RoadAux.transform, true);
-                populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
-                z += lengthLong * direction.z;
+                else {
+                    GameObject RoadAux = Instantiate(longLine, new Vector3(x, 0.0f, z + (lengthLong / 2 * direction.z)), Quaternion.Euler(0.0f, 90.0f - 90.0f * direction.z, 0.0f));
+                    populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
+                    z += lengthLong * direction.z;
+                }
+                
             }
             eleLast = false;
         }
