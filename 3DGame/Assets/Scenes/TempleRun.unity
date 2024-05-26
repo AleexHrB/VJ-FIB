@@ -1054,7 +1054,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1892283224}
   m_LocalEulerAnglesHint: {x: 30.884, y: 0, z: 0}
 --- !u!1 &866319607
 GameObject:
@@ -1216,28 +1216,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &969011995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 969011990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b12308ecd83047345b94c0940efc117b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: 0}
-  speed: 0
-  canRotate: 0
-  lane: 0
-  falling: 0
-  rotationCenter: {x: 0, y: 0, z: 0}
-  road: {fileID: 0}
-  LTurn: 0
-  RTurn: 0
-  Tea: 0
 --- !u!1 &1005534753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,9 +2202,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8050481493336811527, guid: 4efcf63a134e06c40bd743485f93ce02, type: 3}
       insertIndex: -1
       addedObject: {fileID: 969011993}
-    - targetCorrespondingSourceObject: {fileID: 8050481493336811527, guid: 4efcf63a134e06c40bd743485f93ce02, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 969011995}
   m_SourcePrefab: {fileID: 100100000, guid: 4efcf63a134e06c40bd743485f93ce02, type: 3}
 --- !u!1 &1892283222
 GameObject:
@@ -2259,8 +2234,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 653006291}
   - {fileID: 97032670}
+  - {fileID: 653006291}
+  - {fileID: 773173869}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1892283225
@@ -2381,6 +2357,7 @@ MonoBehaviour:
   LTurn: 0
   RTurn: 0
   Tea: 0
+  GodMode: 0
 --- !u!1001 &1213755070119348335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2644,7 +2621,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 773173869}
   - {fileID: 1892283224}
   - {fileID: 743585}
   - {fileID: 1213755070119348335}

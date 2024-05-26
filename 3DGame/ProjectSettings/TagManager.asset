@@ -21,6 +21,9 @@ TagManager:
   - Gamba
   - poio
   - Poli
+  - RighTurn
+  - LefTurn
+  - MidTurn
   layers:
   - Default
   - TransparentFX

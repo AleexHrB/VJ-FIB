@@ -19,6 +19,9 @@ public class CollisionEnemy : MonoBehaviour
             GetComponent<Policia>().speed -= 1;
             GetComponent<Policia>().onPlayer = false;
         }
+        else if (other.tag == "Turn") {
+            
+        }
     }
 
     // Start is called before the first frame update

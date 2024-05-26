@@ -29,7 +29,8 @@ public class Collision : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.tag == "Bob") {
+        if (other.tag == "Bob")
+        {
             GetComponent<AudioSource>().PlayOneShot(crash);
             anim.Play("mixamo_chocar");
             GetComponentInParent<Move>().speed = 0.0f;
@@ -38,13 +39,13 @@ public class Collision : MonoBehaviour
         }
         else if (other.tag == "Rock")
         {
-            print("Roca");
             anim.Play("mixamo_tropezar");
+            enemies.gameObject.SetActive(true);
             enemies.GetComponent<Policia>().toPlayer(transform.parent.position, GetComponentInParent<Move>().direction, GetComponentInParent<Move>().lane);
-            
-           
+
+
             //GetComponentInParent<Move>().speed = 1.0f;
-            
+
         }
 
         else if (other.tag == "Poli")
@@ -77,10 +78,16 @@ public class Collision : MonoBehaviour
         {
             GetComponentInParent<Move>().rotationCenter = other.bounds.center;
             GetComponentInParent<Move>().canRotate = true;
-            
+
             if (other.tag == "Tea")
             {
                 GetComponentInParent<Move>().Tea = true;
+            }
+
+            enemies.transform.position = new Vector3(0, 100, 0);
+
+            if (gameObject.GetComponentInParent<Move>().GodMode) {
+                gameObject.GetComponentInParent<Move>();
             }
         }
         else if (other.tag == "Fall")
@@ -92,17 +99,39 @@ public class Collision : MonoBehaviour
             gameOverScreen.gameOver();
         }
 
-        else if (other.tag == "MidLane") {
+        else if (other.tag == "MidLane")
+        {
             GetComponentInParent<Move>().stopTurn(1);
         }
 
-        else if ( other.tag == "LeftLane")
+        else if (other.tag == "LeftLane")
         {
             GetComponentInParent<Move>().stopTurn(0);
         }
         else if (other.tag == "RightLane")
         {
             GetComponentInParent<Move>().stopTurn(2);
+        }
+
+        else if (other.tag == "RighTurn") {
+            GetComponentInParent<Move>().lane = 2;
+            if (GetComponentInParent<Move>().GodMode)
+            {
+                GetComponentInParent<Move>().autoTurn(true);
+            }
+        }
+
+        else if (other.tag == "LefTurn")
+        {
+            GetComponentInParent<Move>().lane = 0;
+            if (GetComponentInParent<Move>().GodMode) {
+                GetComponentInParent<Move>().autoTurn(false);
+            }
+        }
+
+        else if (other.tag == "MidTurn")
+        {
+            GetComponentInParent<Move>().lane = 1;
         }
         //SceneManager.LoadScene("TempleRun");
     }
@@ -114,6 +143,11 @@ public class Collision : MonoBehaviour
         {
 
             GetComponentInParent<Move>().canRotate = false;
+            if (enemies.GetComponent<Policia>().onPlayer)
+            {
+                enemies.transform.position = Vector3.zero;
+                enemies.GetComponent<Policia>().toPlayer(transform.parent.position, GetComponentInParent<Move>().direction, GetComponentInParent<Move>().lane, true);
+            }
         }
 
         //SceneManager.LoadScene("TempleRun");

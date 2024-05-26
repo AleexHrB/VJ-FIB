@@ -10,15 +10,17 @@ public class Policia : MonoBehaviour
     private float initSpeed;
     // Start is called before the first frame update
 
-    public void toPlayer(Vector3 posPlayer, Vector3 dir, int lane) {
-        if (onPlayer) {
+    public void toPlayer(Vector3 posPlayer, Vector3 dir, int lane, bool turn=false) {
+        print("aa");
+        if (onPlayer && !turn) {
             speed += 2.0f;
         }
 
         else
         {
             direction = dir;
-            
+            transform.position = posPlayer - direction * 3;
+
             if (direction.x != 0)
             {
                 transform.rotation = Quaternion.Euler(0.0f, 90.0f*direction.x, 0.0f);
@@ -27,12 +29,13 @@ public class Policia : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0.0f, 90f - 90*direction.z, 0.0f);
             }
 
-            transform.position = posPlayer - new Vector3(0,0,1) * 3;
-            transform.position -= new Vector3(1, 0, 0) * (2.5f*(lane - 1));
+            
+            transform.position -= direction.x != 0 ? new Vector3(0, 0, 1) * (2.5f*(lane - 1)) : new Vector3(1, 0, 0) * (2.5f * (lane - 1));
 
             speed = initSpeed;
             GetComponent<Policia>().onPlayer = true;
         }
+        
         
     }
 

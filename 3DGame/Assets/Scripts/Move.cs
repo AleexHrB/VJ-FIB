@@ -20,6 +20,7 @@ public class Move : MonoBehaviour
     public bool LTurn = false;
     public bool RTurn = false;
     public bool Tea;
+    public bool GodMode = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,24 @@ public class Move : MonoBehaviour
         speed = 10.0f;
         fell = false;
         LTurn = RTurn = false;
+    }
+
+    public void autoTurn(bool right) {
+        float y = transform.rotation.eulerAngles.y;
+
+        if (right)
+        {
+            smoothRotate = true;
+            target = Quaternion.Euler(0, y + 90.0f, 0);
+            direction = direction.x != 0 ? new Vector3(0, 0, -direction.x) : new Vector3(direction.z, 0, 0);
+            posTarget = new Vector3(rotationCenter.x, 0, rotationCenter.z);
+        }
+        else {
+            smoothRotate = true;
+            target = Quaternion.Euler(0, y - 90.0f, 0);
+            posTarget = new Vector3(rotationCenter.x, 0, rotationCenter.z);
+            direction = direction.x != 0 ? new Vector3(0, 0, direction.x) : new Vector3(-direction.z, 0, 0);
+        }
     }
 
     public void stopTurn(int box) {
@@ -105,6 +124,13 @@ public class Move : MonoBehaviour
             }
         }
 
+        else if (Input.GetKeyDown(KeyCode.G))
+        {
+            
+            GodMode = !GodMode;
+            print(GodMode);
+        }
+
         if (smoothRotate) {
             canRotate = false;
             Quaternion before = transform.rotation;
@@ -134,6 +160,24 @@ public class Move : MonoBehaviour
             //transform.GetChild(0).Translate(new Vector3(0, 2, 0) * Time.deltaTime);
            
         }
+    }
 
+    private void FixedUpdate()
+    {
+        if (GodMode)
+        {
+            int layerMask = 1 << 2;
+            RaycastHit hit;
+            print("a");
+            if (Physics.Raycast(transform.position + Vector3.down*0.4f, transform.forward, out hit, Mathf.Infinity, layerMask)) {
+                {
+                    print("jeje");
+                    if (hit.collider.CompareTag("Rock") && hit.distance < 3f)
+                    {
+                        transform.GetChild(0).GetChild(0).GetComponent<AnimationControllerScript>().Jump();
+                    }
+                }
+            }
+        }
     }
 }

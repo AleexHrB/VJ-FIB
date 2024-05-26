@@ -237,7 +237,9 @@ public class RoadManager : MonoBehaviour
             if (direction.x != 0)
 
             {
-                Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 90.0f * direction.x, 180.0f));
+                GameObject L = Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 90.0f * direction.x, 180.0f));
+                L.transform.GetChild(0).Rotate(new Vector3(180.0f, 0, 0), Space.Self);
+                L.transform.GetChild(1).Rotate(new Vector3(0, 0, 180.0f), Space.Self);
                 x += lengthEle * direction.x;
                 z += lengthEle * (direction.x);
                 direction = new Vector3(0, 0, direction.x);
@@ -248,13 +250,16 @@ public class RoadManager : MonoBehaviour
             {
                 if (direction.z < 0)
                 {
-                    Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 180.0f, 180.0f));
+                    GameObject L = Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 180.0f, 180.0f));
+                    L.transform.GetChild(0).Rotate(new Vector3(180.0f, 0, 0), Space.Self);
+                    L.transform.GetChild(1).Rotate(new Vector3(0, 0, 180.0f), Space.Self);
 
                 }
                 else
                 {
-                    Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 0f, 180.0f));
-
+                    GameObject L = Instantiate(Ele, new Vector3(x, 0.0f, z), Quaternion.Euler(0.0f, 0f, 180.0f));
+                    L.transform.GetChild(0).Rotate(new Vector3(180.0f, 0, 0), Space.Self);
+                    L.transform.GetChild(1).Rotate(new Vector3(0, 0, 180.0f), Space.Self);
                 }
 
                 x += lengthEle * (-direction.z);
@@ -312,14 +317,14 @@ public class RoadManager : MonoBehaviour
             if (direction.x != 0)
             {
 
-                GameObject RoadAux = Instantiate(line, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f, 0.0f));
+                GameObject RoadAux = Instantiate(line, new Vector3(x + (lengthLine / 2 * direction.x), 0.0f, z), Quaternion.Euler(0.0f, 90.0f*direction.x, 0.0f));
                 populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
                 x += lengthLine * direction.x;
             }
 
             else
             {
-                GameObject RoadAux = Instantiate(line, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.identity);
+                GameObject RoadAux = Instantiate(line, new Vector3(x, 0.0f, z + (lengthLine / 2 * direction.z)), Quaternion.Euler(0.0f, 90.0f - 90.0f * direction.z, 0.0f));
                 populate(new Vector3(x, 0, z), direction, (int)lengthLine, RoadAux);
 
                 z += lengthLine * direction.z;
