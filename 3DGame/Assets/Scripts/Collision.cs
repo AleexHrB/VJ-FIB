@@ -15,12 +15,14 @@ public class Collision : MonoBehaviour
     public AudioClip falling;
     public AudioClip crash;
     public AudioClip ding;
+    public AudioClip rock;
     public GameObject pollo;
     public GameObject particles;
     private bool impact;
     private bool dying;
     public GameOverScreen gameOverScreen;
     public GameObject enemies;
+    public GameObject score;
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
@@ -36,12 +38,14 @@ public class Collision : MonoBehaviour
             anim.Play("mixamo_chocar");
             GetComponentInParent<Move>().speed = 0.0f;
             impact = true;
+            score.GetComponent<Score>().dead = true;
         }
         else if (other.tag == "Rock")
         {
+            GetComponent<AudioSource>().PlayOneShot(rock);
             anim.Play("mixamo_tropezar");
             enemies.gameObject.SetActive(true);
-            enemies.GetComponent<Policia>().toPlayer(transform.parent.position, GetComponentInParent<Move>().direction, GetComponentInParent<Move>().lane);
+            enemies.GetComponent<Policia>().toPlayer(GetComponentInParent<Move>().center, GetComponentInParent<Move>().direction, 1);
 
 
             //GetComponentInParent<Move>().speed = 1.0f;
@@ -52,7 +56,7 @@ public class Collision : MonoBehaviour
         {
             anim.Play("mixamo_pillado");
             GetComponentInParent<Move>().speed = 0.0f;
-
+            score.GetComponent<Score>().dead = true;
         }
 
 
@@ -64,7 +68,7 @@ public class Collision : MonoBehaviour
             this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             GetComponent<AudioSource>().PlayOneShot(ding);
             gameOverScreen.gameOver();
-
+            score.GetComponent<Score>().dead = true;
         }
 
 
@@ -97,6 +101,7 @@ public class Collision : MonoBehaviour
             GetComponentInParent<Move>().falling = true;
             GetComponent<AudioSource>().PlayOneShot(woah);
             GetComponent<AudioSource>().PlayOneShot(falling);
+            score.GetComponent<Score>().dead = true;
         }
 
         else if (other.tag == "MidLane")
@@ -139,14 +144,14 @@ public class Collision : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 
-        if (other.tag == "Turn")
+        if (other.tag == "Turn" || other.tag == "Tea")
         {
 
             GetComponentInParent<Move>().canRotate = false;
             if (enemies.GetComponent<Policia>().onPlayer)
             {
                 enemies.transform.position = Vector3.zero;
-                enemies.GetComponent<Policia>().toPlayer(transform.parent.position, GetComponentInParent<Move>().direction, GetComponentInParent<Move>().lane, true);
+                enemies.GetComponent<Policia>().toPlayer(GetComponentInParent<Move>().center, GetComponentInParent<Move>().direction, 1, true);
             }
         }
 

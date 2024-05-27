@@ -22,6 +22,8 @@ public class Move : MonoBehaviour
     public bool Tea;
     public bool GodMode = false;
 
+    public Vector3 center;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class Move : MonoBehaviour
         speed = 10.0f;
         fell = false;
         LTurn = RTurn = false;
+        center = Vector3.zero;
     }
 
     public void autoTurn(bool right) {
@@ -81,13 +84,17 @@ public class Move : MonoBehaviour
     {
         speed += 0.01f * Time.deltaTime;
         transform.Translate(new Vector3(0,0,speed) * Time.deltaTime);
-        Vector3 move = direction;
-        move.x = direction.z;
-        move.z = direction.x;
+        center += speed * direction * Time.deltaTime;
         float y = transform.rotation.eulerAngles.y;
 
-        if (RTurn) transform.Translate(new Vector3(speed,0,0) * Time.deltaTime);
-        if (LTurn) transform.Translate(new Vector3(-speed,0,0) * Time.deltaTime);
+        if (!smoothRotate && !canRotate) {
+            Vector3 shift = direction.x != 0 ? new Vector3(0f, 0, -direction.x) : new Vector3(direction.z, 0, 0);
+            if (lane == 0) shift = -2.5f * shift;
+            else if (lane == 2) shift = 2.5f * shift;
+            else if (lane == 1) shift = Vector3.zero;
+            transform.position = Vector3.Lerp(transform.position, center + shift, Time.deltaTime * 8f);
+        }
+        
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -100,10 +107,11 @@ public class Move : MonoBehaviour
              
             }
 
-            else if (lane > 0) {
+            else if (lane > 0 && !smoothRotate) {
                 //transform.Translate(new Vector3(-2.5f, 0.0f, 0.0f));
-                LTurn = true;
-                RTurn = false;
+                //LTurn = true;
+                //RTurn = false;
+                --lane;
             }
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -117,10 +125,11 @@ public class Move : MonoBehaviour
           
             }
 
-            else if (lane < 2){
+            else if (lane < 2 && !smoothRotate){
                 //transform.Translate(new Vector3(2.5f,0.0f,0.0f));
-                RTurn = true;
-                LTurn = false;
+                //RTurn = true;
+                //LTurn = false;
+                ++lane;
             }
         }
 
@@ -135,11 +144,13 @@ public class Move : MonoBehaviour
             canRotate = false;
             Quaternion before = transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 8.5f);
+            center = direction.x != 0 ? new Vector3(center.x, 0.0f, rotationCenter.z) : new Vector3(rotationCenter.x, 0.0f, center.z);
             if (transform.rotation.eulerAngles.y >= (target.eulerAngles.y - 1) && transform.rotation.eulerAngles.y <= (target.eulerAngles.y + 1)) {
                 transform.rotation = target;
                 smoothRotate = false;
                 //lane = 1;
                 //transform.position = direction.x != 0 ? new Vector3(transform.position.x, 0.0f, rotationCenter.z) : new Vector3(rotationCenter.x, 0.0f, transform.position.z);
+                
             }
         }
 

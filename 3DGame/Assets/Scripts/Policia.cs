@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Policia : MonoBehaviour
@@ -8,18 +9,21 @@ public class Policia : MonoBehaviour
     public float speed;
     public Vector3 direction;
     private float initSpeed;
+    public Vector3 target;
+    public bool inmune;
     // Start is called before the first frame update
 
     public void toPlayer(Vector3 posPlayer, Vector3 dir, int lane, bool turn=false) {
-        print("aa");
         if (onPlayer && !turn) {
             speed += 2.0f;
         }
 
         else
         {
+            //inmune = true;
+    
             direction = dir;
-            transform.position = posPlayer - direction * 3;
+            transform.position = posPlayer - direction * 2.5f;
 
             if (direction.x != 0)
             {
@@ -30,7 +34,7 @@ public class Policia : MonoBehaviour
             }
 
             
-            transform.position -= direction.x != 0 ? new Vector3(0, 0, 1) * (2.5f*(lane - 1)) : new Vector3(1, 0, 0) * (2.5f * (lane - 1));
+            //transform.position -= direction.x != 0 ? new Vector3(0, 0, 1) * (2.5f*(lane - 1)) : new Vector3(1, 0, 0) * (2.5f * (lane - 1));
 
             speed = initSpeed;
             GetComponent<Policia>().onPlayer = true;
@@ -45,6 +49,7 @@ public class Policia : MonoBehaviour
         speed = 10.0f;
         initSpeed = speed;
         onPlayer = true;
+        target = transform.position;
     }
 
     // Update is called once per frame
@@ -52,7 +57,11 @@ public class Policia : MonoBehaviour
     {
         initSpeed += 0.01f * Time.deltaTime;
         speed += 0.01f * Time.deltaTime;
-        transform.Translate(speed * new Vector3(0.0f, 0.0f, 1.0f) * Time.deltaTime);
+        
+        target += speed * Time.deltaTime * direction;
+        transform.position += speed * Time.deltaTime*direction;
+        //transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * 6f);
+        if (Mathf.Abs((transform.position.z - target.z)) < 1.0f) { inmune = false; }
     }
 
 

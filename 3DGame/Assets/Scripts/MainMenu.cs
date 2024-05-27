@@ -28,4 +28,8 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(3);
     }
+
+    public void exitGame() { 
+        Application.Quit();
+    }
 }

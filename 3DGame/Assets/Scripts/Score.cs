@@ -5,12 +5,13 @@ public class Score : MonoBehaviour
 {
     public float score;
     public Text txtScore;
+    public bool dead = false;
 
     // Update is called once per frame
     void Update()
     { 
          
-        score = score + Time.deltaTime*10;
+        if (!dead) score = score + Time.deltaTime*10;
         txtScore.text = "Score: " + ((int) score).ToString();
     }
 }

@@ -419,10 +419,12 @@ MonoBehaviour:
   falling: {fileID: 8300000, guid: 72f7c49500368354abd9883e621a2a82, type: 3}
   crash: {fileID: 8300000, guid: 4c97be66fb712d8458e6269bdd7c3116, type: 3}
   ding: {fileID: 8300000, guid: a466f976032e5b742a7645bdaa0a5f66, type: 3}
+  rock: {fileID: 8300000, guid: f1b20ac7331c8414489a77defe112865, type: 3}
   pollo: {fileID: 6892627291765385716, guid: 1c10e59d12b3e4746992666c0272250a, type: 3}
   particles: {fileID: 6891967373837651171, guid: dd2fdfc81ecb97a429745185e2bb7862, type: 3}
   gameOverScreen: {fileID: 1268177856}
   enemies: {fileID: 1632830033}
+  score: {fileID: 1433716561}
 --- !u!82 &97032672
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2064,6 +2066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   txtScore: {fileID: 1433716563}
+  dead: 0
 --- !u!1001 &1604579083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2157,6 +2160,8 @@ MonoBehaviour:
   onPlayer: 0
   speed: 0
   direction: {x: 0, y: 0, z: 0}
+  target: {x: 0, y: 0, z: 0}
+  inmune: 0
 --- !u!54 &1632830041
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2450,6 +2455,7 @@ MonoBehaviour:
   RTurn: 0
   Tea: 0
   GodMode: 0
+  center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1213755070119348335
 PrefabInstance:
   m_ObjectHideFlags: 0
