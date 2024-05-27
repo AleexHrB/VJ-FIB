@@ -17,8 +17,10 @@ public class Credits : MonoBehaviour
     void Update()
     {
         Vector3 aux = t1.transform.position;
-        aux.y += 0.1f;
+        aux.y += 100*Time.deltaTime;
         t1.transform.position = aux;
         if (aux.y > 1000.0f) SceneManager.LoadScene(0);
+
+        if (Input.GetKeyDown(KeyCode.Escape)) { SceneManager.LoadScene(0); }
     }
 }

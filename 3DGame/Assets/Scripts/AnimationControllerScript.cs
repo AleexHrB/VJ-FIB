@@ -8,6 +8,7 @@ public class AnimationControllerScript : MonoBehaviour
     public Animator anim;
     public AudioClip jump;
     public AudioClip slide;
+    public GameOverScreen gameOverScreen;
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class AnimationControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()     
     {
-        if (Input.GetKeyDown(KeyCode.Space) ||Input.GetKeyDown(KeyCode.UpArrow) && anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_correr"))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) && anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_correr"))
         {
             Jump();
         }
@@ -48,6 +49,9 @@ public class AnimationControllerScript : MonoBehaviour
         else if (anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_correr"))
         {
             GetComponentInParent<BoxCollider>().center = new Vector3(0, 1.29f, 0);
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("muerto")) {
+            gameOverScreen.gameOver();
         }
     }
 }

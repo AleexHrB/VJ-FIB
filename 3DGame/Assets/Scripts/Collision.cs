@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,6 +16,7 @@ public class Collision : MonoBehaviour
     public AudioClip crash;
     public AudioClip ding;
     public GameObject pollo;
+    public GameObject particles;
     private bool impact;
     private bool dying;
     public GameOverScreen gameOverScreen;
@@ -35,7 +36,6 @@ public class Collision : MonoBehaviour
             anim.Play("mixamo_chocar");
             GetComponentInParent<Move>().speed = 0.0f;
             impact = true;
-            gameOverScreen.gameOver();
         }
         else if (other.tag == "Rock")
         {
@@ -60,6 +60,7 @@ public class Collision : MonoBehaviour
         {
             GetComponentInParent<Move>().speed = 0.0f;
             Instantiate(pollo, transform.position, transform.rotation);
+            Instantiate(particles, transform.position, Quaternion.Euler(-90,0,0));
             this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             GetComponent<AudioSource>().PlayOneShot(ding);
             gameOverScreen.gameOver();
@@ -96,7 +97,6 @@ public class Collision : MonoBehaviour
             GetComponentInParent<Move>().falling = true;
             GetComponent<AudioSource>().PlayOneShot(woah);
             GetComponent<AudioSource>().PlayOneShot(falling);
-            gameOverScreen.gameOver();
         }
 
         else if (other.tag == "MidLane")
