@@ -11,8 +11,19 @@ public class Policia : MonoBehaviour
     private float initSpeed;
     public Vector3 target;
     public bool inmune;
+    public Animator animLeft;
+    public Animator animMid;
+    public Animator animRight;
     // Start is called before the first frame update
 
+    public void dance() {
+        speed = 0;
+        animMid.Play("mixamo_chicken");
+        animLeft.Play("mixamo_chicken");
+        animRight.Play("mixamo_chicken");
+        float y = transform.rotation.eulerAngles.y;
+        transform.rotation = Quaternion.Euler(0.0f, y + 180, 0.0f);
+    }
     public void toPlayer(Vector3 posPlayer, Vector3 dir, int lane, bool turn=false) {
         if (onPlayer && !turn) {
             speed += 2.0f;
@@ -45,6 +56,10 @@ public class Policia : MonoBehaviour
 
     void Start()
     {
+        animMid = transform.GetChild(0).GetComponent<Animator>();
+        animRight = transform.GetChild(1).GetComponent<Animator>();
+        animLeft = transform.GetChild(2).GetComponent<Animator>();
+
         direction = new Vector3(0, 0, 1);
         speed = 10.0f;
         initSpeed = speed;

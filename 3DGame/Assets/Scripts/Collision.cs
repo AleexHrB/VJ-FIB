@@ -39,6 +39,7 @@ public class Collision : MonoBehaviour
             GetComponentInParent<Move>().speed = 0.0f;
             impact = true;
             score.GetComponent<Score>().dead = true;
+            GetComponentInParent<Move>().dead = true;
         }
         else if (other.tag == "Rock")
         {
@@ -57,6 +58,8 @@ public class Collision : MonoBehaviour
             anim.Play("mixamo_pillado");
             GetComponentInParent<Move>().speed = 0.0f;
             score.GetComponent<Score>().dead = true;
+            GetComponentInParent<Move>().dead = true;
+            enemies.GetComponent<Policia>().dance();
         }
 
 
@@ -69,6 +72,7 @@ public class Collision : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(ding);
             gameOverScreen.gameOver();
             score.GetComponent<Score>().dead = true;
+            GetComponentInParent<Move>().dead = true;
         }
 
 
@@ -102,6 +106,7 @@ public class Collision : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(woah);
             GetComponent<AudioSource>().PlayOneShot(falling);
             score.GetComponent<Score>().dead = true;
+            GetComponentInParent<Move>().dead = true;
         }
 
         else if (other.tag == "MidLane")

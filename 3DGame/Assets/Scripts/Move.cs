@@ -21,6 +21,7 @@ public class Move : MonoBehaviour
     public bool RTurn = false;
     public bool Tea;
     public bool GodMode = false;
+    public bool dead;
 
     public Vector3 center;
 
@@ -82,7 +83,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed += 0.01f * Time.deltaTime;
+        if (!dead) speed += 0.01f * Time.deltaTime;
         transform.Translate(new Vector3(0,0,speed) * Time.deltaTime);
         center += speed * direction * Time.deltaTime;
         float y = transform.rotation.eulerAngles.y;
@@ -107,7 +108,7 @@ public class Move : MonoBehaviour
              
             }
 
-            else if (lane > 0 && !smoothRotate) {
+            else if (lane > 0 && !smoothRotate && !dead) {
                 //transform.Translate(new Vector3(-2.5f, 0.0f, 0.0f));
                 //LTurn = true;
                 //RTurn = false;
@@ -125,7 +126,8 @@ public class Move : MonoBehaviour
           
             }
 
-            else if (lane < 2 && !smoothRotate){
+            else if (lane < 2 && !smoothRotate && !dead)
+            {
                 //transform.Translate(new Vector3(2.5f,0.0f,0.0f));
                 //RTurn = true;
                 //LTurn = false;
