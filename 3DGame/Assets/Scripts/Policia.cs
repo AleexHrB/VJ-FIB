@@ -9,8 +9,11 @@ public class Policia : MonoBehaviour
     public float speed;
     public Vector3 direction;
     private float initSpeed;
-    public Vector3 target;
-    public bool inmune;
+
+    //Target e inmune servian para hacer animaciones, que, finalmente, decidimos no implementar por su complejidad
+    //public Vector3 target;
+    //public bool inmune;
+   
     public Animator animLeft;
     public Animator animMid;
     public Animator animRight;
@@ -64,7 +67,8 @@ public class Policia : MonoBehaviour
         speed = 10.0f;
         initSpeed = speed;
         onPlayer = true;
-        target = transform.position;
+
+        //target = transform.position;
     }
 
     // Update is called once per frame
@@ -73,10 +77,13 @@ public class Policia : MonoBehaviour
         initSpeed += 0.01f * Time.deltaTime;
         speed += 0.01f * Time.deltaTime;
         
-        target += speed * Time.deltaTime * direction;
+        
         transform.position += speed * Time.deltaTime*direction;
+
+
+        //target += speed * Time.deltaTime * direction;
         //transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * 6f);
-        if (Mathf.Abs((transform.position.z - target.z)) < 1.0f) { inmune = false; }
+        //if (Mathf.Abs((transform.position.z - target.z)) < 1.0f) { inmune = false; }
     }
 
 

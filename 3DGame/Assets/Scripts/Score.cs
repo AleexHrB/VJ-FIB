@@ -6,6 +6,9 @@ public class Score : MonoBehaviour
     public float score;
     public Text txtScore;
     public bool dead = false;
+    public GameObject camara;
+    private bool changed;
+    public AudioClip tense;
 
     // Update is called once per frame
     void Update()
@@ -13,5 +16,11 @@ public class Score : MonoBehaviour
          
         if (!dead) score = score + Time.deltaTime*10;
         txtScore.text = "Score: " + ((int) score).ToString();
+
+        if (score > 10000 && !changed) { 
+            changed = true;
+            camara.GetComponent<AudioSource>().clip = tense;
+            camara.GetComponent<AudioSource>().Play();
+        }
     }
 }

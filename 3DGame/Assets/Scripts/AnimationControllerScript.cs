@@ -16,15 +16,23 @@ public class AnimationControllerScript : MonoBehaviour
     }
 
     public void Slide() {
-        anim.Play("mixamo_slide");
-        GetComponentInParent<AudioSource>().PlayOneShot(slide);
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_slide"))
+        {
+            GetComponentInParent<AudioSource>().PlayOneShot(slide);
+            anim.Play("mixamo_slide");
+        }
+        
+        
         GetComponentInParent<BoxCollider>().center = new Vector3(0, 0.2f, 0);
     }
 
     public void Jump()
     {
-        anim.Play("mixamo_saltar");
-        GetComponentInParent<AudioSource>().PlayOneShot(jump);
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_saltar")) { 
+            GetComponentInParent<AudioSource>().PlayOneShot(jump);
+            anim.Play("mixamo_saltar");
+        }
+        
         GetComponentInParent<BoxCollider>().center = new Vector3(0, 2.5f, 0);
     }
 
@@ -45,6 +53,7 @@ public class AnimationControllerScript : MonoBehaviour
         {
             GetComponentInParent<BoxCollider>().center = new Vector3(0, 1.29f, 0);
         }
+
         else if (anim.GetCurrentAnimatorStateInfo(0).IsName("muerto")) {
             gameOverScreen.gameOver();
         }

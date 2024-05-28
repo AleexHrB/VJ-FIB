@@ -16,136 +16,133 @@ public class Collision : MonoBehaviour
     public AudioClip crash;
     public AudioClip ding;
     public AudioClip rock;
+
     public GameObject pollo;
     public GameObject particles;
-    private bool impact;
-    private bool dying;
+
     public GameOverScreen gameOverScreen;
     public GameObject enemies;
     public GameObject score;
+
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
-        impact = false;
-        dying = false;
     }
+
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.tag == "Bob")
-        {
-            GetComponent<AudioSource>().PlayOneShot(crash);
-            anim.Play("mixamo_chocar");
-            GetComponentInParent<Move>().speed = 0.0f;
-            impact = true;
-            score.GetComponent<Score>().dead = true;
-            GetComponentInParent<Move>().dead = true;
-        }
-        else if (other.tag == "Rock")
-        {
-            GetComponent<AudioSource>().PlayOneShot(rock);
-            anim.Play("mixamo_tropezar");
-            enemies.gameObject.SetActive(true);
-            enemies.GetComponent<Policia>().toPlayer(GetComponentInParent<Move>().center, GetComponentInParent<Move>().direction, 1);
-
-
-            //GetComponentInParent<Move>().speed = 1.0f;
-
-        }
-
-        else if (other.tag == "Poli")
-        {
-            anim.Play("mixamo_pillado");
-            GetComponentInParent<Move>().speed = 0.0f;
-            score.GetComponent<Score>().dead = true;
-            GetComponentInParent<Move>().dead = true;
-            enemies.GetComponent<Policia>().dance();
-        }
-
-
-        else if (other.tag == "Gamba")
-        {
-            GetComponentInParent<Move>().speed = 0.0f;
-            Instantiate(pollo, transform.position, transform.rotation);
-            Instantiate(particles, transform.position, Quaternion.Euler(-90,0,0));
-            this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            GetComponent<AudioSource>().PlayOneShot(ding);
-            gameOverScreen.gameOver();
-            score.GetComponent<Score>().dead = true;
-            GetComponentInParent<Move>().dead = true;
-        }
-
-
-
-        else if (other.tag == "Coin")
-        {
-            GetComponent<AudioSource>().PlayOneShot(coin);
-            GameObject.Find("ScoreText").GetComponent<Score>().score += 100;
-            Destroy(other.gameObject, 0);
-        }
-        else if (other.tag == "Turn" || other.tag == "Tea")
-        {
-            GetComponentInParent<Move>().rotationCenter = other.bounds.center;
-            GetComponentInParent<Move>().canRotate = true;
-
-            if (other.tag == "Tea")
+        if (!GetComponentInParent<Move>().GodMode) {
+            switch (other.tag)
             {
-                GetComponentInParent<Move>().Tea = true;
+                case "Bob":
+                    GetComponent<AudioSource>().PlayOneShot(crash);
+                    anim.Play("mixamo_chocar");
+                    GetComponentInParent<Move>().speed = 0.0f;
+                    score.GetComponent<Score>().dead = true;
+                    GetComponentInParent<Move>().dead = true;
+                    break;
+
+                case "Rock":
+                    GetComponent<AudioSource>().PlayOneShot(rock);
+                    anim.Play("mixamo_tropezar");
+                    enemies.gameObject.SetActive(true);
+                    enemies.GetComponent<Policia>().toPlayer(GetComponentInParent<Move>().center, GetComponentInParent<Move>().direction, 1);
+
+                    //GetComponentInParent<Move>().speed = 1.0f;
+                    break;
+
+                case "Poli":
+                    anim.Play("mixamo_pillado");
+                    GetComponentInParent<Move>().speed = 0.0f;
+                    score.GetComponent<Score>().dead = true;
+                    GetComponentInParent<Move>().dead = true;
+                    enemies.GetComponent<Policia>().dance();
+                    break;
+
+                case "Gamba":
+                    GetComponentInParent<Move>().speed = 0.0f;
+                    Instantiate(pollo, transform.position, transform.rotation);
+                    Instantiate(particles, transform.position, Quaternion.Euler(-90, 0, 0));
+                    this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                    GetComponent<AudioSource>().PlayOneShot(ding);
+                    gameOverScreen.gameOver();
+                    score.GetComponent<Score>().dead = true;
+                    GetComponentInParent<Move>().dead = true;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        switch (other.tag) {
+            case "Coin":
+                GetComponent<AudioSource>().PlayOneShot(coin);
+                GameObject.Find("ScoreText").GetComponent<Score>().score += 100;
+                Destroy(other.gameObject, 0);
+                break;
+
+            case "Turn":
+                GetComponentInParent<Move>().rotationCenter = other.bounds.center;
+                GetComponentInParent<Move>().canRotate = true;
+                enemies.transform.position = new Vector3(0, 100, 0);
+                break;
+
+            case "Tea":
+                GetComponentInParent<Move>().rotationCenter = other.bounds.center;
+                GetComponentInParent<Move>().canRotate = true;
                 if (gameObject.GetComponentInParent<Move>().GodMode)
                 {
                     gameObject.GetComponentInParent<Move>().autoTurn(false);
                 }
-            }
+                enemies.transform.position = new Vector3(0, 100, 0);
+                break;
 
-            enemies.transform.position = new Vector3(0, 100, 0);
+            case "Fall":
+                anim.Play("mixamo_caer");
+                GetComponentInParent<Move>().falling = true;
+                GetComponent<AudioSource>().PlayOneShot(woah);
+                GetComponent<AudioSource>().PlayOneShot(falling);
+                score.GetComponent<Score>().dead = true;
+                GetComponentInParent<Move>().dead = true;
+                GetComponentInParent<Move>().speed = 0;
+                break;
 
-            
-        }
-        else if (other.tag == "Fall")
-        {
-            anim.Play("mixamo_caer");
-            GetComponentInParent<Move>().falling = true;
-            GetComponent<AudioSource>().PlayOneShot(woah);
-            GetComponent<AudioSource>().PlayOneShot(falling);
-            score.GetComponent<Score>().dead = true;
-            GetComponentInParent<Move>().dead = true;
-        }
+            case "MidLane":
+                GetComponentInParent<Move>().lane = 1;
+                break;
 
-        else if (other.tag == "MidLane")
-        {
-            GetComponentInParent<Move>().lane = 1;
-        }
+            case "LeftLane":
+                GetComponentInParent<Move>().lane = 0;
+                break;
 
-        else if (other.tag == "LeftLane")
-        {
-            GetComponentInParent<Move>().lane = 0;
-        }
-        else if (other.tag == "RightLane")
-        {
-            GetComponentInParent<Move>().lane = 2;
-        }
+            case "RightLane":
+                GetComponentInParent<Move>().lane = 2;
+                break;
 
-        else if (other.tag == "RighTurn") {
-            GetComponentInParent<Move>().lane = 2;
-            if (GetComponentInParent<Move>().GodMode)
-            {
-                GetComponentInParent<Move>().autoTurn(true);
-            }
-        }
+            case "RighTurn":
+                GetComponentInParent<Move>().lane = 2;
+                if (GetComponentInParent<Move>().GodMode)
+                {
+                    GetComponentInParent<Move>().autoTurn(true);
+                }
+                break;
 
-        else if (other.tag == "LefTurn")
-        {
-            GetComponentInParent<Move>().lane = 0;
-            if (GetComponentInParent<Move>().GodMode) {
-                GetComponentInParent<Move>().autoTurn(false);
-            }
-        }
+            case "LefTurn":
+                GetComponentInParent<Move>().lane = 0;
+                if (GetComponentInParent<Move>().GodMode)
+                {
+                    GetComponentInParent<Move>().autoTurn(false);
+                }
+                break;
 
-        else if (other.tag == "MidTurn")
-        {
-            GetComponentInParent<Move>().lane = 1;
+            case "MidTurn":
+                GetComponentInParent<Move>().lane = 1;
+                break;
+
+            default:
+                break;
         }
-        //SceneManager.LoadScene("TempleRun");
     }
 
     private void OnTriggerExit(Collider other)
@@ -157,31 +154,9 @@ public class Collision : MonoBehaviour
             GetComponentInParent<Move>().canRotate = false;
             if (enemies.GetComponent<Policia>().onPlayer)
             {
-                enemies.transform.position = Vector3.zero;
+                enemies.transform.position = new Vector3(0,100,0);
                 enemies.GetComponent<Policia>().toPlayer(GetComponentInParent<Move>().center, GetComponentInParent<Move>().direction, 1, true);
             }
-        }
-
-        //SceneManager.LoadScene("TempleRun");
-    }
-
-    private void Update()
-    {
-        if (impact && anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_muerte"))
-        {
-            dying = true;
-        }
-        
-        else if (dying && !anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_muerte")) {
-            impact = false;
-            dying = false;
-            GetComponentInParent<Move>().speed = 0.0f;
-            //SceneManager.LoadScene("TempleRun");
-        }
-
-        if (dying)
-        {
-            GetComponentInParent<Move>().speed -= 0.02f;
         }
     }
 }

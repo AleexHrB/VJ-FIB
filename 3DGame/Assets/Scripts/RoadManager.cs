@@ -18,7 +18,6 @@ public class RoadManager : MonoBehaviour
     public GameObject Rock;
     public GameObject Bob;
     public GameObject Shrimp;
-    public GameObject furnace;
      
 
     public float lengthLine;
@@ -39,13 +38,12 @@ public class RoadManager : MonoBehaviour
 
     private bool stop;
     private bool eleLast;
-    public GameObject Rift;
 
     private void populate(Vector3 start, Vector3 dir, int len, GameObject parent)
     {
         Random rand = new Random();
         
-        int act = 0 - len/2;
+        int act = 0 - len/2 + 5;
         int pastLane = -2;
         int lane = -2;
 
@@ -74,7 +72,7 @@ public class RoadManager : MonoBehaviour
 
             else if (numRand <= 90)
             {
-                obstacle = Instantiate(Rock, new Vector3(0, 0, 1) * act  + shift, Quaternion.identity);
+                obstacle = Instantiate(Rock, new Vector3(0, 0, 1) * act + shift, Quaternion.identity);
                 obstacle.transform.SetParent(parent.transform, false);
                 act += 5;
             }
@@ -93,7 +91,7 @@ public class RoadManager : MonoBehaviour
                 act += 5;
             }
 
-            else 
+            else if (act < len/2 - 5 && act > -len / 2 + 5)
             {
                 Vector3 moveLane = new Vector3(1, 0, 0);
                 obstacle = Instantiate(Shrimp, new Vector3(0, 0, 1) * act, Quaternion.identity);
@@ -106,6 +104,7 @@ public class RoadManager : MonoBehaviour
                 obstacle3.transform.SetParent(parent.transform, false);
                 act += 5;
             }
+            else { ++act; }
    
         }
         
@@ -345,9 +344,12 @@ public class RoadManager : MonoBehaviour
             z = zLeft;
 
             direction = direction.x != 0 ? new Vector3(0, 0, direction.x) : new Vector3(-direction.z, 0, 0);
-            generateRoad();
-            generateRoad();
-            generateRoad();
+
+            int nAhead = 3;
+            for (int i = 0; i < nAhead; ++i) {
+                generateRoad();
+            }
+            
             stop = false;
                
         }
@@ -358,10 +360,13 @@ public class RoadManager : MonoBehaviour
             z = zRight;
 
             direction = direction.x != 0 ? new Vector3(0, 0, -direction.x) : new Vector3(direction.z, 0, 0);
-            generateRoad();
-            generateRoad();
-            generateRoad();
             
+            int nAhead = 3;
+            for (int i = 0; i < nAhead; ++i)
+            {
+                generateRoad();
+            }
+
             stop = false;
         }
     }
@@ -372,12 +377,6 @@ public class RoadManager : MonoBehaviour
         {
             Destroy(other.gameObject.transform.parent.gameObject, 3);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void Start()

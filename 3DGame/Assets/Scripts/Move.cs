@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,21 +11,16 @@ public class Move : MonoBehaviour
     public bool canRotate;
     public int lane;
     private Quaternion target;
-    private Vector3 posTarget;
     private bool smoothRotate;
     public bool falling;
-    private bool fell;
     public Vector3 rotationCenter;
     private const double PI = 3.1415926535897931;
-    public GameObject road;
-    public bool LTurn = false;
-    public bool RTurn = false;
-    public bool Tea;
+
     public bool GodMode = false;
     public bool dead;
-    private int IDhit = -1;
 
     public Vector3 center;
+    private int IDhit;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +31,6 @@ public class Move : MonoBehaviour
         smoothRotate = false;
         falling = false;
         speed = 10.0f;
-        fell = false;
-        LTurn = RTurn = false;
         center = Vector3.zero;
     }
 
@@ -48,45 +42,21 @@ public class Move : MonoBehaviour
             smoothRotate = true;
             target = Quaternion.Euler(0, y + 90.0f, 0);
             direction = direction.x != 0 ? new Vector3(0, 0, -direction.x) : new Vector3(direction.z, 0, 0);
-            posTarget = new Vector3(rotationCenter.x, 0, rotationCenter.z);
         }
         else {
             smoothRotate = true;
             target = Quaternion.Euler(0, y - 90.0f, 0);
-            posTarget = new Vector3(rotationCenter.x, 0, rotationCenter.z);
             direction = direction.x != 0 ? new Vector3(0, 0, direction.x) : new Vector3(-direction.z, 0, 0);
         }
-    }
-
-    public void stopTurn(int box) {
-        // Box = 0 -> Left
-        // Box = 1 -> Mid
-        // Box = 2 -> Right
-        int dir = (int)(direction.x != 0 ? direction.x : direction.z);
-        if (box == 0)
-        {
-            lane = 0;
-        }
-        else if (box == 1)
-        {
-            lane = 1;
-        }
-
-        else if (box == 2) {
-            lane = 2;
-        }
-    
-        RTurn = false;
-        LTurn = false;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!dead) speed += 0.01f * Time.deltaTime;
+        if (!dead) speed += 0.02f * Time.deltaTime;
         transform.Translate(new Vector3(0,0,speed) * Time.deltaTime);
         center += speed * direction * Time.deltaTime;
+
         float y = transform.rotation.eulerAngles.y;
 
         if (!smoothRotate && !canRotate) {
@@ -104,15 +74,11 @@ public class Move : MonoBehaviour
             if (canRotate) {
                 smoothRotate = true;
                 target = Quaternion.Euler(0, y - 90.0f, 0);
-                posTarget = new Vector3(rotationCenter.x, 0, rotationCenter.z);
                 direction = direction.x != 0 ? new Vector3(0, 0, direction.x) : new Vector3(-direction.z, 0, 0);
              
             }
 
             else if (lane > 0 && !smoothRotate && !dead) {
-                //transform.Translate(new Vector3(-2.5f, 0.0f, 0.0f));
-                //LTurn = true;
-                //RTurn = false;
                 --lane;
             }
         }
@@ -123,15 +89,11 @@ public class Move : MonoBehaviour
                 smoothRotate = true;
                 target = Quaternion.Euler(0, y + 90.0f, 0);
                 direction = direction.x != 0 ? new Vector3(0, 0, -direction.x) : new Vector3(direction.z, 0, 0);
-                posTarget = new Vector3(rotationCenter.x, 0, rotationCenter.z);
           
             }
 
             else if (lane < 2 && !smoothRotate && !dead)
             {
-                //transform.Translate(new Vector3(2.5f,0.0f,0.0f));
-                //RTurn = true;
-                //LTurn = false;
                 ++lane;
             }
         }
@@ -140,7 +102,6 @@ public class Move : MonoBehaviour
         {
             
             GodMode = !GodMode;
-            print(GodMode);
         }
 
         if (smoothRotate) {
@@ -152,38 +113,28 @@ public class Move : MonoBehaviour
                 transform.rotation = target;
                 smoothRotate = false;
                 //lane = 1;
-                //transform.position = direction.x != 0 ? new Vector3(transform.position.x, 0.0f, rotationCenter.z) : new Vector3(rotationCenter.x, 0.0f, transform.position.z);
-                
             }
         }
 
         if (falling)
         {
-            y = transform.rotation.eulerAngles.y;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(90.0f, y, 0), Time.deltaTime * 3.5f);
-            if (transform.rotation.eulerAngles.x == 90)
+          
+            transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, new Vector3(transform.GetChild(0).position.x, -10.0f, transform.GetChild(0).position.z), 1f * Time.deltaTime);
+            if (transform.GetChild(0).position.y < -9.0f)
             {
                 falling = false;
-                fell = true;
             }
             
-        }
-        if (fell)
-        {
-            transform.GetChild(1).transform.Translate(5 * new Vector3(0, -1, 0) * Time.deltaTime);
-            //transform.GetChild(0).Translate(new Vector3(0, 2, 0) * Time.deltaTime);
-           
         }
     }
 
     private void FixedUpdate()
     {
-        if (GodMode)
+        if (GodMode && !dead)
         {
             int layerMask = 1 << 0;
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, 3.0f, layerMask) && IDhit != hit.colliderInstanceID) {
-                print(hit.collider.tag);
                 {
                     if (hit.collider.CompareTag("Rock") || hit.collider.CompareTag("Fall"))
                     {
@@ -201,7 +152,6 @@ public class Move : MonoBehaviour
 
             else if (Physics.Raycast(transform.position + Vector3.up * 2, transform.forward, out hit, 3.0f, layerMask) && IDhit != hit.colliderInstanceID) {
                 {
-                    print(hit.collider.tag);
                     if (hit.collider.CompareTag("Gamba"))transform.GetChild(0).GetChild(0).GetComponent<AnimationControllerScript>().Slide();
                     IDhit = hit.colliderInstanceID;
                 }

@@ -8,31 +8,10 @@ public class CollisionEnemy : MonoBehaviour
     public GameOverScreen gameOverScreen;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Bob")
+        if (other.tag == "Bob" || other.tag == "Gamba")
         {
             GetComponent<Policia>().speed -= 1;
             GetComponent<Policia>().onPlayer = false;
         }
-
-        else if (other.tag == "Gamba")
-        {
-            GetComponent<Policia>().speed -= 1;
-            GetComponent<Policia>().onPlayer = false;
-        }
-        else if (other.tag == "Turn") {
-            
-        }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
