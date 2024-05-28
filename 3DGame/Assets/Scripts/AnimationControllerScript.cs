@@ -31,12 +31,12 @@ public class AnimationControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()     
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) && !anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_saltar"))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) && !anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_saltar") && !GetComponentInParent<Move>().dead)
         {
             Jump();
         }
 
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && !anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_slide"))
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && !anim.GetCurrentAnimatorStateInfo(0).IsName("mixamo_slide") && !GetComponentInParent<Move>().dead)
         {
             Slide();
         }

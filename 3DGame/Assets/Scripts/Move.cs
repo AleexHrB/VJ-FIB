@@ -22,6 +22,7 @@ public class Move : MonoBehaviour
     public bool Tea;
     public bool GodMode = false;
     public bool dead;
+    private int IDhit = -1;
 
     public Vector3 center;
 
@@ -179,18 +180,32 @@ public class Move : MonoBehaviour
     {
         if (GodMode)
         {
-            int layerMask = 1 << 2;
+            int layerMask = 1 << 0;
             RaycastHit hit;
-            print("a");
-            if (Physics.Raycast(transform.position + Vector3.down*0.4f, transform.forward, out hit, Mathf.Infinity, layerMask)) {
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 3.0f, layerMask) && IDhit != hit.colliderInstanceID) {
                 {
-                    print("jeje");
-                    if (hit.collider.CompareTag("Rock") && hit.distance < 3f)
+                    if (hit.collider.CompareTag("Rock") || hit.collider.CompareTag("Fall"))
                     {
                         transform.GetChild(0).GetChild(0).GetComponent<AnimationControllerScript>().Jump();
                     }
+
+                    else if (hit.collider.CompareTag("Bob"))
+                    {
+                        lane = (lane + 1) % 3;
+                    }
+
+                    IDhit = hit.colliderInstanceID;
                 }
             }
+
+            else if (Physics.Raycast(transform.position + Vector3.up, transform.forward, out hit, 3.0f, layerMask) && IDhit != hit.colliderInstanceID) {
+                {
+                    if (hit.collider.CompareTag("Gamba"))transform.GetChild(0).GetChild(0).GetComponent<AnimationControllerScript>().Slide();
+                    IDhit = hit.colliderInstanceID;
+                }
+            }
+
+            else IDhit = -1;
         }
     }
 }
