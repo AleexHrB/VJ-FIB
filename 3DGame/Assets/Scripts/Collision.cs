@@ -96,7 +96,7 @@ public class Collision : MonoBehaviour
             enemies.transform.position = new Vector3(0, 100, 0);
 
             if (gameObject.GetComponentInParent<Move>().GodMode) {
-                gameObject.GetComponentInParent<Move>();
+                gameObject.GetComponentInParent<Move>().autoTurn(false);
             }
         }
         else if (other.tag == "Fall")

@@ -198,7 +198,7 @@ public class Move : MonoBehaviour
                 }
             }
 
-            else if (Physics.Raycast(transform.position + Vector3.up, transform.forward, out hit, 3.0f, layerMask) && IDhit != hit.colliderInstanceID) {
+            else if (Physics.Raycast(transform.position + Vector3.up * 2, transform.forward, out hit, 3.0f, layerMask) && IDhit != hit.colliderInstanceID) {
                 {
                     if (hit.collider.CompareTag("Gamba"))transform.GetChild(0).GetChild(0).GetComponent<AnimationControllerScript>().Slide();
                     IDhit = hit.colliderInstanceID;
@@ -206,6 +206,7 @@ public class Move : MonoBehaviour
             }
 
             else IDhit = -1;
+
         }
     }
 }
