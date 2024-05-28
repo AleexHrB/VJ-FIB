@@ -91,13 +91,15 @@ public class Collision : MonoBehaviour
             if (other.tag == "Tea")
             {
                 GetComponentInParent<Move>().Tea = true;
+                if (gameObject.GetComponentInParent<Move>().GodMode)
+                {
+                    gameObject.GetComponentInParent<Move>().autoTurn(false);
+                }
             }
 
             enemies.transform.position = new Vector3(0, 100, 0);
 
-            if (gameObject.GetComponentInParent<Move>().GodMode) {
-                gameObject.GetComponentInParent<Move>().autoTurn(false);
-            }
+            
         }
         else if (other.tag == "Fall")
         {
@@ -111,16 +113,16 @@ public class Collision : MonoBehaviour
 
         else if (other.tag == "MidLane")
         {
-            GetComponentInParent<Move>().stopTurn(1);
+            GetComponentInParent<Move>().lane = 1;
         }
 
         else if (other.tag == "LeftLane")
         {
-            GetComponentInParent<Move>().stopTurn(0);
+            GetComponentInParent<Move>().lane = 0;
         }
         else if (other.tag == "RightLane")
         {
-            GetComponentInParent<Move>().stopTurn(2);
+            GetComponentInParent<Move>().lane = 2;
         }
 
         else if (other.tag == "RighTurn") {

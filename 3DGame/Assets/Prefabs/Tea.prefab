@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 858710164897380915}
   m_Layer: 2
   m_Name: Mid
-  m_TagString: MidTurn
+  m_TagString: MidLane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -759,7 +759,7 @@ GameObject:
   - component: {fileID: 4278352529531006726}
   m_Layer: 2
   m_Name: Right (2)
-  m_TagString: RighTurn
+  m_TagString: RightLane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1253,7 +1253,7 @@ GameObject:
   - component: {fileID: 6085300957618530623}
   m_Layer: 2
   m_Name: Left (2)
-  m_TagString: LefTurn
+  m_TagString: LeftLane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1334,7 +1334,7 @@ GameObject:
   - component: {fileID: 9182263805726073435}
   m_Layer: 2
   m_Name: Right (1)
-  m_TagString: LefTurn
+  m_TagString: LeftLane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2099,7 +2099,7 @@ GameObject:
   - component: {fileID: 8446823666621508455}
   m_Layer: 2
   m_Name: Left (1)
-  m_TagString: RighTurn
+  m_TagString: RightLane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2344,7 +2344,7 @@ GameObject:
   - component: {fileID: 5509581407110577495}
   m_Layer: 2
   m_Name: Mid (1)
-  m_TagString: MidTurn
+  m_TagString: MidLane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

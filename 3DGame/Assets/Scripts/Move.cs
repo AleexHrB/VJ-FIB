@@ -183,6 +183,7 @@ public class Move : MonoBehaviour
             int layerMask = 1 << 0;
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, 3.0f, layerMask) && IDhit != hit.colliderInstanceID) {
+                print(hit.collider.tag);
                 {
                     if (hit.collider.CompareTag("Rock") || hit.collider.CompareTag("Fall"))
                     {
@@ -200,6 +201,7 @@ public class Move : MonoBehaviour
 
             else if (Physics.Raycast(transform.position + Vector3.up * 2, transform.forward, out hit, 3.0f, layerMask) && IDhit != hit.colliderInstanceID) {
                 {
+                    print(hit.collider.tag);
                     if (hit.collider.CompareTag("Gamba"))transform.GetChild(0).GetChild(0).GetComponent<AnimationControllerScript>().Slide();
                     IDhit = hit.colliderInstanceID;
                 }
