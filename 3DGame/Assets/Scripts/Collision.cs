@@ -16,6 +16,7 @@ public class Collision : MonoBehaviour
     public AudioClip crash;
     public AudioClip ding;
     public AudioClip rock;
+    public AudioClip dead;
 
     public GameObject pollo;
     public GameObject particles;
@@ -40,6 +41,11 @@ public class Collision : MonoBehaviour
                     GetComponentInParent<Move>().speed = 0.0f;
                     score.GetComponent<Score>().dead = true;
                     GetComponentInParent<Move>().dead = true;
+                    enemies.GetComponent<Policia>().dance();
+                    transform.parent.gameObject.GetComponent<AudioSource>().Stop();
+                    transform.parent.gameObject.GetComponent<AudioSource>().clip = dead;
+                    transform.parent.gameObject.GetComponent<AudioSource>().volume = 0.3f;
+                    transform.parent.gameObject.GetComponent<AudioSource>().Play();
                     break;
 
                 case "Rock":
@@ -57,6 +63,10 @@ public class Collision : MonoBehaviour
                     score.GetComponent<Score>().dead = true;
                     GetComponentInParent<Move>().dead = true;
                     enemies.GetComponent<Policia>().dance();
+                    transform.parent.gameObject.GetComponent<AudioSource>().Stop();
+                    transform.parent.gameObject.GetComponent<AudioSource>().clip = dead;
+                    transform.parent.gameObject.GetComponent<AudioSource>().volume = 0.3f;
+                    transform.parent.gameObject.GetComponent<AudioSource>().Play();
                     break;
 
                 case "Gamba":
@@ -68,6 +78,11 @@ public class Collision : MonoBehaviour
                     gameOverScreen.gameOver();
                     score.GetComponent<Score>().dead = true;
                     GetComponentInParent<Move>().dead = true;
+                    enemies.GetComponent<Policia>().dance();
+                    transform.parent.gameObject.GetComponent<AudioSource>().Stop();
+                    transform.parent.gameObject.GetComponent<AudioSource>().clip = dead;
+                    transform.parent.gameObject.GetComponent<AudioSource>().volume = 0.3f;
+                    transform.parent.gameObject.GetComponent<AudioSource>().Play();
                     break;
 
                 default:
@@ -77,7 +92,7 @@ public class Collision : MonoBehaviour
 
         switch (other.tag) {
             case "Coin":
-                GetComponent<AudioSource>().PlayOneShot(coin);
+                GetComponent<AudioSource>().PlayOneShot(coin, 0.5f);
                 GameObject.Find("ScoreText").GetComponent<Score>().score += 100;
                 Destroy(other.gameObject, 0);
                 break;
@@ -106,6 +121,11 @@ public class Collision : MonoBehaviour
                 score.GetComponent<Score>().dead = true;
                 GetComponentInParent<Move>().dead = true;
                 GetComponentInParent<Move>().speed = 0;
+                enemies.GetComponent<Policia>().dance();
+                transform.parent.gameObject.GetComponent<AudioSource>().Stop();
+                transform.parent.gameObject.GetComponent<AudioSource>().clip = dead;
+                transform.parent.gameObject.GetComponent<AudioSource>().volume = 0.3f;
+                transform.parent.gameObject.GetComponent<AudioSource>().Play();
                 break;
 
             case "MidLane":

@@ -17,7 +17,7 @@ public class Score : MonoBehaviour
         if (!dead) score = score + Time.deltaTime*10;
         txtScore.text = "Score: " + ((int) score).ToString();
 
-        if (score > 10000 && !changed) { 
+        if (camara.GetComponent<Move>().speed > 15.0f && !changed) { 
             changed = true;
             camara.GetComponent<AudioSource>().clip = tense;
             camara.GetComponent<AudioSource>().Play();

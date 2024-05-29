@@ -59,7 +59,7 @@ public class Move : MonoBehaviour
 
         float y = transform.rotation.eulerAngles.y;
 
-        if (!smoothRotate && !canRotate) {
+        if (!smoothRotate && !canRotate && !dead) {
             Vector3 shift = direction.x != 0 ? new Vector3(0f, 0, -direction.x) : new Vector3(direction.z, 0, 0);
             if (lane == 0) shift = -2.5f * shift;
             else if (lane == 2) shift = 2.5f * shift;
@@ -134,7 +134,7 @@ public class Move : MonoBehaviour
         {
             int layerMask = 1 << 0;
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, 3.0f, layerMask) && IDhit != hit.colliderInstanceID) {
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 0.3f *speed, layerMask) && IDhit != hit.colliderInstanceID) {
                 {
                     if (hit.collider.CompareTag("Rock") || hit.collider.CompareTag("Fall"))
                     {
@@ -150,7 +150,7 @@ public class Move : MonoBehaviour
                 }
             }
 
-            else if (Physics.Raycast(transform.position + Vector3.up * 2, transform.forward, out hit, 3.0f, layerMask) && IDhit != hit.colliderInstanceID) {
+            else if (Physics.Raycast(transform.position + Vector3.up * 2, transform.forward, out hit, 0.3f * speed, layerMask) && IDhit != hit.colliderInstanceID) {
                 {
                     if (hit.collider.CompareTag("Gamba"))transform.GetChild(0).GetChild(0).GetComponent<AnimationControllerScript>().Slide();
                     IDhit = hit.colliderInstanceID;
